@@ -2,6 +2,12 @@
 """
 Quick-start script for the Clause ingestion pipeline
 Run from project root: python run_pipeline.py
+
+NOTE: The old chunking pipeline has been removed.
+      A new spec-compliant chunker is being implemented:
+      clause/ingestion/chunkers/section_chunker.py
+      
+      This script will be updated once the new chunker is ready.
 """
 
 import sys

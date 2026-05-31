@@ -2,6 +2,10 @@
 """
 Test script - Verify pipeline can run on a sample PDF
 Run: python test_pipeline.py
+
+NOTE: Old chunking pipeline has been removed.
+      New spec-compliant chunker will be implemented in:
+      clause/ingestion/chunkers/section_chunker.py
 """
 
 import sys
@@ -11,8 +15,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from clause.ingestion.parsers.pdf_parser import PDFParser
-from clause.ingestion.chunkers.hierarchical_chunker import HierarchicalChunker
-from clause.ingestion.chunkers.special_elements import SpecialElementsExtractor
+
+# New chunker to be imported once implemented:
+# from clause.ingestion.chunkers.section_chunker import SectionChunker
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
