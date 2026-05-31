@@ -117,8 +117,9 @@ class SectionChunker:
     
     # Regex patterns for legal document structure
     # Explanation: Each pattern matches specific legal formatting
-    SECTION_PATTERN = r"^(?:Section|Rule|Article)\s+(\d+[A-Za-z]*)"
-    # Matches: Section 42, Rule 3, Article 5B (single or multi-letter suffixes)
+    SECTION_PATTERN = r"^(?:Section|SECTION|Rule|RULE|Article|ARTICLE)?\s*(\d+[A-Za-z]*)\s*[.:\-]\s*"
+    # Matches: Section 42, SECTION 1, Rule 3, Article 5B, or "1. ", "2A. ", "3A. ", "1A.", etc.
+    # Group 1 captures the section number (e.g., "42", "3A")
     
     SUBSECTION_PATTERN = r"^\s*\((\d+)\)\s"
     # Matches: (1), (2), (3) at line start (sub-sections and provisos)
@@ -859,9 +860,15 @@ def chunk_document(
     """
     Convenience function: Load file and chunk it.
     
+    Handles both plain text files and PDFs (extracts text automatically).
+    
     Args:
-        filepath: Path to document (PDF text extract, plain text)
-        doc_metadata: Metadata dict with keys: act, name, source_file, [year, ministry, source_url]
+        filepath: Path to document (.txt or .pdf)
+        doc_metadata: Metadata dict with keys:
+            - act: Act abbreviation (required, e.g., "CA2013")
+            - name: Full act name (required)
+            - source_file: Filename (required)
+            - [year, ministry, source_url]: Optional
     
     Returns:
         List of LegalChunk objects
@@ -875,9 +882,23 @@ def chunk_document(
     if not filepath.exists():
         raise FileNotFoundError(f"Document not found: {filepath}")
     
-    # Read document
-    with open(filepath, "r", encoding="utf-8") as f:
-        text = f.read()
+    # Read document (handle both PDF and plain text)
+    if filepath.suffix.lower() == ".pdf":
+        # Extract text from PDF using PDFParser
+        from clause.ingestion.parsers.pdf_parser import PDFParser
+        parser = PDFParser(str(filepath))
+        text = parser.extract_text_with_layout()
+        logger.info(f"Extracted text from PDF: {filepath.name}")
+    else:
+        # Plain text file
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                text = f.read()
+        except UnicodeDecodeError:
+            # Try with different encoding
+            with open(filepath, "r", encoding="latin-1") as f:
+                text = f.read()
+            logger.warning(f"Used latin-1 encoding for {filepath.name} (UTF-8 failed)")
     
     # Chunk
     chunker = SectionChunker()
