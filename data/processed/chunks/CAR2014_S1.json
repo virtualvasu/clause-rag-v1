@@ -1,0 +1,24 @@
+{
+  "chunk_id": "CAR2014_S1",
+  "type": "parent",
+  "text": "1.*Copy of balance sheet duly authenticated as per section 134 Attach\n(including Board’s report, auditors’ report and other documents)",
+  "act": "CAR2014",
+  "chapter": null,
+  "section_number": "1",
+  "section_title": "1.*Copy of balance sheet duly authenticated as per section 134 Attach",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 29,
+  "sentence_window": null,
+  "cross_references": [
+    "section 134"
+  ],
+  "source_file": "Companies_Accounts_Rules_2014.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

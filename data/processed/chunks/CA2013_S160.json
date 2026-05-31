@@ -1,0 +1,29 @@
+{
+  "chunk_id": "CA2013_S160",
+  "type": "parent",
+  "text": "160. Right of persons other than retiring directors to stand for directorship.— (1) A person who\nis not a retiring director in terms of section 152 shall, subject to the provisions of this Act, be eligible for\nappointment to the office of a director at any general meeting, if he, or some member intending to propose\nhim as a director, has, not less than fourteen days before the meeting, left at the registered office of the\ncompany, a notice in writing under his hand signifying his candidature as a director or, as the case may be,\nthe intention of such member to propose him as a candidate for that office, along with the deposit of one\nlakh rupees or such higher amount as may be prescribed which shall be refunded to such person or, as the\ncase may be, to the member, if the person proposed gets elected as a director or gets more than twenty-five\nper cent. of total valid votes cast either on show of hands or on poll on such resolution.\n2[Provided that requirements of deposit of amount shall not apply in case of appointment of an\nindependent director or a director recommended by the Nomination and Remuneration Committee, if any,\nconstituted under sub-section (1) of section 178 or a director recommended by the Board of Directors of\nthe Company, in the case of a company not required to constitute Nomination and Remuneration\nCommittee.]\n(2) The company shall inform its members of the candidature of a person for the office of director under\nsub-section (1) in such manner as may be prescribed.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "160",
+  "section_title": "160. Right of persons other than retiring directors to stand for directorship.— (1) A person who",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S160_2"
+  ],
+  "tokens": 332,
+  "sentence_window": null,
+  "cross_references": [
+    "section 152",
+    "section 178",
+    "sub-section (1) of section 178",
+    "sub-section (1)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

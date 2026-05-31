@@ -1,0 +1,28 @@
+{
+  "chunk_id": "CMR2014_S13",
+  "type": "parent",
+  "text": "13. Special Resolution.-(1) Where the aggregate of the loans and investment so far made, the amount for which\nguarantee or security so far provided to or in all other bodies corporate along with the investment, loan, guarantee\nor security proposed to be made or given by the Board, exceed the limits specified under section 186, no\ninvestment or loan shall be made or guarantee shall be given or security shall be provided unless previously\nauthorised by a special resolution passed in a general meeting.\nExplanation.-For the purpose of this sub-rule, it is clarified that it would sufficient compliance if such special\nresolution is passed within one year from the date of notification of this section.\n(2) A resolution passed at a general meeting in terms of sub-section (3) of section 186 to give any loan or\nguarantee or investment or providing any security or the acquisition under sub section (2) of section 186 shall\nspecify the total amount up to which the Board of Directors are authorised to give such loan or guarantee, to\nprovide such security or make such acquisition:\nProvided, that the company shall disclose to the members in the financial statement the full particulars in\naccordance with the provision of sub-section (4) of section 186.",
+  "act": "CMR2014",
+  "chapter": null,
+  "section_number": "13",
+  "section_title": "13. Special Resolution.-(1) Where the aggregate of the loans and investment so far made, the amount for which",
+  "parent_id": null,
+  "children_ids": [
+    "CMR2014_S13_2"
+  ],
+  "tokens": 260,
+  "sentence_window": null,
+  "cross_references": [
+    "section 186",
+    "sub-section (3) of section 186",
+    "sub-section (4) of section 186"
+  ],
+  "source_file": "Companies_Meetings_Rules_2014.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,28 @@
+{
+  "chunk_id": "CA2013_S462",
+  "type": "parent",
+  "text": "462. Power to exempt class or classes of companies from provisions of this Act.—(1) The Central\nGovernment may in the public interest, by notification direct that any of the provisions of this Act,—\n(a) shall not apply to such class or classes of companies; or\n(b) shall apply to the class or classes of companies with such exceptions, modifications and\nadaptations as may be specified in the notification.\n1[(2) A copy of every notification proposed to be issued under sub-section (1), shall be laid in draft\nbefore each House of Parliament, while it is in session, for a total period of thirty days, and if, both Houses\nagree in disapproving the issue of notification or both Houses agree in making any modification in the\nnotification, the notification shall not be issued or, as the case may be, shall be issued only in such modified\nform as may be agreed upon by both the Houses.\n(3) In reckoning any such period of thirty days as is referred to in sub-section (2), no account shall be\ntaken of any period during which the House referred to in sub-section (2) is prorogued or adjourned for\nmore than four consecutive days.\n(4) The copies of every notification issued under this section shall, as soon as may be after it has been\nissued, be laid before each House of Parliament.]",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "462",
+  "section_title": "462. Power to exempt class or classes of companies from provisions of this Act.—(1) The Central",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S462_3",
+    "CA2013_S462_4"
+  ],
+  "tokens": 285,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)",
+    "sub-section (2)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

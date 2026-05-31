@@ -1,0 +1,29 @@
+{
+  "chunk_id": "SEBI_AIF2012_S19A",
+  "type": "parent",
+  "text": "19A. For the purposes of this Chapter, unless the context otherwise requires, the terms defined\nherein shall bear the meanings assigned to them below, and their cognate expressions and\nvariations shall be construed accordingly,-\n(1) “angel fund” means a sub-category of Venture Capital Fund under Category I- Alternative\nInvestment Fund that raises funds from angel investors and invests in accordance with the\nprovisions of this Chapter.\n(2) \"angel investor\" means any person who proposes to invest in an angel fund and satisfies one\nof the following conditions, namely,\n(a) an individual investor who has net tangible assets of at least two crore rupees excluding value\nof his principal residence, and who:\n(i) has early stage investment experience, or\n(ii) has experience as a serial entrepreneur, or\n(iii) is a senior management professional with at least ten years of experience;\nExplanation: For the purpose of this clause, 'early stage investment experience' shall\nmean prior experience in investing in start-up or emerging or early-stage ventures and\n'serial entrepreneur' shall mean a person who has promoted or co-promoted more than one\nstart-up venture.\n(b) a body corporate with a net worth of at least ten crore rupees; or\n(c) an Alternative Investment Fund registered under these regulations or a Venture Capital Fund\nregistered under the SEBI (Venture Capital Funds) Regulations, 1996.\n(3) \"company with family connection\" means:\na. if the angel investor is an individual,\ni. any company which is promoted by such an individual or his relative; or\nii. any company where the individual or his relative is a director; or\n\n--- PAGE 35 ---\niii. any company where the person or his relative has control, or shares or voting rights\nwhich entitle them to fifteen percent or more of the shares or voting rights in the company.\nExplanation I: For the purpose of this clause, \"relative\" means a person as defined under\n99[ sub-section 77 of section 2 of the Companies Act, 2013].\nExplanation II: For the purpose of this clause, \"control\" shall have the same meaning as\nassigned to it under sub-regulation (1) of regulation 2 of the Securities and Exchange Board\nof India (Substantial Acquisition of Shares and Takeovers) Regulations, 2011.\nb. if the angel investor is a body corporate,\ni. any company which is a subsidiary or a holding company of the investor;\nor\nii. any company which is part of the same group or under the same management of the\ninvestor; or\nExplanation: For the purpose of this clause, \"part of the same group\" and \"under the same\nmanagement\" shall have the same meaning as assigned to it under regulation 23 of the\nSecurities and Exchange Board of India (Issue of Capital and Disclosure Requirements)\nRegulations, 2009.\niii. any company where the body corporate or its directors/partners have control, or shares\nor voting rights which entitle them to fifteen percent or more of the shares or voting rights\nin the company.\nExplanation: For the purpose of this clause, \"control\" shall have the same meaning as\nassigned to it under sub-regulation (1) of regulation 2 of the Securities and Exchange Board of\nIndia (Substantial Acquisition of Shares and Takeovers) Regulations, 2011.\nApplicability.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "19A",
+  "section_title": "19A. For the purposes of this Chapter, unless the context otherwise requires, the terms defined",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_AIF2012_S19A_1",
+    "SEBI_AIF2012_S19A_2",
+    "SEBI_AIF2012_S19A_3"
+  ],
+  "tokens": 706,
+  "sentence_window": null,
+  "cross_references": [
+    "section 77",
+    "section 2"
+  ],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

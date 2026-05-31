@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_AIF2012_S27",
+  "type": "parent",
+  "text": "27. (1) The Manager or Sponsor shall be required to maintain following records describing:\n(a) the assets under the scheme/fund;\n(b) valuation policies and practices;\n(c) investment strategies;\n(d) particulars of investors and their contribution;\n(e) rationale for investments made.\n(2) The records under sub-regulation (1) shall be maintained for a period of five years after the\nwinding up of the fund.\nSubmission of reports to the Board.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "27",
+  "section_title": "27. (1) The Manager or Sponsor shall be required to maintain following records describing:",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_AIF2012_S27_2"
+  ],
+  "tokens": 94,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,30 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S70",
+  "type": "parent",
+  "text": "70. (1) The draft letter of offer and letter of offer shall contain all material disclosures which are\ntrue and adequate to enable the applicants to take an informed investment decision.\n(2) Without prejudice to the generality of sub-regulation (1), the draft letter of offer and letter of\noffer shall contain disclosures as specified in Part A or Part B of Schedule VI, as applicable.\n(3) The lead manager(s) shall exercise due diligence and satisfy themselves about all aspects of\nthe issue including the veracity and adequacy of disclosure in the draft letter of offer and the letter\nof offer.\n(4) The lead manager(s) shall call upon the issuer, its promoters and its directors to fulfil their\nobligations as disclosed by them in the draft letter of offer and letter of offer and as required in\nterms of these Regulations.\n(5) The lead manager(s) shall ensure that the information contained in the draft letter of offer and\nletter of offer and the particulars as per audited financial statements in the letter of offer are not\nmore than six months old from the issue opening date.\n(6) An issuer shall make disclosures in the draft letter of offer, letter of offer and abridged letter\nof offer, if the issuer or any of its promoters or directors is a wilful defaulter.\nFiling of the draft letter of offer and letter of offer",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "70",
+  "section_title": "70. (1) The draft letter of offer and letter of offer shall contain all material disclosures which are",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S70_2",
+    "SEBI_ICDR2018_S70_3",
+    "SEBI_ICDR2018_S70_4",
+    "SEBI_ICDR2018_S70_5",
+    "SEBI_ICDR2018_S70_6"
+  ],
+  "tokens": 283,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VI"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

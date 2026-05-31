@@ -1,0 +1,26 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S193",
+  "type": "parent",
+  "text": "193. (1)The abridged prospectus shall contain the disclosures as specified in Part B of Schedule\nVIII and shall not contain any matter extraneous to the contents of the offer document.\n(2) Every application form distributed by the issuer or any other person in relation to an issue\nshall be accompanied by a copy of the abridged prospectus.\n76\n\n--- PAGE 77 ---\nASBA",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "193",
+  "section_title": "193. (1)The abridged prospectus shall contain the disclosures as specified in Part B of Schedule",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S193_2"
+  ],
+  "tokens": 82,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule\nVIII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

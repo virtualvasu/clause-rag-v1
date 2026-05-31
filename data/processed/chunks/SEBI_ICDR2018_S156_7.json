@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S156_7",
+  "type": "child",
+  "text": "(7) Date of completion of the project, where object of the issue was financing the\nproject.",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "156",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S156",
+  "children_ids": [],
+  "tokens": 21,
+  "sentence_window": "(5) Date of closure of issue. (6) Date of allotment and date of credit of securities to the demat account. (7) Date of completion of the project, where object of the issue was financing the\nproject. (8) Rate of dividend paid. (Q) Performance vis-à-vis objects:\n(1) Issuer:\n(a) A list of all the public/rights issues made during the preceding five years,\nalong with the year of issue.",
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

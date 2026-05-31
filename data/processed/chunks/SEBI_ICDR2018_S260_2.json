@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S260_2",
+  "type": "child",
+  "text": "(2) The lead manager(s) shall underwrite at least fifteen per cent. of the issue size on their own\naccount(s).",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "260",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S260",
+  "children_ids": [],
+  "tokens": 28,
+  "sentence_window": "Underwriting\n260. (1) The initial public offer shall be underwritten for hundred per cent of the offer and shall\nnot be restricted upto the minimum subscription level. (2) The lead manager(s) shall underwrite at least fifteen per cent. of the issue size on their own\naccount(s). (3) The issuer, in consultation with lead manager(s), may appoint underwriters in accordance with\nSecurities and Exchange Board of India (Underwriters) Regulations, 1993 and the lead\nmanager(s) may enter into an agreement with the nominated investors indicating therein the\nnumber of specified securities which they agree to subscribe at the issue price in case of under-\nsubscription. (4) The lead manager(s) shall file an undertaking to the Board that the issue has been hundred per\ncent.",
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

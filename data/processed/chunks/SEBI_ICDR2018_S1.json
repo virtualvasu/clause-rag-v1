@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S1",
+  "type": "parent",
+  "text": "1. QIBs\n(a) Foreign Portfolio Investors\nDomestic Financial Institutions\n(Banks/FIs/Insurance Companies,\netc.)\n(b) Mutual Funds\n(c) Others",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "1",
+  "section_title": "1. QIBs",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 35,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

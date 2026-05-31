@@ -1,0 +1,29 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S288",
+  "type": "parent",
+  "text": "288. (1) The entire pre-issue capital of the shareholders shall be locked-in for a period of six\nmonths from the date of allotment in case of listing pursuant to a public issue or date of listing in\ncase of listing without a public issue:\nProvided that nothing contained in this regulation shall apply to:\na) equity shares allotted to employees, whether currently an employee or not, under an\nemployee stock option or employee stock purchase scheme of the issuer prior to the initial\npublic offer, if the issuer has made full disclosures with respect to such options or scheme\nin accordance with Part A of Schedule VI;\nb) equity shares held by an employee stock option trust or transferred to the employees by an\nemployee stock option trust pursuant to exercise of options by the employees, whether\ncurrently employees or not, in accordance with the employee stock option plan or\nemployee stock purchase scheme.\nProvided that the equity shares allotted to the employees shall be subject to the provisions\nof lock-in as specified under the Securities and Exchange Board of India (Share Based\nEmployee Benefits) Regulations, 2014.\nc) equity shares held by a venture capital fund or alternative investment fund of Category I or\na foreign venture capital investor:\nProvided that such equity shares shall be locked-in for a period of at least one year from\nthe date of purchase by the venture capital fund or alternative investment fund or foreign\nventure capital investor.\nd) equity shares held by persons other than the promoters, continuously for a period of at\nleast one year prior to the date of listing in case of listing without a public issue:\nExplanation: For the purpose of clause (c) and (d), in case such equity shares have\nresulted pursuant to conversion of fully paid-up compulsorily convertible securities, the\nholding period of such convertible securities as well as that of resultant equity shares\ntogether shall be considered for the purpose of calculation of one year period and the\nconvertible securities shall be deemed to be fully paid-up, if the entire consideration\npayable thereon has been paid at the time of their conversion.\n(2) The specified securities held by the promoters and locked-in may be pledged with any\nscheduled commercial bank or public financial institution or systemically important non-banking\nfinance company as a collateral security for a loan granted by such bank or institution or\nsystemically important non-banking finance company if the pledge of specified securities is one\nof the terms of sanction of the loan.\n(3) The specified securities that are locked-in may be transferable in accordance with regulation\n288 of these regulations.\n(4) All specified securities allotted on a discretionary basis shall be locked-in in accordance with\nthe requirements for lock-in for the anchor investors on the main board of the stock exchange, as\nspecified under Part A of Schedule XIII.\n104\n\n--- PAGE 105 ---\nTrading lot",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "288",
+  "section_title": "288. (1) The entire pre-issue capital of the shareholders shall be locked-in for a period of six",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S288_2",
+    "SEBI_ICDR2018_S288_3",
+    "SEBI_ICDR2018_S288_4"
+  ],
+  "tokens": 583,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VI",
+    "Schedule XIII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

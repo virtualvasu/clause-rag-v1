@@ -1,0 +1,27 @@
+{
+  "chunk_id": "CA2013_S121",
+  "type": "parent",
+  "text": "121. Report on annual general meeting.—(1) Every listed public company shall prepare in the\nprescribed manner a report on each annual general meeting including the confirmation to the effect that the\nmeeting was convened, held and conducted as per the provisions of this Act and the rules made thereunder.\n(2) The company shall file with the Registrar a copy of the report referred to in sub-section (1) within\nthirty days of the conclusion of the annual general meeting with such fees as may be prescribed, or with\nsuch additional fees as may be prescribed, 1***.\n2[(3) If the company fails to file the report under sub-section (2) before the expiry of the period specified\ntherein, such company shall be liable to a penalty of one lakh rupees and in case of continuing failure, with\na further penalty of five hundred rupees for each day after the first during which such failure continues,\nsubject to a maximum of five lakh rupees and every officer of the company who is in default shall be liable\nto a penalty which shall not be less than twenty-five thousand rupees and in case of continuing failure, with\na further penalty of five hundred rupees for each day after the first during which such failure continues,\nsubject to a maximum of one lakh rupees.]",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "121",
+  "section_title": "121. Report on annual general meeting.—(1) Every listed public company shall prepare in the",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S121_2"
+  ],
+  "tokens": 266,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)",
+    "sub-section (2)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,24 @@
+{
+  "chunk_id": "DPIIT_SRG_S1",
+  "type": "parent",
+  "text": "1. Merger/ Demerger/ Acquisition/ Amalgamation/ Absorption: Resultant entity or\nentities formed due to merger demerger/ acquisition/ amalgamation/ absorption/will not\nbe recognized as Startup.\nHowever, merger or amalgamation under section 233 of the Companies Act, 2013\nbetween any of the following class of companies will be allowed subject to fulfillment of\nnorms of DPIIT Notification by the resultant company:\ni. two or more start-up companies; or\nii. one or more start-up company with one or more small company",
+  "act": "DPIIT_SRG",
+  "chapter": null,
+  "section_number": "1",
+  "section_title": "1. Merger/ Demerger/ Acquisition/ Amalgamation/ Absorption: Resultant entity or",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 118,
+  "sentence_window": null,
+  "cross_references": [
+    "section 233"
+  ],
+  "source_file": "DPIIT_Startup_Recognition_Guidelines.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

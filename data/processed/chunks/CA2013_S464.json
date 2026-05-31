@@ -1,0 +1,27 @@
+{
+  "chunk_id": "CA2013_S464",
+  "type": "parent",
+  "text": "464. Prohibition of association or partnership of persons exceeding certain number.—(1) No\nassociation or partnership consisting of more than such number of persons as may be prescribed shall be\nformed for the purpose of carrying on any business that has for its object the acquisition of gain by the\nassociation or partnership or by the individual members thereof, unless it is registered as a company under\nthis Act or is formed under any other law for the time being in force:\nProvided that the number of persons which may be prescribed under this sub-section shall not exceed\none hundred.\n(2) Nothing in sub-section (1) shall apply to—\n(a) a Hindu undivided family carrying on any business; or\n(b) an association or partnership, if it is formed by professionals who are governed by special Acts.\n(3) Every member of an association or partnership carrying on business in contravention of sub-\nsection (1) shall be punishable with fine which may extend to one lakh rupees and shall also be personally\nliable for all liabilities incurred in such business.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "464",
+  "section_title": "464. Prohibition of association or partnership of persons exceeding certain number.—(1) No",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S464_2",
+    "CA2013_S464_3"
+  ],
+  "tokens": 217,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S291",
+  "type": "parent",
+  "text": "291. (1) The recognised stock exchange may delist the specified securities of an issuer listed\nwithout making a public issue upon non-compliance of the conditions of listing and in the\nmanner as specified by the stock exchange.\n(2) No issuer promoted by the promoters and directors of an entity delisted under sub-regulation\n(1), shall be permitted to list on the institutional trading platform for a period of five years from\nthe date of such delisting:\nProvided that the provisions of this regulation shall not apply to another issuer promoted by any\nof the independent directors of such a delisted issuer.\nMigration to the main board",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "291",
+  "section_title": "291. (1) The recognised stock exchange may delist the specified securities of an issuer listed",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S291_2"
+  ],
+  "tokens": 130,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

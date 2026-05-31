@@ -1,0 +1,27 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S218",
+  "type": "parent",
+  "text": "218. (1) The offer document for the rights offering shall contain disclosures as required under the\nhome country regulations of the issuer.\n(2) An additional wrap (addendum to offer document) shall be attached to the offer document to\nbe circulated in India containing information as specified in Part C of Schedule VIII and other\ninstructions as to the procedures and process to be followed with respect to rights issue of IDRs in\nIndia.\n(3) Without prejudice to the generality of sub-regulations (1) and (2), the offer document and the\naddendum attached with it, shall contain all material information, which are true, correct and\nadequate, so as to enable the applicants to take an informed investment decision.\nAppointment of lead managers and compliance officer",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "218",
+  "section_title": "218. (1) The offer document for the rights offering shall contain disclosures as required under the",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S218_2",
+    "SEBI_ICDR2018_S218_3"
+  ],
+  "tokens": 156,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VIII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

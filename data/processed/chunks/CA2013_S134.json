@@ -1,0 +1,35 @@
+{
+  "chunk_id": "CA2013_S134",
+  "type": "parent",
+  "text": "134. Financial statement, Board’s report, etc.— 2[(1) The financial statement, including consolidated\nfinancial statement, if any, shall be approved by the Board of Directors before they are signed on behalf of\nthe Board by the chairperson of the company where he is authorised by the Board or by two directors out\nof which one shall be managing director, if any, and the Chief Executive Officer, the Chief Financial Officer\nand the company secretary of the company, wherever they are appointed, or in the case of One Person\nCompany, only by one director, for submission to the auditor for his report thereon.]\n(2) The auditors’ report shall be attached to every financial statement.\n(3) There shall be attached to statements laid before a company in general meeting, a report by its Board of\nDirectors, which shall include—\n3[(a) the web address, if any, where annual return referred to in sub-section (3) of section 92 has been\nplaced;]\n(b) number of meetings of the Board;\n(c) Directors’ Responsibility Statement;\n4[(ca) details in respect of frauds reported by auditors under sub-section (12) of section 143 other than\nthose which are reportable to the Central Government;]\n(d) a statement on declaration given by independent directors under sub-section (6) of section 149;\n(e) in case of a company covered under sub-section (1) of section 178, company’s policy on directors’\nappointment and remuneration including criteria for determining qualifications, positive attributes,\nindependence of a director and other matters provided under sub-section (3) of section 178;",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "134",
+  "section_title": "134. Financial statement, Board’s report, etc.— 2[(1) The financial statement, including consolidated",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S134_2",
+    "CA2013_S134_3"
+  ],
+  "tokens": 344,
+  "sentence_window": null,
+  "cross_references": [
+    "section 92",
+    "section 143",
+    "section 149",
+    "section 178",
+    "sub-section (3) of section 92",
+    "sub-section (12) of section 143",
+    "sub-section (6) of section 149",
+    "sub-section (1) of section 178",
+    "sub-section (3) of section 178"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

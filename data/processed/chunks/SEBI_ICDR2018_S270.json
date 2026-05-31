@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S270",
+  "type": "parent",
+  "text": "270. (1) The lead manager(s) shall ensure that advertisement giving details relating to\nsubscription, basis of allotment, number, value and percentage of all applications including\nASBA, number, value and percentage of successful allottees for all applications including ASBA,\ndate of completion of dispatch of refund orders, as applicable, or instructions to self certified\nsyndicate banks by the Registrar, date of credit of specified securities and date of filing of listing\napplication, etc. is released within ten days from the date of completion of the various activities in\nat least one English national daily newspaper with wide circulation, one Hindi national daily\nnewspaper with wide circulation and one regional language daily newspaper with wide circulation\nat the place where registered office of the issuer is situated.\n(2) Details specified in sub regulation (1) shall also be placed on the website of the stock\nexchanges.\nPost-issue responsibilities of the lead manager(s)",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "270",
+  "section_title": "270. (1) The lead manager(s) shall ensure that advertisement giving details relating to",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S270_2"
+  ],
+  "tokens": 192,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

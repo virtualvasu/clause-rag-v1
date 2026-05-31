@@ -1,0 +1,22 @@
+{
+  "chunk_id": "CA2013_S2_2",
+  "type": "child",
+  "text": "(2) Other Comprehensive Income for the period.\nThe sum of (1) and (2) above is ‘Total Comprehensive Income’.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "2",
+  "section_title": null,
+  "parent_id": "CA2013_S2",
+  "children_ids": [],
+  "tokens": 27,
+  "sentence_window": "2. The Statement of Profit and Loss shall include:\n(1) Profit or loss for the period; (2) Other Comprehensive Income for the period.\nThe sum of (1) and (2) above is ‘Total Comprehensive Income’. 3. Revenue from operations shall disclose separately in the notes\n(a) sale of products (including Excise Duty);\n(b) sale of services; 1***\n2[(ba) Grants or donations received (relevant in case of section 8 companies only); and]\n(c) other operating revenues.",
+  "cross_references": [],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

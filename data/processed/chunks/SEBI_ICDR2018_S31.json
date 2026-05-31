@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S31",
+  "type": "parent",
+  "text": "31. The minimum offer to the public shall be subject to the provisions of clause (b) of sub-rule (2)\nof rule 19 of Securities Contracts (Regulations) Rules, 1957.\nAllocation in the net offer",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "31",
+  "section_title": "31. The minimum offer to the public shall be subject to the provisions of clause (b) of sub-rule (2)",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 47,
+  "sentence_window": null,
+  "cross_references": [
+    "rule 19",
+    "sub-rule (2)\nof rule 19"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,558 +1,98 @@
-# Clause — Hybrid GraphRAG for Indian Startup Law
+# Clause — Hybrid GraphRAG for Indian Legal Documents
 
-**Legal clarity for Indian startups** — An enterprise-grade RAG system combining vector search, sparse search, knowledge graphs, and agentic reasoning.
+3-layer hierarchical chunking for legal documents with parent-child relationships.
 
----
+## Chunking Specification
 
-## Table of Contents
+### Layer 1: Document Chunk
+- **Definition:** Document metadata wrapper
+- **Size:** Minimal (~10-50 tokens)
+- **ID Format:** `ACT_DOC` (e.g., `CA2013_DOC`)
+- **Fields:** act, name, year, ministry, total_sections, source_file
 
-1. [Project Overview](#project-overview)
-2. [Architecture](#architecture)
-3. [Chunking Strategy](#chunking-strategy)
-4. [Setup & Installation](#setup--installation)
-5. [Project Structure](#project-structure)
-6. [Running the Pipeline](#running-the-pipeline)
-7. [Next Steps](#next-steps)
+### Layer 2: Parent Chunk (Section-Level)
+- **Definition:** Complete legal section from heading to all subsections, provisos, explanations
+- **Size:** 512–1024 tokens (enforced via tiktoken cl100k_base)
+- **ID Format:** `ACT_S{n}` (e.g., `CA2013_S42`)
+- **Metadata:** section_number, text, children_ids, source_page, tokens
 
----
+### Layer 3: Child Chunk (Subsection-Level)
+- **Definition:** Individual subsection (1), (2), (3), proviso, or explanation
+- **Size:** 128–256 tokens (enforced via tiktoken cl100k_base)
+- **ID Format:** `ACT_S{n}_{m}` (e.g., `CA2013_S42_1`)
+- **Metadata:** parent_id, section_number, text, tokens, sentence_window (±2 sentences)
 
-## Project Overview
+## Special Handling
 
-### Problem
+| Element | Strategy |
+|---------|----------|
+| **Proviso** | Merged with parent section (not split) |
+| **Explanation** | Merged with parent section (not split) |
+| **Cross-References** | Detected via regex, stored in chunk, creates Neo4j edges |
+| **Tables** | Preserved as atomic chunks, parsed to structured list |
+| **Sentence Window** | ±2 sentences attached to child chunks for context |
 
-Indian startup founders and lawyers need answers to complex, multi-hop legal questions:
+## Pipeline Output
 
-- *"What are compliance requirements for a private limited company with 3 foreign directors in its first year?"*
-- *"What changed for ESOP taxation between 2020 and 2023?"*
-- *"Which SEBI regulations apply to a startup raising a Series B from a US VC?"*
+**Documents Processed:** 9/10  
+**Total Chunks:** 5,708 (9 document + 2,878 parent + 2,821 child)  
+**Output Location:** `data/processed/chunks/*.json`  
+**Relationships:** `data/processed/graph/relationships.csv` (5,643 edges)  
+**Summary Report:** `data/processed/entities/SUMMARY.md`
 
-**Baseline RAG fails** because these queries require:
-- ✗ Traversing relationships across multiple acts and sections
-- ✗ Conditional logic (IF entity_type == small_company AND turnover < 50Cr THEN...)
-- ✗ Temporal reasoning (amendment histories, effective dates)
-- ✗ Cross-document linking (SEBI regulation → Companies Act section)
+## Implementation
 
-### Solution
+- **Engine:** [clause/ingestion/chunkers/section_chunker.py](clause/ingestion/chunkers/section_chunker.py) (SectionChunker class)
+- **Orchestrator:** [clause/ingestion/pipeline.py](clause/ingestion/pipeline.py) (IngestionPipeline class)
+- **Model:** Pydantic LegalChunk with 15 fields
+- **Token Counting:** tiktoken (cl100k_base encoding)
 
-**Hybrid GraphRAG** combines:
-- 🔍 **Vector Search** (dense embeddings via Qdrant)
-- 🔤 **Sparse Search** (keyword matching via BM25)
-- 🔗 **Knowledge Graph** (relationships via Neo4j)
-- 🤖 **Agentic Loop** (reasoning via LangGraph)
-- 💬 **LLM Generation** (Claude Sonnet)
+## Chunk Format
 
----
+Each chunk is a JSON file with this structure:
 
-## Architecture
-
-```
-User Query
-    │
-    ▼
-┌──────────────────────────┐
-│   Query Processor        │
-│ • Query classification   │
-│ • HyDE expansion         │
-│ • Query normalization    │
-└────────────┬─────────────┘
-             │
-    ┌────────┴────────┐
-    │                 │
-    ▼                 ▼
-┌──────────┐    ┌──────────────┐
-│  Vector  │    │     BM25     │
-│  Search  │    │ Sparse Search│
-│ (Qdrant) │    │  (BM25s)     │
-└────┬─────┘    └──────┬───────┘
-     │                 │
-     └────────┬────────┘
-              │
-              ▼
-     ┌─────────────────┐
-     │  RRF Fusion +   │
-     │   Reranking     │
-     │ (Cohere v3)     │
-     └────────┬────────┘
-              │
-              ▼
-     ┌─────────────────┐
-     │  Knowledge Graph│
-     │  Traversal      │
-     │  (Neo4j)        │
-     │ • Entity lookup │
-     │ • Path reasoning│
-     └────────┬────────┘
-              │
-              ▼
-     ┌─────────────────┐
-     │  Agentic Loop   │
-     │  (LangGraph)    │
-     │ • CRAG check    │
-     │ • Adaptive      │
-     │   routing       │
-     └────────┬────────┘
-              │
-              ▼
-     ┌─────────────────┐
-     │ LLM Generation  │
-     │ (Claude Sonnet) │
-     │ + Citations     │
-     └─────────────────┘
-```
-
----
-
-## Chunking Strategy
-
-### Why Hierarchical Chunking?
-
-Legal documents have natural hierarchical structure that flat chunking destroys:
-
-```
-Companies Act 2013
-  └─ Part I (Preliminary)
-      └─ Chapter II (Incorporation)
-          └─ Section 5 (Classification of companies)
-              └─ Subsection (a), (b), (c)
-                  └─ Clause (i), (ii), (iii)
-                      └─ Explanation / Proviso
-```
-
-**Problems with flat chunking:**
-- ❌ Chunk at subsection level → lose full section context
-- ❌ Chunk at section level → lose granular detail
-- ❌ Fixed-size chunks → split meaningful legal phrases
-
-**Hierarchical solution:** Create multi-level chunks with parent-child relationships.
-
----
-
-### Chunking Levels
-
-#### **Level 1: Full Section (Parent Chunk)**
-
-**Definition:** Entire section from heading to all subsections/provisos/explanations
-
-**Size:** 1-5 KB (~300-1500 tokens)
-
-**Use case:** Complex queries needing full legal context
-
-**Example:**
-```
-Section 42: Appointment of directors
-
-(1) Every company shall have at least one director and a maximum of fifteen directors...
-
-(2) Provided that a private company or an unlisted public company may...
-
-(3) The central government may...
-
-Explanation: For the purposes of this section...
-```
-
-**Metadata:**
 ```json
 {
-  "chunk_id": "section_42_full",
-  "level": "section",
-  "section": "42",
-  "heading": "Appointment of directors",
-  "token_count": 450,
-  "has_subsections": true,
-  "has_provisos": true,
-  "children": [
-    "section_42_subsection_1",
-    "section_42_subsection_2",
-    "section_42_subsection_3"
-  ]
+  "chunk_id": "CA2013_S42_1",
+  "type": "child",
+  "text": "Every company shall have at least one director...",
+  "act": "CA2013",
+  "section_number": "42",
+  "section_title": "Appointment of directors",
+  "parent_id": "CA2013_S42",
+  "children_ids": [],
+  "tokens": 142,
+  "sentence_window": "Full section with surrounding context...",
+  "cross_references": ["Section 2(34)", "Rule 4"],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": "Companies Act 2013",
+  "year": 2013,
+  "ministry": "Ministry of Corporate Affairs",
+  "source_url": null,
+  "total_sections": 465,
+  "structured": null
 }
 ```
 
----
-
-#### **Level 2: Subsection/Proviso (Child Chunk)**
-
-**Definition:** Individual subsection (1), (2), (3) or proviso or explanation
-
-**Size:** 200-500 tokens (~60-150 words)
-
-**Use case:** Precise targeted retrieval for vector search
-
-**Example:**
-```
-Section 42(2): Provided that a private company or an unlisted public company 
-may have such number of directors as may be prescribed.
-```
-
-**Metadata:**
-```json
-{
-  "chunk_id": "section_42_subsection_2",
-  "level": "subsection",
-  "section": "42",
-  "subsection": "2",
-  "type": "proviso",
-  "parent_chunk_id": "section_42_full",
-  "token_count": 95,
-  "applies_to": ["PrivateLimited", "UnlistedPublic"]
-}
-```
-
----
-
-#### **Level 3: Clause/Definition (Granular Chunk)**
-
-**Definition:** Individual clause (a), (b), (c), (i), (ii) or single extracted definition
-
-**Size:** 50-200 tokens (~15-60 words)
-
-**Use case:** Specific obligations, precise citations
-
-**Example:**
-```
-Section 42(1)(a): at least one director shall be resident in India 
-for a period of not less than one hundred and eighty-three days 
-during the relevant financial year
-```
-
-**Metadata:**
-```json
-{
-  "chunk_id": "section_42_subsection_1_clause_a",
-  "level": "clause",
-  "section": "42",
-  "subsection": "1",
-  "clause": "a",
-  "parent_chunk_id": "section_42_subsection_1",
-  "token_count": 42,
-  "entity_type": "residency_requirement",
-  "condition": "resident_in_india",
-  "duration_days": 183
-}
-```
-
----
-
-### Special Document Elements
-
-#### **1. Definitions**
-
-**Strategy:** Extract and create separate chunks
-
-**Example:**
-```
-"Director" defined in Section 2(34):
-
-"director" means a person who is appointed to act as director of a company.
-
-Applies in: All sections of the Act
-Cross-references: Section 42, 149, 160, 165...
-```
-
-**Metadata:**
-```json
-{
-  "chunk_id": "definition_director",
-  "type": "definition",
-  "defined_term": "director",
-  "defined_in_section": "2(34)",
-  "definition_text": "...",
-  "used_in_sections": [42, 149, 160, 165],
-  "cross_references": ["Section 2(34)", "Section 42", ...]
-}
-```
-
----
-
-#### **2. Penalties & Conditions**
-
-**Strategy:** Extract as atomic chunks, create structured relationships
-
-**Example from Companies Act:**
-```
-Section 149(7): Contravention of subsection (1) shall be punishable 
-with fine which shall not be less than ₹1 lakh but which may extend 
-to ₹5 lakh, and in case of a company with turnover exceeding ₹100 crore, 
-the fine shall not be less than ₹2 lakh but may extend to ₹10 lakh.
-```
-
-**Metadata:**
-```json
-{
-  "chunk_id": "penalty_section_149_7",
-  "type": "penalty",
-  "section": "149",
-  "offense": "contravention_of_section_149_subsection_1",
-  "penalty_min_inr": 100000,
-  "penalty_max_inr": 500000,
-  "conditional_penalty": {
-    "condition": "turnover > 100 crore",
-    "penalty_min_inr": 200000,
-    "penalty_max_inr": 1000000
-  },
-  "applies_to": ["PublicCompany", "PrivateLimited"]
-}
-```
-
----
-
-#### **3. Tables (Schedules, Fees, Forms)**
-
-**Strategy:** Treat as atomic (don't split), extract row relationships
-
-**Example:**
-```
-Schedule VIII: Filing Fees
-
-Company Type | MCA Registrar | Registrar Office | Total
-Private Ltd  | ₹1,000        | ₹500              | ₹1,500
-Public Ltd   | ₹5,000        | ₹2,000            | ₹7,000
-```
-
-**Processing:**
-- Don't split table rows
-- Extract each row as a separate chunk
-- Create relationships: CompanyType → Fee
-
-**Metadata:**
-```json
-{
-  "chunk_id": "schedule_8_row_1",
-  "type": "table_row",
-  "source": "Schedule VIII",
-  "title": "Filing Fees",
-  "company_type": "PrivateLimited",
-  "mca_registrar_fee": 1000,
-  "registrar_office_fee": 500,
-  "total_fee": 1500,
-  "currency": "INR"
-}
-```
-
----
-
-#### **4. Cross-References**
-
-**Strategy:** Parse and create Neo4j edges for graph traversal
-
-**Examples found in documents:**
-- "See Section X of the Companies Act"
-- "As per Rule Y, clause (a)"
-- "In accordance with Schedule Z"
-- "Amended by Amendment Act YYYY"
-
-**Parsing & Storage:**
-```json
-{
-  "chunk_id": "section_42_cross_ref_1",
-  "type": "cross_reference",
-  "from_section": "42",
-  "references": [
-    {
-      "target": "section_2_34",
-      "reference_text": "definition of director",
-      "reference_type": "definition"
-    },
-    {
-      "target": "rule_4_incorporation_rules",
-      "reference_text": "Form INC-12A",
-      "reference_type": "related_form"
-    }
-  ]
-}
-```
-
-**Graph edges created:**
-- `(Section:42)-[:REFERENCES]->(Section:2_34)`
-- `(Section:42)-[:REQUIRES_FORM]->(Form:INC_12A)`
-
----
-
-#### **5. Amendments & Temporal Data**
-
-**Strategy:** Store original + amendment separately with effective dates
-
-**Example:**
-```
-Companies Act 2013, Section 42 (Original, 2013-09-12):
-Every company shall have at least one director...
-
-Companies (Amendment) Act 2015, Section 42 (Amended, 2015-03-02):
-Every company shall have at least one director in India...
-[Modified: Added "in India" requirement]
-
-Companies (Amendment) Act 2017, Section 42 (Amended, 2017-12-10):
-Every company shall have at least one director...
-[Modified: Changed tenure requirement from 180 to 183 days]
-```
-
-**Metadata:**
-```json
-{
-  "chunk_id": "section_42_history",
-  "type": "amendment_history",
-  "section": "42",
-  "versions": [
-    {
-      "version_id": "section_42_v1",
-      "effective_date": "2013-09-12",
-      "amendment_act": "Companies Act 2013",
-      "text": "...",
-      "change_summary": "Original provision"
-    },
-    {
-      "version_id": "section_42_v2",
-      "effective_date": "2015-03-02",
-      "amendment_act": "Companies (Amendment) Act 2015",
-      "text": "...",
-      "change_summary": "Added requirement: director must be in India",
-      "amended_by_section": "Companies (Amendment) Act 2015, Section X"
-    }
-  ],
-  "current_version": "section_42_v3",
-  "current_effective_date": "2017-12-10"
-}
-```
-
----
-
-### Chunking Pipeline
-
-#### **Step 1: PDF Extraction**
-- Use `pdfplumber` to extract text preserving layout
-- Use `unstructured` for structure detection (headers, tables)
-- Use `camelot` for table extraction with accuracy
-
-#### **Step 2: Document Structure Detection**
-- Regex patterns: "^(Section|Rule|Schedule)\s+(\d+)"
-- Heading level detection
-- Subsection markers: (1), (2), (a), (b), (i), (ii)
-
-#### **Step 3: Hierarchical Splitting**
-```
-Full Document (Level 0)
-  └─ Part/Schedule (Level 1)
-      └─ Chapter (Level 2)
-          └─ Section (Level 3) ← Parent chunks
-              └─ Subsection/Proviso (Level 4) ← Child chunks
-                  └─ Clause/Explanation (Level 5) ← Granular chunks
-```
-
-#### **Step 4: Special Element Extraction**
-- Extract definitions: Look for "means", "includes", "defined as"
-- Extract penalties: Look for "punishable", "fine", "imprisonment"
-- Extract tables: Use camelot, verify structure
-- Extract references: Look for "See Section", "Refer to", "As per"
-
-#### **Step 5: Metadata Enrichment**
-- Add hierarchical paths
-- Add entity type tags (PrivateLimited, PublicCompany, etc.)
-- Add condition tags (turnover, no. of shareholders, etc.)
-- Count tokens using `tiktoken`
-- Track amendments and effective dates
-
-#### **Step 6: Chunk Validation**
-- Verify no orphaned clauses (each clause has parent)
-- Verify no truncated legal phrases
-- Verify cross-references resolve
-- Check token counts within ranges
-
-#### **Step 7: Output Generation**
-- Write to `/data/processed/chunks/` as JSON files
-- Write relationships to `/data/processed/graph/relations.csv` for Neo4j import
-- Write metadata to `/data/processed/entities/metadata.json`
-
----
-
-### Chunk Size Heuristics
-
-| Level | Min Tokens | Max Tokens | Reasoning |
-|-------|-----------|-----------|-----------|
-| Full Section | 300 | 1500 | Fits in LLM context, preserves full meaning |
-| Subsection | 60 | 500 | Good for embedding + search balance |
-| Clause | 15 | 200 | Precise retrieval, specific obligations |
-
-**Why these ranges?**
-- OpenAI's `text-embedding-3-large` ≈ 8,191 token limit
-- LLM context window (Claude Sonnet): 200K tokens
-- ~300 tokens ≈ 1 page of dense legal text
-- BM25 effective with 50+ tokens (too small loses context)
-- Qdrant embedding quality decreases below 30 tokens
-
----
-
-### Expected Output Structure
-
-```
-data/
-└── processed/
-    ├── chunks/
-    │   ├── section_42_full.json
-    │   ├── section_42_subsection_1.json
-    │   ├── section_42_subsection_1_clause_a.json
-    │   ├── definition_director.json
-    │   ├── penalty_section_149_7.json
-    │   └── ... (1000+ chunk files)
-    │
-    ├── entities/
-    │   ├── metadata.json          (all chunk metadata consolidated)
-    │   ├── definitions.json       (extracted definitions)
-    │   ├── penalties.json         (extracted penalties)
-    │   ├── thresholds.json        (turnover, shareholder counts, etc.)
-    │   └── amendments.json        (amendment history)
-    │
-    └── graph/
-        ├── nodes.csv              (for Neo4j LOAD CSV)
-        ├── relationships.csv      (for Neo4j LOAD CSV)
-        └── entities_with_types.json
-```
-
----
-
-## Setup & Installation
-
-### Prerequisites
-
-- Python 3.11+
-- Docker & Docker Compose
-- System dependencies: `poppler-utils`, `tesseract-ocr`
-
-### Install System Dependencies
-
-```bash
-sudo apt update
-sudo apt install poppler-utils tesseract-ocr -y
-```
-
-### Install Python Dependencies
-
-```bash
-# Create virtual environment
-python3.11 -m venv venv
-source venv/bin/activate
-
-# Install requirements
-pip install -r requirements.txt
-```
-
-### Environment Setup
-
-```bash
-# Copy example env file
-cp .env.example .env
-
-# Edit .env with your API keys
-nano .env
-```
-
----
-
-## Project Structure
-
-```
-clause-rag-v1/
-├── README.md                          ← This file
-├── context.md                         ← Project context & decisions
+## Documents Included
+
+1. Companies Act 2013 (CA2013)
+2. Companies Incorporation Rules 2014 (CIR2014)
+3. Companies Share Capital Rules 2014 (CSCR2014)
+4. Companies Accounts Rules 2014 (CAR2014)
+5. Companies Meetings Rules 2014 (CMR2014)
+6. Companies Directors Rules 2014 (CDR2014)
+7. SEBI ICDR Regulations 2018 (SEBI_ICDR2018)
+8. SEBI AIF Regulations 2012 (SEBI_AIF2012)
+9. DPIIT Startup Recognition Guidelines (DPIIT_SRG)
+
+## Next Steps
+
+- Embed child chunks to Qdrant (vector indexing)
+- Import relationships.csv to Neo4j (knowledge graph)
+- Build BM25 sparse index
+- Connect retrieval pipeline
 ├── docker-compose.yml                 ← Services: Qdrant, Neo4j, API
 ├── Dockerfile.api                     ← FastAPI container
 ├── requirements.txt                   ← Python dependencies

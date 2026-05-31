@@ -1,0 +1,28 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S175",
+  "type": "parent",
+  "text": "175. (1) The lead manager(s) shall exercise due diligence and shall satisfy themselves with all\naspects of the Issue including the veracity and adequacy of disclosures in the offer document.\n(2) The qualified institutions placement shall be made on the basis of a placement document which\nshall contain all material information, including those specified in the Companies Act, 2013, if any,\nand disclosures as specified in Schedule VII shall be made, including as specified therein if the\nissuer or any of its promoters or directors is a wilful defaulter.\n(3) The preliminary placement document and the placement document shall be serially numbered\nand copies the same shall be circulated only to select investors.\n70\n\n--- PAGE 71 ---\n(4) The preliminary placement document and the placement document shall be placed on the\nwebsites of the relevant stock exchange(s) and of the issuer with a disclaimer to the effect that it is in\nconnection with a qualified institutions placement and that no offer is being made to the public or to\nany other category of investors.\nPART IV: PRICING",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "175",
+  "section_title": "175. (1) The lead manager(s) shall exercise due diligence and shall satisfy themselves with all",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S175_2",
+    "SEBI_ICDR2018_S175_3",
+    "SEBI_ICDR2018_S175_4"
+  ],
+  "tokens": 222,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

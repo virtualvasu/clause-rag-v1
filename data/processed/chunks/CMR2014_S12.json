@@ -1,0 +1,32 @@
+{
+  "chunk_id": "CMR2014_S12",
+  "type": "parent",
+  "text": "12.Register.-(1) Every company giving loan or giving guarantee or providing security or making an acquisition of\nsecurities shall, from the date of its incorporation, maintain a register in Form MBP 2 and enter therein separately,\nthe particulars of loans and guarantees given, securities provided and acquisitions made as aforesaid.\n\n--- PAGE 5 ---\n¹Hkkx IIµ[k.M 3(i)º Hkkjr dk jkti=k % vlk/kj.k 17\n(2) The entries in the register shall be made chronologically in respect of each such transaction within seven days\nof making such loan or giving guarantee or providing security or making acquisition.\n(3) The register shall be kept at the registered office of the company and the register shall be preserved\npermanently and shall be kept in the custody of the company secretary of the company or any other person\nauthorised by the Board for the purpose.\n(4) The entries in the register (either manual or electronic) shall be authenticated by the company secretary of the\ncompany or by any other person authorised by the Board for the purpose.\n(5) For the purpose of sub-rule (4), theregister can be maintained either manually or in electronic mode.\n(6) Theextracts from the register maintained under sub-section (9) of section 186 may be furnished to any member\nof the company on payment of such fee as may be prescribed in the Articles of the company which shall not\nexceed ten rupees for each page.",
+  "act": "CMR2014",
+  "chapter": null,
+  "section_number": "12",
+  "section_title": "12.Register.-(1) Every company giving loan or giving guarantee or providing security or making an acquisition of",
+  "parent_id": null,
+  "children_ids": [
+    "CMR2014_S12_2",
+    "CMR2014_S12_3",
+    "CMR2014_S12_4",
+    "CMR2014_S12_5",
+    "CMR2014_S12_6"
+  ],
+  "tokens": 312,
+  "sentence_window": null,
+  "cross_references": [
+    "section 186",
+    "sub-rule (4)",
+    "sub-section (9) of section 186"
+  ],
+  "source_file": "Companies_Meetings_Rules_2014.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

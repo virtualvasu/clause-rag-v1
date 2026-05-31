@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_AIF2012_S14",
+  "type": "parent",
+  "text": "14. (1) Units of close ended Alternative Investment Fund may be listed on stock exchange subject\nto a minimum tradable lot of one crore rupees.\n(2) Listing of Alternative Investment Fund units shall be permitted only after final close of the\nfund or scheme.\nGeneral Investment Conditions.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "14",
+  "section_title": "14. (1) Units of close ended Alternative Investment Fund may be listed on stock exchange subject",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_AIF2012_S14_2"
+  ],
+  "tokens": 59,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,29 @@
+{
+  "chunk_id": "CA2013_S365",
+  "type": "parent",
+  "text": "365. Order of dissolution of company.—(1) The Official Liquidator shall, if he is satisfied that the\ncompany is finally wound up, submit a final report to—\n(i) the Central Government, in case no reference was made to the Tribunal under sub-section (4) of\nsection 364; and\n(ii) in any other case, the Central Government and the Tribunal.\n(2) The Central Government, or as the case may be, the Tribunal on receipt of such report shall order\nthat the company be dissolved.\n(3) Where an order is made under sub-section (2), the Registrar shall strike off the name of the company\nfrom the register of companies and publish a notification to this effect.\nCHAPTER XXI\nPART I.— Companies Authorised to Register under this Act",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "365",
+  "section_title": "365. Order of dissolution of company.—(1) The Official Liquidator shall, if he is satisfied that the",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S365_2",
+    "CA2013_S365_3"
+  ],
+  "tokens": 163,
+  "sentence_window": null,
+  "cross_references": [
+    "section 364",
+    "sub-section (4) of\nsection 364",
+    "sub-section (2)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

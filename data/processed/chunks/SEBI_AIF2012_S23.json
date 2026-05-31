@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_AIF2012_S23",
+  "type": "parent",
+  "text": "23. (1) The Alternative Investment Fund shall provide to its investors, a description of its valuation\nprocedure and of the methodology for valuing assets.\n(2) Category I and Category II Alternative Investment Funds shall undertake valuation of their\ninvestments, atleast once in every six months, by an independent valuer appointed by the\nAlternative Investment Fund:\nProvided that such period may be enhanced to one year on approval of atleast seventy-five\npercent of the investors by value of their investment in the Alternative Investment Fund.\n(3) Category III Alternative Investment Funds shall ensure that calculation of the net asset\nvalue (NAV) is independent from the fund management function of the Alternative\nInvestment Fund and such NAV shall be disclosed to the investors at intervals not longer\nthan a quarter for close ended Funds and at intervals not longer than a month for open\nended funds.\nObligation of Manager.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "23",
+  "section_title": "23. (1) The Alternative Investment Fund shall provide to its investors, a description of its valuation",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_AIF2012_S23_2",
+    "SEBI_AIF2012_S23_3"
+  ],
+  "tokens": 180,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

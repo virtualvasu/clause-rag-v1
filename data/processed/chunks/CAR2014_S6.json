@@ -1,0 +1,24 @@
+{
+  "chunk_id": "CAR2014_S6",
+  "type": "parent",
+  "text": "6. Supplementary or test audit report under section 143 Attach",
+  "act": "CAR2014",
+  "chapter": null,
+  "section_number": "6",
+  "section_title": "6. Supplementary or test audit report under section 143 Attach",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 12,
+  "sentence_window": null,
+  "cross_references": [
+    "section 143"
+  ],
+  "source_file": "Companies_Accounts_Rules_2014.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

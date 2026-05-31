@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_AIF2012_S38",
+  "type": "parent",
+  "text": "38. The regulations specified in the Third Schedule to these regulations shall be amended in the\nmanner and to the extent stated therein.\nRepeal and Saving.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "38",
+  "section_title": "38. The regulations specified in the Third Schedule to these regulations shall be amended in the",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 33,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule t"
+  ],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

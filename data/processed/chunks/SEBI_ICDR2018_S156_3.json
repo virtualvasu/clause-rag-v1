@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S156_3",
+  "type": "child",
+  "text": "(3) Type of Issue (public/rights/composite).",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "156",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S156",
+  "children_ids": [],
+  "tokens": 13,
+  "sentence_window": "(P) Following particulars in regard to the issuer and other listed group\ncompanies/subsidiaries/associates which made any capital issue during the last three\nyears shall be given:\n(1) Name of the Company. (2) Year of Issue. (3) Type of Issue (public/rights/composite). (4) Amount of issue. (5) Date of closure of issue.",
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

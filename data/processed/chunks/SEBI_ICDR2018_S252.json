@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S252",
+  "type": "parent",
+  "text": "252. The minimum offer to the public shall be as per the provisions of clause (b) of sub-rule (2) of\nrule 19 of Securities Contracts (Regulations) Rules, 1957.\nAllocation in the net offer",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "252",
+  "section_title": "252. The minimum offer to the public shall be as per the provisions of clause (b) of sub-rule (2) of",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 48,
+  "sentence_window": null,
+  "cross_references": [
+    "rule 19",
+    "sub-rule (2) of\nrule 19"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,27 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S172",
+  "type": "parent",
+  "text": "172. (1) A listed issuer may make a qualified institutions placement of eligible securities if it satisfies\nthe following conditions:\na) a special resolution approving the qualified institutions placement has been passed by its\nshareholders, and the special resolution shall, among other relevant matters, specify that the\nallotment is proposed to be made through qualified institutions placement and the relevant date\nreferred to in sub-clause (ii) of clause (b) of regulation 171;\nProvided that no shareholders’ resolution will be required in case the qualified institutions\nplacement is through an offer for sale by promoters or promoter group for compliance with\nminimum public shareholding requirements specified in the Securities Contracts (Regulation)\nRules, 1957;\nProvided further that allotment pursuant to the special resolution referred to in this clause (a) of\nregulation 172 shall be completed within a period of 365 days from the date of passing of the\nresolution.\nb) the equity shares of the same class, which are proposed to be allotted through qualified\ninstitutions placement or pursuant to conversion or exchange of eligible securities offered\nthrough qualified institutions placement, have been listed on a stock exchange for a period of at\nleast one year prior to the date of issuance of notice to its shareholders for convening the\nmeeting to pass the special resolution:\nProvided that where an issuer, being a transferee company in a scheme of compromise,\narrangement and amalgamation sanctioned by a High Court under sections 391-394 of the\nCompanies Act, 1956 or approved by a tribunal or the Central Government under sections 230\nto 234 of the Companies Act, 2013, whichever is applicable makes qualified institutions\nplacement, the period for which the equity shares of the same class of the transferor company\nwere listed on a stock exchange having nation-wide trading terminals shall also be considered\nfor the purpose of computation of the period of one year.\nProvided further that this clause shall not be applicable to an issuer proposing to undertake\nqualified institutional placement for complying with the minimum public shareholding\nrequirements specified in the Securities Contracts (Regulation) 1957.\nExplanation: For the purpose of clause (b), “equity shares of the same class” shall mean equity\nshares which rank pari-passu in relation to rights as to dividend, voting or otherwise.\n69\n\n--- PAGE 70 ---\nc) An issuer shall be eligible to make a qualified institutions placement if any of its promoters or\ndirectors is not a fugitive economic offender.\n(2) All eligible securities issued through a qualified institutions placement shall be listed on the\nrecognised stock exchange where the equity shares of the issuer are listed.\nProvided that the issuer shall seek approval under rule 19(7) of the Securities Contracts\n(Regulation) Rules, 1957, if applicable.\n(3) The issuer shall not make any subsequent qualified institutions placement until the expiry of six\nmonths from the date of the prior qualified institutions placement made pursuant to one or more\nspecial resolutions.\nConditions for offer for sale by promoters for compliance with minimum public\nshareholding requirements specified in the Securities Contracts (Regulation) Rules, 1957.",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "172",
+  "section_title": "172. (1) A listed issuer may make a qualified institutions placement of eligible securities if it satisfies",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S172_2",
+    "SEBI_ICDR2018_S172_3"
+  ],
+  "tokens": 649,
+  "sentence_window": null,
+  "cross_references": [
+    "rule 19"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

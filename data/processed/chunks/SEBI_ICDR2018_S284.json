@@ -1,0 +1,38 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S284",
+  "type": "parent",
+  "text": "284. (1) An issuer seeking listing of its specified securities without making a public offer, shall\nfile a draft information document along with the necessary documents with the Board in\naccordance with these regulations along with the fee as specified in Schedule III of these\nregulations.\n(2) The draft information document shall contain disclosures as specified for the draft offer\ndocuments in these regulations as specified in Part A of Schedule VI.\n(3) The regulations relating to the following as stated under the Chapter of Initial Public Offer on\nMain Board shall not be applicable:\na) allotment;\n102\n\n--- PAGE 103 ---\nb) issue opening or closing;\nc) advertisements;\nd) underwriting;\ne) sub-regulation (2) of regulation 5;\nf) pricing;\ng) dispatch of issue material; and\nh) other such provisions related to offer of specified securities to the public.\n(4) The issuer shall obtain an in-principle approval from the stock exchanges on which it\nproposes to get its specified securities listed.\n(5) The issuer shall list its specified securities on the recognised stock exchange(s within thirty\ndays:\na) from the date of issuance of observations by the Board; or\nb) from the expiry of the period stipulated in sub-regulation (4) of regulation 25, if the Board\nhas not issued any such observations.\n(6) The issuer which has received an in-principle approval from the stock exchange for listing of\nits specified securities, shall be deemed to have been waived by the Board under sub-rule (7) of\nrule 19 from the requirement of minimum offer to the public as per the provisions of clause (b)\nof sub-rule (2) of rule 19 of Securities Contracts (Regulation) Rules, 1957 for the limited purpose\nof listing on the institutional trading platform.\n(7) Provisions relating to minimum public shareholding shall not be applicable.\n(8) The draft and final information document shall be approved by the board of directors of the\nissuer and shall be signed by all directors, the Chief Executive Officer, i.e., the Managing\nDirector or Manager within the meaning of the Companies Act, 2013 and the Chief Financial\nOfficer, i.e., the Whole-time Finance Director or any other person heading the finance function\nand discharging that function.\n(9) The signatories shall also certify that all disclosures made in the information document are\ntrue and correct.\n(10) In case of mis-statement in the information document or any omission therein, any person\nwho has authorized the issue of information document shall be liable in accordance with the\nprovisions of the Act and regulations made thereunder.\nExplanation: Under this Part, the phrases ‘pre-issue’ and ‘post-issue’, wherever they occur shall\nbe construed as ‘pre-listing’ and ‘post-listing’, respectively.\nPART III: LISTING PURSUANT TO AN INITIAL PUBLIC OFFER\nDisclosures in draft offer document and offer document",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "284",
+  "section_title": "284. (1) An issuer seeking listing of its specified securities without making a public offer, shall",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S284_2",
+    "SEBI_ICDR2018_S284_3",
+    "SEBI_ICDR2018_S284_4",
+    "SEBI_ICDR2018_S284_5",
+    "SEBI_ICDR2018_S284_6",
+    "SEBI_ICDR2018_S284_7",
+    "SEBI_ICDR2018_S284_8",
+    "SEBI_ICDR2018_S284_9",
+    "SEBI_ICDR2018_S284_10"
+  ],
+  "tokens": 614,
+  "sentence_window": null,
+  "cross_references": [
+    "rule 19",
+    "Schedule III",
+    "Schedule VI",
+    "sub-rule (7) of\nrule 19",
+    "sub-rule (2) of rule 19"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,28 @@
+{
+  "chunk_id": "CA2013_S463",
+  "type": "parent",
+  "text": "463. Power of court to grant relief in certain cases.—(1) If in any proceeding for negligence, default,\nbreach of duty, misfeasance or breach of trust against an officer of a company, it appears to the court hearing\nthe case that he is or may be liable in respect of the negligence, default, breach of duty, misfeasance or\nbreach of trust, but that he has acted honestly and reasonably, and that having regard to all the circumstances\nof the case, including those connected with his appointment, he ought fairly to be excused, the court may\nrelieve him, either wholly or partly, from his liability on such term, as it may think fit:\nProvided that in a criminal proceeding under this sub-section, the court shall have no power to grant\nrelief from any civil liability which may attach to an officer in respect of such negligence, default, breach\nof duty, misfeasance or breach of trust.\n(2) Where any such officer has reason to apprehend that any proceeding will or might be brought against\nhim in respect of any negligence, default, breach of duty, misfeasance or breach of trust, he may apply to\nthe High Court for relief and the High Court on such application shall have the same power to relieve him\nas it would have had if it had been a court before which a proceedings against that officer for negligence,\ndefault, breach of duty, misfeasance or breach of trust had been brought under sub-section (1).\n(3) No court shall grant any relief to any officer under sub-section (1) or sub-section (2) unless it has,\nby notice served in the manner specified by it, required the Registrar and such other person, if any, as it\nthinks necessary, to show cause why such relief should not be granted.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "463",
+  "section_title": "463. Power of court to grant relief in certain cases.—(1) If in any proceeding for negligence, default,",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S463_2",
+    "CA2013_S463_3"
+  ],
+  "tokens": 377,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)",
+    "sub-section (2)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

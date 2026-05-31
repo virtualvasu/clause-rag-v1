@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S263",
+  "type": "parent",
+  "text": "263. All public communications, publicity materials, advertisements and research reports shall\ncomply with provisions of Schedule IX.\nIssue-related advertisements",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "263",
+  "section_title": "263. All public communications, publicity materials, advertisements and research reports shall",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 26,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule IX"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

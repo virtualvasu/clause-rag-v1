@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_AIF2012_S19L_2",
+  "type": "child",
+  "text": "(2) The special situation fund shall accept from an investor, an investment of such value as\nmay be specified by the Board.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "19L",
+  "section_title": null,
+  "parent_id": "SEBI_AIF2012_S19L",
+  "children_ids": [],
+  "tokens": 27,
+  "sentence_window": "--- PAGE 42 ---\n19L. (1) Each scheme of a special situation fund shall have a corpus as may be specified by the\nBoard. (2) The special situation fund shall accept from an investor, an investment of such value as\nmay be specified by the Board. (3) The special situation fund shall not accept investments from any other Alternative\nInvestment Fund other than a special situation fund. Investment by special situation funds.",
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

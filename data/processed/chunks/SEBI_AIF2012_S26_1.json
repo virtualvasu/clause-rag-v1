@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_AIF2012_S26_1",
+  "type": "child",
+  "text": "(1) non-banking financial companies;",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "26",
+  "section_title": null,
+  "parent_id": "SEBI_AIF2012_S26",
+  "children_ids": [],
+  "tokens": 9,
+  "sentence_window": "05-05-2021. Prior to its substitution, clause (aa) read as under :\n“(aa) “venture capital undertaking” means a domestic company:\n(i) which is not listed on a recognised stock exchange in India at the time of making investment; and\n(ii) which is engaged in the business for providing services, production or manufacture of article or things and\ndoes not include following activities or sectors: (1) non-banking financial companies; (2) gold financing;\n(3) activities not permitted under industrial policy of Government of India;\n(4) any other activity which may be specified by the Board in consultation with Government of India from time\nto time;”\n26 Substituted for “(aa)” by the Securities and Exchange Board of India (Alternative Investment Funds) (Third\nAmendment) Regulations, 2021, w.e.f. 03-08-2021.",
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

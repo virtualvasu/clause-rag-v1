@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_AIF2012_S37",
+  "type": "parent",
+  "text": "37. The powers exercisable by the Board under these regulations shall also be exercisable by any\nofficer of the Board to whom such powers are delegated by the Board by means of an order\nmade under section 19 of the Securities and Exchange Board of India Act, 1992.\nAmendments to other Regulations.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "37",
+  "section_title": "37. The powers exercisable by the Board under these regulations shall also be exercisable by any",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 66,
+  "sentence_window": null,
+  "cross_references": [
+    "section 19"
+  ],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,27 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S164",
+  "type": "parent",
+  "text": "164. (1) If the equity shares of the issuer have been listed on a recognised stock exchange for a\nperiod of twenty six weeks or more as on the relevant date, the price of the equity shares to be\nallotted pursuant to the preferential issue shall be not less than higher of the following:\na. the average of the weekly high and low of the volume weighted average price of the related\nequity shares quoted on the recognised stock exchange during the twenty six weeks preceding\nthe relevant date; or\n64\n\n--- PAGE 65 ---\nb. the average of the weekly high and low of the volume weighted average prices of the related\nequity shares quoted on a recognised stock exchange during the two weeks preceding the\nrelevant date.\n(2) If the equity shares of the issuer have been listed on a recognised stock exchange for a period\nof less than twenty six weeks as on the relevant date, the price of the equity shares to be allotted\npursuant to the preferential issue shall be not less than the higher of the following:\na) the price at which equity shares were issued by the issuer in its initial public offer or the value\nper share arrived at in a scheme of compromise, arrangement and amalgamation under\nsections 391 to 394 of the Companies Act, 1956 or sections 230 to 234 the Companies Act,\n2013, as applicable, pursuant to which the equity shares of the issuer were listed, as the case\nmay be; or\nb) the average of the weekly high and low of the volume weighted average prices of the related\nequity shares quoted on the recognised stock exchange during the period the equity shares\nhave been listed preceding the relevant date; or\nc) the average of the weekly high and low of the volume weighted average prices of the related\nequity shares quoted on a recognised stock exchange during the two weeks preceding the\nrelevant date.\n(3) Where the price of the equity shares is determined in terms of sub-regulation (2), such price\nshall be recomputed by the issuer on completion of twenty six weeks from the date of listing on a\nrecognised stock exchange with reference to the average of the weekly high and low of the\nvolume weighted average prices of the related equity shares quoted on the recognised stock\nexchange during these twenty six weeks and if such recomputed price is higher than the price paid\non allotment, the difference shall be paid by the allottees to the issuer.\n(4) A preferential issue of specified securities to qualified institutional buyers, not exceeding five\nin number, shall be made at a price not less than the average of the weekly high and low of the\nvolume weighted average prices of the related equity shares quoted on a recognised stock\nexchange during the two weeks preceding the relevant date.\n(5) For the purpose of this Chapter, “frequently traded shares” means the shares of the issuer, in\nwhich the traded turnover on any recognised stock exchange during the twelve calendar months\npreceding the relevant date, is at least ten per cent of the total number of shares of such class of\nshares of the issuer:\nProvided that where the share capital of a particular class of shares of the issuer is not identical\nthroughout such period, the weighted average number of total shares of such class of the issuer\nshall represent the total number of shares.\nExplanation: For the purpose of this regulation, ‘stock exchange’ means any of the recognised\nstock exchange(s) in which the equity shares of the issuer are listed and in which the highest\ntrading volume in respect of the equity shares of the issuer has been recorded during the preceding\ntwenty six weeks prior to the relevant date.\nPricing of infrequently traded shares",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "164",
+  "section_title": "164. (1) If the equity shares of the issuer have been listed on a recognised stock exchange for a",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S164_2",
+    "SEBI_ICDR2018_S164_3",
+    "SEBI_ICDR2018_S164_4",
+    "SEBI_ICDR2018_S164_5"
+  ],
+  "tokens": 759,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

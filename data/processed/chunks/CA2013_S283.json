@@ -1,0 +1,27 @@
+{
+  "chunk_id": "CA2013_S283",
+  "type": "parent",
+  "text": "283. Custody of company’s properties.—(1) Where a winding up order has been made or where a\nprovisional liquidator has been appointed, the Company Liquidator or the provisional liquidator, as the case\nmay be, shall, on the order of the Tribunal, forthwith take into his or its custody or control all the property,\neffects and actionable claims to which the company is or appears to be entitled to and take such steps and\nmeasures, as may be necessary, to protect and preserve the properties of the company.\n(2) Notwithstanding anything contained in sub-section (1), all the property and effects of the company\nshall be deemed to be in the custody of the Tribunal from the date of the order for the winding up of the\ncompany.\n(3) On an application by the Company Liquidator or otherwise, the Tribunal may, at any time after the\nmaking of a winding up order, require any contributory for the time being on the list of contributories, and\nany trustee, receiver, banker, agent, officer or other employee of the company, to pay, deliver, surrender or\ntransfer forthwith, or within such time as the Tribunal directs, to the Company Liquidator, any money,\nproperty or books and papers in his custody or under his control to which the company is or appears to be\nentitled.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "283",
+  "section_title": "283. Custody of company’s properties.—(1) Where a winding up order has been made or where a",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S283_2",
+    "CA2013_S283_3"
+  ],
+  "tokens": 281,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

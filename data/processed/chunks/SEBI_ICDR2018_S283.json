@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S283",
+  "type": "parent",
+  "text": "283. (1) The following issuers shall be eligible for listing on the institutional trading platform:\na) an issuer which is intensive in the use of technology, information technology, intellectual\nproperty, data analytics, bio-technology or nano-technology to provide products, services or\nbusiness platforms with substantial value addition and at least twenty five per cent of its pre-\nissue capital is held by qualified institutional buyer(s) as on the date of filing of draft\ninformation document or draft offer document with the Board, as the case may be; or\nb) any other issuer in which at least fifty per cent of the pre-issue capital is held by qualified\ninstitutional buyers as on the date of filing of draft information document or draft offer\ndocument with the Board, as the case may be.\n(2) No person, individually or collectively with persons acting in concert, shall hold twenty five\nper cent or more of the post-issue share capital in an entity specified in sub-regulation (1).\n(3) An issuer shall be eligible for listing on the institutional trading platform if none of the\npromoters or directors of the issuer company is a fugitive economic offender.\nPART II: LISTING WITHOUT A PUBLIC ISSUE\nListing without a public issue",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "283",
+  "section_title": "283. (1) The following issuers shall be eligible for listing on the institutional trading platform:",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S283_2",
+    "SEBI_ICDR2018_S283_3"
+  ],
+  "tokens": 252,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

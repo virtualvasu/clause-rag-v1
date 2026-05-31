@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S126_2",
+  "type": "child",
+  "text": "(2) The issuer shall undertake the book building process in the manner specified in Schedule\nXIII.\nPrice and price band",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "126",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S126",
+  "children_ids": [],
+  "tokens": 25,
+  "sentence_window": "Pricing\n28. (1) The issuer may determine the price of equity shares, and in case of convertible securities, the\ncoupon rate and the conversion price, in consultation with the lead manager(s) or through the book\nbuilding process, as the case may be. (2) The issuer shall undertake the book building process in the manner specified in Schedule\nXIII.\nPrice and price band 29. (1) The issuer may mention a price or a price band in the offer document (in case of a fixed price\nissue) and a floor price or a price band in the red herring prospectus (in case of a book built issue)\nand determine the price at a later date before registering the prospectus with the Registrar of\nCompanies:\nProvided that the prospectus registered with the Registrar of Companies shall contain only one price\nor the specific coupon rate, as the case may be.",
+  "cross_references": [
+    "Schedule\nXIII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

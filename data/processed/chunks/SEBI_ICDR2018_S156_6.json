@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S156_6",
+  "type": "child",
+  "text": "(6) Date of allotment and date of credit of securities to the demat account.",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "156",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S156",
+  "children_ids": [],
+  "tokens": 19,
+  "sentence_window": "(4) Amount of issue. (5) Date of closure of issue. (6) Date of allotment and date of credit of securities to the demat account. (7) Date of completion of the project, where object of the issue was financing the\nproject. (8) Rate of dividend paid.",
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

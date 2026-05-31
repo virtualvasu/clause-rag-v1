@@ -1,0 +1,28 @@
+{
+  "chunk_id": "CA2013_S130",
+  "type": "parent",
+  "text": "130. Re-opening of accounts on court’s or Tribunal’s orders.—(1) A company shall not re-open its\nbooks of account and not recast its financial statements, unless an application in this regard is made by the\nCentral Government, the Income-tax authorities, the Securities and Exchange Board, any other statutory\nregulatory body or authority or any person concerned and an order is made by a court of competent\njurisdiction or the Tribunal to the effect that—\n(i) the relevant earlier accounts were prepared in a fraudulent manner; or\n(ii) the affairs of the company were mismanaged during the relevant period, casting a doubt on the\nreliability of financial statements:\nProvided that the court or the Tribunal, as the case may be, shall give notice to the Central\nGovernment, the Income-tax authorities, the Securities and Exchange Board or any other statutory\nregulatory body or authority concerned 1[or any other person concerned] and shall take into\nconsideration the representations, if any, made by that Government or the authorities, Securities and\nExchange Board or the body or authority concerned 1[or the other person concerned] before passing any\norder under this section.\n(2) Without prejudice to the provisions contained in this Act the accounts so revised or re-cast under\nsub-section (1) shall be final.\n2[(3) No order shall be made under sub-section (1) in respect of re-opening of books of account relating\nto a period earlier than eight financial years immediately preceding the current financial year:\nProvided that where a direction has been issued by the Central Government under the proviso to\nsub-section (5) of section 128 for keeping of books of account for a period longer than eight years, the\nbooks of account may be ordered to be re-opened within such longer period.]",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "130",
+  "section_title": "130. Re-opening of accounts on court’s or Tribunal’s orders.—(1) A company shall not re-open its",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S130_2"
+  ],
+  "tokens": 375,
+  "sentence_window": null,
+  "cross_references": [
+    "section 128",
+    "sub-section (1)",
+    "sub-section (5) of section 128"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

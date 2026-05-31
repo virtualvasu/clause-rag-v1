@@ -1,0 +1,26 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S190",
+  "type": "parent",
+  "text": "190. (1) The issuer may offer its IDRs at different prices, subject to the following:\na) retail individual investors or employees entitled for reservation may be offered specified\nsecurities at a price not lower by more than ten per cent. of the price at which net offer is made\nto other categories of applicants, excluding anchor investors.\nExplanation: For the purpose of this Chapter, “employee” shall mean a person who:\ni) is a resident of India, and\nii) is a permanent and full-time employee or a director, whether whole time or part time,\nof the issuer or of the holding company or subsidiary company or of the material\nassociate(s) of the issuer, whose financial statements are consolidated with the issuer’s\nfinancial statements, working in India and does not include promoters and an immediate\nrelative of the promoter.\nb) In case the issuer opts for the alternate method of book building in terms of Part D of\nSchedule XIII, the issuer may offer specified securities to its employees at a price not lower\nby more than ten per cent. of the floor price.\n(2) Discount, if any, shall be expressed in rupee terms in the offer document.\nPART VI: ISSUANCE CONDITIONS AND PROCEDURE\nIssuance conditions",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "190",
+  "section_title": "190. (1) The issuer may offer its IDRs at different prices, subject to the following:",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S190_2"
+  ],
+  "tokens": 257,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule XIII"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

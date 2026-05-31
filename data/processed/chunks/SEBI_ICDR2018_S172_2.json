@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S172_2",
+  "type": "child",
+  "text": "(2) All eligible securities issued through a qualified institutions placement shall be listed on the\nrecognised stock exchange where the equity shares of the issuer are listed.\nProvided that the issuer shall seek approval under rule 19(7) of the Securities Contracts\n(Regulation) Rules, 1957, if applicable.",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "172",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S172",
+  "children_ids": [],
+  "tokens": 65,
+  "sentence_window": "Explanation: For the purpose of clause (b), “equity shares of the same class” shall mean equity\nshares which rank pari-passu in relation to rights as to dividend, voting or otherwise. 69\n\n--- PAGE 70 ---\nc) An issuer shall be eligible to make a qualified institutions placement if any of its promoters or\ndirectors is not a fugitive economic offender. (2) All eligible securities issued through a qualified institutions placement shall be listed on the\nrecognised stock exchange where the equity shares of the issuer are listed.\nProvided that the issuer shall seek approval under rule 19(7) of the Securities Contracts\n(Regulation) Rules, 1957, if applicable. (3) The issuer shall not make any subsequent qualified institutions placement until the expiry of six\nmonths from the date of the prior qualified institutions placement made pursuant to one or more\nspecial resolutions. Conditions for offer for sale by promoters for compliance with minimum public\nshareholding requirements specified in the Securities Contracts (Regulation) Rules, 1957.",
+  "cross_references": [
+    "rule 19"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

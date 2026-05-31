@@ -1,0 +1,27 @@
+{
+  "chunk_id": "CA2013_S192",
+  "type": "parent",
+  "text": "192. Restriction on non-cash transactions involving directors.—(1) No company shall enter into an\narrangement by which—\n(a) a director of the company or its holding, subsidiary or associate company or a person connected\nwith him acquires or is to acquire assets for consideration other than cash, from the company; or\n(b) the company acquires or is to acquire assets for consideration other than cash, from such director\nor person so connected,\nunless prior approval for such arrangement is accorded by a resolution of the company in general meeting\nand if the director or connected person is a director of its holding company, approval under this sub-\nsection shall also be required to be obtained by passing a resolution in general meeting of the holding\ncompany.\n(2) The notice for approval of the resolution by the company or holding company in general meeting\nunder sub-section (1) shall include the particulars of the arrangement along with the value of the assets\ninvolved in such arrangement duly calculated by a registered valuer.\n(3) Any arrangement entered into by a company or its holding company in contravention of the\nprovisions of this section shall be voidable at the instance of the company unless—\n(a) the restitution of any money or other consideration which is the subject matter of the\narrangement is no longer possible and the company has been indemnified by any other person for any\nloss or damage caused to it; or\n(b) any rights are acquired bona fide for value and without notice of the contravention of the\nprovisions of this section by any other person.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "192",
+  "section_title": "192. Restriction on non-cash transactions involving directors.—(1) No company shall enter into an",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S192_2",
+    "CA2013_S192_3"
+  ],
+  "tokens": 327,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

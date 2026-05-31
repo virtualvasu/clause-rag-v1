@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S86",
+  "type": "parent",
+  "text": "86. (1) The minimum subscription to be received in the issue shall be at least ninety per cent. of\nthe offer through the offer document.\n(2) In the event of non-receipt of minimum subscription referred to in sub-regulation (1), all\napplication monies received shall be refunded to the applicants forthwith, but not later than fifteen\ndays from the closure of the issue.\nPeriod of subscription",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "86",
+  "section_title": "86. (1) The minimum subscription to be received in the issue shall be at least ninety per cent. of",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S86_2"
+  ],
+  "tokens": 85,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

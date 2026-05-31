@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S273",
+  "type": "parent",
+  "text": "273. The lead manager(s) shall submit a final post-issue report as specified in Part A of Schedule\nXVII, along with a due diligence certificate as per the format specified in Form F of Schedule V,\nwithin seven days of the date of finalization of basis of allotment or within seven days of refund\nof money in case of failure of issue.\nReporting of transactions of the promoters and promoter group",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "273",
+  "section_title": "273. The lead manager(s) shall submit a final post-issue report as specified in Part A of Schedule",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 83,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule\nXVII",
+    "Schedule V"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

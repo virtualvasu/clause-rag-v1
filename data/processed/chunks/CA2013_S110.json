@@ -1,0 +1,26 @@
+{
+  "chunk_id": "CA2013_S110",
+  "type": "parent",
+  "text": "110. Postal ballot.—(1) Notwithstanding anything contained in this Act, a company—\n(a) shall, in respect of such items of business as the Central Government may, by notification,\ndeclare to be transacted only by means of postal ballot; and\n(b) may, in respect of any item of business, other than ordinary business and any business in respect\nof which directors or auditors have a right to be heard at any meeting, transact by means of postal ballot,\nin such manner as may be prescribed, instead of transacting such business at a general meeting:\n76\n\n--- PAGE 77 ---\n1[Provided that any item of business required to be transacted by means of postal ballot under\nclause (a), may be transacted at a general meeting by a company which is required to provide the facility\nto members to vote by electronic means under section 108, in the manner provided in that section.]\n(2) If a resolution is assented to by the requisite majority of the shareholders by means of postal ballot,\nit shall be deemed to have been duly passed at a general meeting convened in that behalf.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "110",
+  "section_title": "110. Postal ballot.—(1) Notwithstanding anything contained in this Act, a company—",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S110_2"
+  ],
+  "tokens": 232,
+  "sentence_window": null,
+  "cross_references": [
+    "section 108"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

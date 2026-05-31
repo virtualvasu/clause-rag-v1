@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S239",
+  "type": "parent",
+  "text": "239. The entire pre-issue capital held by persons other than the promoters shall be locked-in for a\nperiod of one year from the date of allotment in the initial public offer:\nProvided that nothing contained in this regulation shall apply to:\na) equity shares allotted to employees, whether currently an employee or not, under an\nemployee stock option or employee stock purchase scheme of the issuer prior to the initial\npublic offer, if the issuer has made full disclosures with respect to such options or scheme in\naccordance with Part A of Schedule VI;\nb) equity shares held by an employee stock option trust or transferred to the employees by an\nemployee stock option trust pursuant to exercise of options by the employees, whether\ncurrently employees or not, in accordance with the employee stock option plan or employee\nstock purchase scheme.\nProvided that the equity shares allotted to the employees shall be subject to the provisions of\nlock-in as specified under the Securities and Exchange Board of India (Share Based\nEmployee Benefits) Regulations, 2014.\nc) equity shares held by a venture capital fund or alternative investment fund of category I or\nCategory II or a foreign venture capital investor:\n89\n\n--- PAGE 90 ---\nProvided that such equity shares shall be locked in for a period of at least one year from the\ndate of purchase by the venture capital fund or alternative investment fund or foreign venture\ncapital investor.\nExplanation: For the purpose of clause (c), in case such equity shares have resulted pursuant\nto conversion of fully paid-up compulsorily convertible securities, the holding period of such\nconvertible securities as well as that of resultant equity shares together shall be considered\nfor the purpose of calculation of one year period and convertible securities shall be deemed\nto be fully paid-up, if the entire consideration payable thereon has been paid and no further\nconsideration is payable at the time of their conversion.\nLock-in of specified securities lent to stabilising agent under the green shoe option",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "239",
+  "section_title": "239. The entire pre-issue capital held by persons other than the promoters shall be locked-in for a",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 399,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VI"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

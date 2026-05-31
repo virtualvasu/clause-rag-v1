@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S297",
+  "type": "parent",
+  "text": "297. (1) The listed issuer or any other person thereof who contravenes any of the provisions of\nthese regulations, shall, in addition to the liability for action in terms of the securities laws, be\nliable for the following actions by the respective stock exchange(s), in the manner specified by the\nBoard:\n(a) imposition of fines;\n(b) suspension of trading;\n(c) freezing of promoter/promoter group holding of designated securities, as may be\napplicable in coordination with depositories;\n(d) any other action as may be specified by the Board from time to time.\n(2) The manner of revocation of actions specified in clauses (b) and (c) of sub-regulation (1), shall\nbe in the manner specified by the Board.\n106\n\n--- PAGE 107 ---\nFailure to pay fine",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "297",
+  "section_title": "297. (1) The listed issuer or any other person thereof who contravenes any of the provisions of",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S297_2"
+  ],
+  "tokens": 168,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

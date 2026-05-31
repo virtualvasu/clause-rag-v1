@@ -1,0 +1,22 @@
+{
+  "chunk_id": "DPIIT_SRG_S4",
+  "type": "parent",
+  "text": "4. Holding including foreign holding, Subsidiary including foreign subsidiary,\nJoint Ventures, entities incorporated outside territory Indian Territory:\ni. Holding/Subsidiary Companies will not be permitted for recognition. Any startup\nbecoming holding/subsidiary of any company after recognition will be\nderecognized.\nii. Any entity formed by Joint Venture will not be recognized. Any Startup entering\ninto any Joint Venture will be derecognized.\niii. Entities incorporated outside India will be ineligible for recognition.\niv. Shareholding by Indian promoters in the startup should be at least 51%, as\nper Companies Act, 2013 and SEBI (ICDR) Regulations, 2018.",
+  "act": "DPIIT_SRG",
+  "chapter": null,
+  "section_number": "4",
+  "section_title": "4. Holding including foreign holding, Subsidiary including foreign subsidiary,",
+  "parent_id": null,
+  "children_ids": [],
+  "tokens": 142,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "DPIIT_Startup_Recognition_Guidelines.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

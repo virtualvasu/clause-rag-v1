@@ -1,0 +1,29 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S245",
+  "type": "parent",
+  "text": "245. (1) The offer document shall contain all material disclosures which are true and adequate so\nas to enable the applicants to take an informed investment decision.\n(2) Without prejudice to the generality of sub-regulation (1), the offer document shall contain:\na) disclosures specified in the Companies Act, 2013; and\nb) disclosures specified in Part A of Schedule VI.\n(3) The lead manager(s) shall exercise due diligence and satisfy themselves about all aspects of\nthe issue including the veracity and adequacy of disclosure in the draft offer document and the\noffer document.\n(4) The lead manager(s) shall call upon the issuer, its promoters and its directors or in case of an\noffer for sale, also the selling shareholders, to fulfil their obligations as disclosed by them in the\n91\n\n--- PAGE 92 ---\ndraft offer document or offer document, as the case may be, and as required in terms of these\nregulations.\n(5) The lead manager(s) shall ensure that the information contained in the offer document and the\nparticulars as per audited financial statements in the offer document are not more than six months old\nfrom the issue opening date.\nFiling of the offer document",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "245",
+  "section_title": "245. (1) The offer document shall contain all material disclosures which are true and adequate so",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S245_2",
+    "SEBI_ICDR2018_S245_3",
+    "SEBI_ICDR2018_S245_4",
+    "SEBI_ICDR2018_S245_5"
+  ],
+  "tokens": 252,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule VI"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

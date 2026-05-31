@@ -1,0 +1,26 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S192",
+  "type": "parent",
+  "text": "192. (1) The allocation in the issue shall be as follows:\n(a) at least fifty per cent. of the issue shall be allotted to qualified institutional buyers on\nproportionate basis as per illustration given in Part A of Schedule XIV;\n(b) the remaining portion of the issue may be allocated among the categories of non-institutional\ninvestors and retail individual investors including employees, at the discretion of the issuer\nand the manner of allocation shall be disclosed in the offer document. Allotment to investors\nwithin a category shall be on proportionate basis:\nProvided that at least thirty per cent. of the IDRs being offered in the public issue shall be\navailable for allocation to retail individual investors and in case of under-subscription in retail\nindividual investor category, spill over to other categories to the extent of under subscription\nmay be permitted.\n(2) A person shall not make an application in the net offer category for a number of IDRs which\nexceeds the total number of IDRs offered to the public.\nAbridged prospectus",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "192",
+  "section_title": "192. (1) The allocation in the issue shall be as follows:",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S192_2"
+  ],
+  "tokens": 216,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule XIV"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

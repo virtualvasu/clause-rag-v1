@@ -1,0 +1,22 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S57_4",
+  "type": "child",
+  "text": "(4) The stabilising agent shall open a special account, distinct from the issue account, with a bank for\ncrediting the monies received from the applicants against the over-allotment and a special\naccount with a depository participant for crediting specified securities to be bought from the\nmarket during the stabilisation period out of the monies credited in the special bank account.",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "57",
+  "section_title": null,
+  "parent_id": "SEBI_ICDR2018_S57",
+  "children_ids": [],
+  "tokens": 78,
+  "sentence_window": "(2) For the purpose of stabilisation of post-listing price of the specified securities, the stabilising\nagent shall determine the relevant aspects including the timing of buying such securities, quantity\nto be bought and the price at which such securities are to be bought from the market. (3) The stabilisation process shall be available for a period not exceeding thirty days from the date on\nwhich trading permission is given by the stock exchanges in respect of the specified securities\nallotted in the public issue. (4) The stabilising agent shall open a special account, distinct from the issue account, with a bank for\ncrediting the monies received from the applicants against the over-allotment and a special\naccount with a depository participant for crediting specified securities to be bought from the\nmarket during the stabilisation period out of the monies credited in the special bank account. (5) The specified securities bought from the market and credited in the special account with the\ndepository participant shall be returned to the promoters or pre-issue shareholders immediately,\nin any case not later than two working days after the end of the stabilization period. (6) On expiry of the stabilisation period, if the stabilising agent has not been able to buy specified\nsecurities from the market to the extent of such securities over-allotted, the issuer shall allot\nspecified securities at issue price in dematerialised form to the extent of the shortfall to the\nspecial account with the depository participant, within five days of the closure of the stabilisation\nperiod and such specified securities shall be returned to the promoters or pre-issue shareholders\nby the stabilising agent in lieu of the specified securities borrowed from them and the account\nwith the depository participant shall be closed thereafter.",
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

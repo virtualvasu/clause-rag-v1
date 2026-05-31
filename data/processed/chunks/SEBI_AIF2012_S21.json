@@ -1,0 +1,25 @@
+{
+  "chunk_id": "SEBI_AIF2012_S21",
+  "type": "parent",
+  "text": "21. (1) The Sponsor and Manager of the Alternative Investment Fund shall act in a fiduciary\ncapacity towards its investors and shall disclose to the investors, all conflicts of interests as\nand when they arise or seem likely to arise.\n(2) Manager shall establish and implement written policies and procedures to identify, monitor\nand appropriately mitigate conflicts of interest throughout the scope of business.\n(3) Managers and Sponsors of Alternative Investment Fund shall abide by high level principles\non avoidance of conflicts of interest with associated persons, as may be specified by the\nBoard from time to time.\nTransparency.",
+  "act": "SEBI_AIF2012",
+  "chapter": null,
+  "section_number": "21",
+  "section_title": "21. (1) The Sponsor and Manager of the Alternative Investment Fund shall act in a fiduciary",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_AIF2012_S21_2",
+    "SEBI_AIF2012_S21_3"
+  ],
+  "tokens": 122,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_AIF_Regulations_2012.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

@@ -1,0 +1,29 @@
+{
+  "chunk_id": "CA2013_S421",
+  "type": "parent",
+  "text": "421. Appeal from orders of Tribunal.—(1) Any person aggrieved by an order of the Tribunal may\nprefer an appeal to the Appellate Tribunal.\n(2) No appeal shall lie to the Appellate Tribunal from an order made by the Tribunal with the consent\nof parties.\n(3) Every appeal under sub-section (1) shall be filed within a period of forty-five days from the date on\nwhich a copy of the order of the Tribunal is made available to the person aggrieved and shall be in such\nform, and accompanied by such fees, as may be prescribed:\nProvided that the Appellate Tribunal may entertain an appeal after the expiry of the said period of forty-\nfive days from the date aforesaid, but within a further period not exceeding forty-five days, if it is satisfied\nthat the appellant was prevented by sufficient cause from filing the appeal within that period.\n(4) On the receipt of an appeal under sub-section (1), the Appellate Tribunal shall, after giving the\nparties to the appeal a reasonable opportunity of being heard, pass such orders thereon as it thinks fit,\nconfirming, modifying or setting aside the order appealed against.\n(5) The Appellate Tribunal shall send a copy of every order made by it to the Tribunal and the parties\nto appeal.",
+  "act": "CA2013",
+  "chapter": null,
+  "section_number": "421",
+  "section_title": "421. Appeal from orders of Tribunal.—(1) Any person aggrieved by an order of the Tribunal may",
+  "parent_id": null,
+  "children_ids": [
+    "CA2013_S421_2",
+    "CA2013_S421_3",
+    "CA2013_S421_4",
+    "CA2013_S421_5"
+  ],
+  "tokens": 274,
+  "sentence_window": null,
+  "cross_references": [
+    "sub-section (1)"
+  ],
+  "source_file": "Companies_Act_2013.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

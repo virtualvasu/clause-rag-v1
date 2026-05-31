@@ -1,0 +1,27 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S100",
+  "type": "parent",
+  "text": "100. (1) The issuer shall file the letter of offer in accordance with sub-regulation 8 and 9 of\nregulation 71 and shall pay fees to the Board as specified in Schedule III.\n(2) The lead manager(s) shall submit to the Board, the following documents along with the letter\nof offer:\n(a) a due diligence certificate as per Form A of Schedule V including additional\nconfirmations as specified in Form E of Schedule V;\n40\n\n--- PAGE 41 ---\n(b) in case of a fast track issue of convertible debt instruments, a due diligence\ncertificate from the debenture trustee as per Form B of Schedule V.\nCHAPTER IV - FURTHER PUBLIC OFFER\nPART I: ELIGIBILITY REQUIREMENTS\nReference date",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "100",
+  "section_title": "100. (1) The issuer shall file the letter of offer in accordance with sub-regulation 8 and 9 of",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S100_2"
+  ],
+  "tokens": 156,
+  "sentence_window": null,
+  "cross_references": [
+    "Schedule III",
+    "Schedule V"
+  ],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}

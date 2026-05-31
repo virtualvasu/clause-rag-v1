@@ -1,0 +1,24 @@
+{
+  "chunk_id": "SEBI_ICDR2018_S224",
+  "type": "parent",
+  "text": "224. (1) A rights issue shall be open for subscription in India for a period as applicable under the\nlaws of its home country but in no case less than ten days.\n(2) The issuing company shall ensure that it sends the allotment letter of rights to IDR holders at\nthe time these are sent to shareholders of the issuing company as per the requirement of its home\ncountry or other jurisdictions where its securities are listed.\nUtilisation of funds",
+  "act": "SEBI_ICDR2018",
+  "chapter": null,
+  "section_number": "224",
+  "section_title": "224. (1) A rights issue shall be open for subscription in India for a period as applicable under the",
+  "parent_id": null,
+  "children_ids": [
+    "SEBI_ICDR2018_S224_2"
+  ],
+  "tokens": 92,
+  "sentence_window": null,
+  "cross_references": [],
+  "source_file": "SEBI_ICDR_Regulations_2018.pdf",
+  "source_page": null,
+  "name": null,
+  "year": null,
+  "ministry": null,
+  "source_url": null,
+  "total_sections": null,
+  "structured": null
+}
