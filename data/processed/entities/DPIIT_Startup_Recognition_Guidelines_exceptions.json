@@ -1,0 +1,35 @@
+[
+  {
+    "element_id": "exception_0",
+    "element_type": "exception",
+    "text": "provided under the Companies Act, 2013 will not be recognized as Startup.",
+    "section_reference": "Unknown",
+    "metadata": {
+      "exception_type": "exception",
+      "condition": "under the Companies Act, 2013 will not be recognized as Startup",
+      "applies_to_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "exception_1",
+    "element_type": "exception",
+    "text": "provided in sub-section (3) of",
+    "section_reference": "Unknown",
+    "metadata": {
+      "exception_type": "exception",
+      "condition": "in sub-section (3) of",
+      "applies_to_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "exception_2",
+    "element_type": "exception",
+    "text": "except transactions on arm’s length basis.",
+    "section_reference": "Unknown",
+    "metadata": {
+      "exception_type": "exception",
+      "condition": "transactions on arm’s length basis",
+      "applies_to_section": "Unknown"
+    }
+  }
+]

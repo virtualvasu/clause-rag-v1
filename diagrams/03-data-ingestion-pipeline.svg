@@ -1,0 +1,264 @@
+<svg viewBox="0 0 1100 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="550" y="30" font-size="26" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Clause: Data Ingestion Pipeline
+  </text>
+  <text x="550" y="55" font-size="12" text-anchor="middle" fill="#666">
+    From raw legal documents → indexed in all 3 storage layers
+  </text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Stage 1: Download & Raw Documents -->
+  <rect x="30" y="80" width="220" height="120" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+  <text x="140" y="105" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    1. Download & Raw Documents
+  </text>
+  <text x="50" y="130" font-size="9" fill="#333">
+    Sources:
+  </text>
+  <text x="50" y="148" font-size="9" fill="#333">
+    • indiacode.nic.in (Acts, Rules)
+  </text>
+  <text x="50" y="166" font-size="9" fill="#333">
+    • mca.gov.in (Ministry docs)
+  </text>
+  <text x="50" y="184" font-size="9" fill="#333">
+    Formats: PDF, HTML, DOCX
+  </text>
+
+  <!-- Arrow -->
+  <path d="M 250 140 L 310 140" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: Document Parsing -->
+  <rect x="310" y="80" width="220" height="120" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+  <text x="420" y="105" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    2. Document Parsing
+  </text>
+  <text x="330" y="130" font-size="9" fill="#333">
+    Tools:
+  </text>
+  <text x="330" y="148" font-size="9" fill="#333">
+    • unstructured.io (general)
+  </text>
+  <text x="330" y="166" font-size="9" fill="#333">
+    • pdfplumber (PDFs)
+  </text>
+  <text x="330" y="184" font-size="9" fill="#333">
+    • camelot (tables)
+  </text>
+
+  <!-- Arrow -->
+  <path d="M 530 140 L 590 140" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: Hierarchical Chunking -->
+  <rect x="590" y="80" width="220" height="120" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5"/>
+  <text x="700" y="105" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    3. Hierarchical Chunking
+  </text>
+  <text x="610" y="130" font-size="9" fill="#333">
+    • Child chunks: 256 tokens
+  </text>
+  <text x="610" y="148" font-size="9" fill="#333">
+    • Parent chunks: 1024 tokens
+  </text>
+  <text x="610" y="166" font-size="9" fill="#333">
+    • Section-aware splitting
+  </text>
+  <text x="610" y="184" font-size="9" fill="#333">
+    • Metadata: Section #, Act, year
+  </text>
+
+  <!-- Arrow -->
+  <path d="M 810 140 L 870 140" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3b: Entity & Relation Extraction -->
+  <rect x="870" y="80" width="200" height="120" fill="#fff3e0" stroke="#e65100" stroke-width="2" rx="5"/>
+  <text x="970" y="105" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    3b. Entity & Relation
+    Extraction (LLM-based)
+  </text>
+  <text x="890" y="140" font-size="8" fill="#333">
+    Extract:
+  </text>
+  <text x="890" y="153" font-size="8" fill="#333">
+    • Legal entities (Act, Section, Rule)
+  </text>
+  <text x="890" y="166" font-size="8" fill="#333">
+    • Relationships (PART_OF, ISSUED_UNDER)
+  </text>
+  <text x="890" y="179" font-size="8" fill="#333">
+    • Cross-references (resolves links)
+  </text>
+
+  <!-- Arrow down from stage 3b -->
+  <path d="M 970 200 L 970 240" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Arrow down from stage 3a -->
+  <path d="M 700 200 L 700 240" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: Embedding -->
+  <rect x="570" y="240" width="260" height="100" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" rx="5"/>
+  <text x="700" y="265" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    4. Embedding Generation
+  </text>
+  <text x="590" y="290" font-size="9" fill="#333">
+    • Model: text-embedding-3-large (OpenAI)
+  </text>
+  <text x="590" y="310" font-size="9" fill="#333">
+    • Alternative: BGE-M3 (local, multilingual)
+  </text>
+  <text x="590" y="330" font-size="9" fill="#333">
+    • Embed child chunks (1536-dim vectors)
+  </text>
+
+  <!-- Arrow -->
+  <path d="M 700 340 L 700 380" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: Indexing (Parallel) -->
+  <text x="550" y="380" font-size="13" font-weight="bold" fill="#333">
+    5. Indexing (3-layer parallel storage)
+  </text>
+
+  <!-- Left: Vector DB -->
+  <rect x="50" y="410" width="260" height="140" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+  <text x="180" y="435" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Vector Database
+  </text>
+  <text x="180" y="455" font-size="12" font-weight="bold" text-anchor="middle" fill="#e91e63">
+    Qdrant
+  </text>
+  <text x="70" y="480" font-size="9" fill="#333">
+    • Collection: clause_chunks
+  </text>
+  <text x="70" y="498" font-size="9" fill="#333">
+    • Vector size: 1536-dim
+  </text>
+  <text x="70" y="516" font-size="9" fill="#333">
+    • Dense retrieval via similarity search
+  </text>
+  <text x="70" y="534" font-size="9" fill="#333">
+    • Query: embed → top-k nearest neighbors
+  </text>
+
+  <!-- Center: BM25 Index -->
+  <rect x="420" y="410" width="260" height="140" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+  <text x="550" y="435" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Sparse Search Index
+  </text>
+  <text x="550" y="455" font-size="12" font-weight="bold" text-anchor="middle" fill="#7b1fa2">
+    BM25s (Python)
+  </text>
+  <text x="440" y="480" font-size="9" fill="#333">
+    • Index on chunk text + metadata
+  </text>
+  <text x="440" y="498" font-size="9" fill="#333">
+    • Tokenized term matching
+  </text>
+  <text x="440" y="516" font-size="9" fill="#333">
+    • Catches exact legal terminology
+  </text>
+  <text x="440" y="534" font-size="9" fill="#333">
+    • Query: keyword search → ranked results
+  </text>
+
+  <!-- Right: Graph DB -->
+  <rect x="790" y="410" width="260" height="140" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5"/>
+  <text x="920" y="435" font-size="11" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Knowledge Graph Database
+  </text>
+  <text x="920" y="455" font-size="12" font-weight="bold" text-anchor="middle" fill="#388e3c">
+    Neo4j
+  </text>
+  <text x="810" y="480" font-size="9" fill="#333">
+    • Nodes: Act, Section, Rule, Definition
+  </text>
+  <text x="810" y="498" font-size="9" fill="#333">
+    • Relationships: PART_OF, ISSUED_UNDER
+  </text>
+  <text x="810" y="516" font-size="9" fill="#333">
+    • Cypher queries for multi-hop traversal
+  </text>
+  <text x="810" y="534" font-size="9" fill="#333">
+    • Query: entity lookup → path exploration
+  </text>
+
+  <!-- Arrows to the 3 layers -->
+  <path d="M 680 340 L 180 410" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 700 340 L 550 410" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 720 340 L 920 410" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 6: Search & Retrieval -->
+  <text x="550" y="590" font-size="13" font-weight="bold" fill="#333">
+    6. At Query Time: Parallel Retrieval
+  </text>
+
+  <!-- Three retrieval paths -->
+  <!-- Vector Path -->
+  <rect x="50" y="620" width="200" height="90" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+  <text x="150" y="640" font-size="10" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Vector Retrieval
+  </text>
+  <text x="70" y="663" font-size="9" fill="#333">
+    Embed query (same model)
+  </text>
+  <text x="70" y="681" font-size="9" fill="#333">
+    Search Qdrant → top 20
+  </text>
+  <text x="70" y="699" font-size="9" fill="#333">
+    Return: scores + chunks
+  </text>
+
+  <!-- BM25 Path -->
+  <rect x="420" y="620" width="200" height="90" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+  <text x="520" y="640" font-size="10" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Sparse Retrieval
+  </text>
+  <text x="440" y="663" font-size="9" fill="#333">
+    Tokenize query
+  </text>
+  <text x="440" y="681" font-size="9" fill="#333">
+    BM25 search → top 20
+  </text>
+  <text x="440" y="699" font-size="9" fill="#333">
+    Return: scores + chunks
+  </text>
+
+  <!-- Graph Path -->
+  <rect x="790" y="620" width="200" height="90" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5"/>
+  <text x="890" y="640" font-size="10" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    Graph Retrieval
+  </text>
+  <text x="810" y="663" font-size="9" fill="#333">
+    Entity extraction
+  </text>
+  <text x="810" y="681" font-size="9" fill="#333">
+    Cypher query → traverse
+  </text>
+  <text x="810" y="699" font-size="9" fill="#333">
+    Return: related docs
+  </text>
+
+  <!-- Arrows down -->
+  <path d="M 150 710 L 150 750" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 520 710 L 520 750" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 890 710 L 890 750" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 7: Fusion & Reranking -->
+  <rect x="200" y="750" width="700" height="80" fill="#fff3e0" stroke="#e65100" stroke-width="2" rx="5"/>
+  <text x="550" y="773" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    7. RRF Fusion + Cohere Reranker
+  </text>
+  <text x="220" y="800" font-size="9" fill="#333">
+    • Reciprocal Rank Fusion: Merge vector + BM25 + graph results
+  </text>
+  <text x="220" y="818" font-size="9" fill="#333">
+    • Cohere Rerank v3: Score top 30, return top 5 with confidence
+  </text>
+
+</svg>

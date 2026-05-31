@@ -1,0 +1,101 @@
+[
+  {
+    "element_id": "definition_act",
+    "element_type": "definition",
+    "text": "\"Act\" means the Companies Act, 2013 (18 of 2013)",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Act",
+      "definition_text": "the Companies Act, 2013 (18 of 2013)",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_annexure",
+    "element_type": "definition",
+    "text": "\"Annexure\" means the Annexure to these rules",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Annexure",
+      "definition_text": "the Annexure to these rules",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_fees",
+    "element_type": "definition",
+    "text": "\"Fees\" means the fees as specified in the Companies (Registration Offices and Fees)",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Fees",
+      "definition_text": "the fees as specified in the Companies (Registration Offices and Fees)",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_e-form",
+    "element_type": "definition",
+    "text": "\"e-form\" means a form set forth in Annexure to these rules which shall be",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "e-form",
+      "definition_text": "a form set forth in Annexure to these rules which shall be",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_regional_director",
+    "element_type": "definition",
+    "text": "\"Regional Director\" means the person appointed by the Central Government in the",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Regional Director",
+      "definition_text": "the person appointed by the Central Government in the",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_section",
+    "element_type": "definition",
+    "text": "\"section\" means the section of the Act",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "section",
+      "definition_text": "the section of the Act",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_value_additions",
+    "element_type": "definition",
+    "text": "\"Value additions\" means actual or anticipated economic benefits derived",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Value additions",
+      "definition_text": "actual or anticipated economic benefits derived",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_preferential_offer",
+    "element_type": "definition",
+    "text": "\"Preferential Offer\" means an issue of",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "Preferential Offer",
+      "definition_text": "an issue of",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_shares_or_other_securities",
+    "element_type": "definition",
+    "text": "\"shares or other securities\" means equity shares, fully convertible debentures, partly",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "shares or other securities",
+      "definition_text": "equity shares, fully convertible debentures, partly",
+      "match_confidence": 0.9
+    }
+  }
+]

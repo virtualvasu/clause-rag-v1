@@ -1,0 +1,827 @@
+[
+  {
+    "element_id": "cross_ref_0",
+    "element_type": "cross_reference",
+    "text": "under section 3",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "3",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_1",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_2",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_3",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_4",
+    "element_type": "cross_reference",
+    "text": "under section 248",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "248",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_5",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_6",
+    "element_type": "cross_reference",
+    "text": "under section 3",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "3",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_7",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_8",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_9",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_10",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_11",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_12",
+    "element_type": "cross_reference",
+    "text": "under Section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_13",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Section 8",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Section 8"
+    }
+  },
+  {
+    "element_id": "cross_ref_14",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_15",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_16",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_17",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_18",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 4",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "4",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_19",
+    "element_type": "cross_reference",
+    "text": "pursuant to rule\n8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_20",
+    "element_type": "cross_reference",
+    "text": "as per rule 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_21",
+    "element_type": "cross_reference",
+    "text": "under section 447",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "447",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_22",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 3",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "3",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_23",
+    "element_type": "cross_reference",
+    "text": "under section 447",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "447",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_24",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 3",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "3",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_25",
+    "element_type": "cross_reference",
+    "text": "pursuant to\nRule 4",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "4",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_26",
+    "element_type": "cross_reference",
+    "text": "under section 447",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "447",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_27",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 3",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "3",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_28",
+    "element_type": "cross_reference",
+    "text": "Pursuant to Rule 6",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "6",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_29",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 18",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "18",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_30",
+    "element_type": "cross_reference",
+    "text": "Pursuant to Section 7",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "7",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_31",
+    "element_type": "cross_reference",
+    "text": "pursuant to Rule 10",
+    "section_reference": "Section 7",
+    "metadata": {
+      "referenced_section": "10",
+      "reference_type": "related_rule",
+      "from_section": "Section 7"
+    }
+  },
+  {
+    "element_id": "cross_ref_32",
+    "element_type": "cross_reference",
+    "text": "under section 7",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "7",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_33",
+    "element_type": "cross_reference",
+    "text": "under Section 447",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "447",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_34",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 7",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "7",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_35",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 7",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "7",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_36",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 16",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "16",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_37",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_38",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_39",
+    "element_type": "cross_reference",
+    "text": "under Section 447",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "447",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_40",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 19",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "19",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_41",
+    "element_type": "cross_reference",
+    "text": "under section 269",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "269",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_42",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_43",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 7",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "7",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_44",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_45",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 19",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "19",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_46",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_47",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_48",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_49",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 20",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "20",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_50",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_51",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_52",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 20",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "20",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_53",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_54",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_55",
+    "element_type": "cross_reference",
+    "text": "under Section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_56",
+    "element_type": "cross_reference",
+    "text": "under section 448",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "448",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_57",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 22",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "22",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_58",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_59",
+    "element_type": "cross_reference",
+    "text": "under\nRule 23",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "23",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_60",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_61",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_62",
+    "element_type": "cross_reference",
+    "text": "Pursuant to Section 11",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "11",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_63",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 12",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "12",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_64",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 12",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "12",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_65",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 13",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "13",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_66",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 29",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "29",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_67",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 30",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "30",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_68",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_69",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_70",
+    "element_type": "cross_reference",
+    "text": "under section 8",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "8",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_71",
+    "element_type": "cross_reference",
+    "text": "Pursuant to rule 30",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "30",
+      "reference_type": "related_rule",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_72",
+    "element_type": "cross_reference",
+    "text": "under section 13",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "13",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_73",
+    "element_type": "cross_reference",
+    "text": "Pursuant to section 14",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "14",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  },
+  {
+    "element_id": "cross_ref_74",
+    "element_type": "cross_reference",
+    "text": "Under section 252",
+    "section_reference": "Unknown",
+    "metadata": {
+      "referenced_section": "252",
+      "reference_type": "cross_reference",
+      "from_section": "Unknown"
+    }
+  }
+]

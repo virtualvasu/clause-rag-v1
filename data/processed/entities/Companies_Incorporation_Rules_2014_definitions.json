@@ -1,0 +1,24 @@
+[
+  {
+    "element_id": "definition_resident_in_india",
+    "element_type": "definition",
+    "text": "\"resident in India\" means a person who has stayed in India",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "resident in India",
+      "definition_text": "a person who has stayed in India",
+      "match_confidence": 0.9
+    }
+  },
+  {
+    "element_id": "definition_relevant_period",
+    "element_type": "definition",
+    "text": "\"relevant period\" means the period of immediately preceding three",
+    "section_reference": "Unknown",
+    "metadata": {
+      "defined_term": "relevant period",
+      "definition_text": "the period of immediately preceding three",
+      "match_confidence": 0.9
+    }
+  }
+]
