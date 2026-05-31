@@ -11,9 +11,7 @@ from typing import Dict, List
 from collections import defaultdict
 
 from clause.ingestion.parsers.pdf_parser import PDFParser
-
-# Chunking pipeline will be implemented with new spec-compliant chunker
-# from clause.ingestion.chunkers.section_chunker import SectionChunker, LegalChunk
+from clause.ingestion.chunkers.section_chunker import SectionChunker, LegalChunk
 
 # Configure logging
 logging.basicConfig(

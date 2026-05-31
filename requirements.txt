@@ -10,6 +10,13 @@ loguru==0.7.2
 
 # Utilities
 requests==2.31.0
+tiktoken==0.5.2
+
+# Pydantic for data validation
+pydantic==2.5.0
+
+# Testing
+pytest==7.4.3
 
 # Optional: For full pipeline integration later
 # Uncomment after chunking pipeline is complete
