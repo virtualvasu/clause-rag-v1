@@ -1,0 +1,26 @@
+[
+  {
+    "element_id": "penalty_0",
+    "element_type": "penalty",
+    "text": "punishable with fine which may\nextend to ten thousand rupees and with a further fine which may extend to one thousand rupees for every",
+    "section_reference": "Unknown",
+    "metadata": {
+      "penalty_min_amount": null,
+      "penalty_max_amount": null,
+      "imprisonment_months": null,
+      "currency": "INR"
+    }
+  },
+  {
+    "element_id": "penalty_1",
+    "element_type": "penalty",
+    "text": "punishable with fine which may\nextend to ten thousand rupees and with a further fine which may extend to one thousand rupees for every day",
+    "section_reference": "Unknown",
+    "metadata": {
+      "penalty_min_amount": null,
+      "penalty_max_amount": null,
+      "imprisonment_months": null,
+      "currency": "INR"
+    }
+  }
+]

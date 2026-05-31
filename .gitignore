@@ -48,7 +48,8 @@ env/
 .env.*.local
 
 # Generated data (process pipeline outputs)
-data/processed/
+# Commented out to keep processed chunks in repo
+# data/processed/
 data/eval/
 
 # Logs
