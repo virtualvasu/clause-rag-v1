@@ -1,5 +1,44 @@
 # 07 — Generation & Citations
 
+## ✅ Status: COMPLETE (Step 8)
+
+| Component | Status | File |
+|---|---|---|
+| Prompt constants | ✅ Complete | `clause/generation/prompts.py` |
+| Answer generator | ✅ Complete | `clause/generation/generator.py` |
+| Citation extraction | ✅ Complete | `generator.py::extract_citations()` |
+| CRAG quality check | ✅ Complete | `generator.py::crag_check()` |
+| Query refinement | ✅ Complete | `generator.py::refine_query()` |
+| Query pipeline | ✅ Complete | `clause/query/__init__.py::answer_query()` |
+| CLI | ✅ Complete | `scripts/run_query.py` |
+
+### Actual implementation (differs from design)
+- **Generation LLM**: Ollama qwen2.5:7b (local, free) — same as enrichment. Claude optional via `enrichment_provider=claude` in `.env`
+- **CRAG check**: Also uses Ollama (not Claude Sonnet) for evaluating context quality
+- **Entry point**: `answer_query()` in `clause/query/__init__.py` — retrieval + CRAG loop + generation in one call
+
+### Usage
+```bash
+# CLI
+python scripts/run_query.py "What is the penalty for late filing under Companies Act?"
+python scripts/run_query.py "..." --act DPIIT     # restrict to one act
+python scripts/run_query.py "..." --no-crag       # skip CRAG check (faster)
+python scripts/run_query.py "..." --no-graph      # skip graph expansion
+```
+
+```python
+# Python API
+from clause.query import answer_query
+
+result = answer_query("What are the filing requirements for a private company?")
+print(result["answer"])     # full answer with citations
+print(result["citations"])  # structured citation objects
+print(result["crag_score"]) # 0-1 quality score
+print(result["iterations"]) # CRAG retry count
+```
+
+---
+
 Covers Step 9: LLM-based generation and citation extraction.
 
 ---
