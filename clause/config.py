@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     # === LLM APIs ===
     anthropic_api_key: Optional[str] = None   # Required if enrichment_provider=claude
-    openai_api_key: Optional[str] = None      # Required for embeddings (Step 4)
+    openai_api_key: Optional[str] = None      # Required only if embedding_provider=openai
     cohere_api_key: Optional[str] = None
     langsmith_api_key: Optional[str] = None
 
@@ -26,6 +26,11 @@ class Settings(BaseSettings):
     # "ollama"  → uses ollama_base_url + ollama_model (local, free)
     enrichment_provider: str = "ollama"
 
+    # === Embedding Provider ===
+    # "local"   → BAAI/bge-large-en-v1.5 via sentence-transformers (free, 1024 dims)
+    # "openai"  → text-embedding-3-large via OpenAI API (paid, 3072 dims)
+    embedding_provider: str = "local"
+
     # === Qdrant (Vector DB) ===
     qdrant_url: str = "http://localhost:6333"
     qdrant_collection_name: str = "clause_chunks"
@@ -35,9 +40,9 @@ class Settings(BaseSettings):
     neo4j_username: str = "neo4j"
     neo4j_password: str
 
-    # === Models (Locked — do not change) ===
-    embedding_model: str = "text-embedding-3-large"
-    embedding_dimensions: int = 3072
+    # === Models ===
+    embedding_model: str = "BAAI/bge-large-en-v1.5"  # local sentence-transformers model
+    embedding_dimensions: int = 1024                  # BGE-large output size
     generation_model: str = "claude-sonnet-4-20250514"
     contextualization_model: str = "claude-haiku-20240307"
 

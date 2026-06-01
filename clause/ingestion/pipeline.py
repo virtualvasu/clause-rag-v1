@@ -12,6 +12,9 @@ from clause.ingestion.parsers.table_extractor import extract_tables
 from clause.ingestion.chunkers.hierarchical_chunker import create_hierarchical_chunks
 from clause.ingestion.chunkers import LegalChunk
 from clause.ingestion.enrichment.contextualizer import contextualize_all
+from clause.indexing.vector_indexer import index_chunks_to_qdrant
+from clause.indexing.bm25_indexer import build_bm25_index
+from clause.indexing.graph_indexer import build_knowledge_graph
 
 logger = logging.getLogger(__name__)
 
@@ -68,6 +71,7 @@ async def run_ingestion_pipeline(
     source_dir: str = "data/raw/",
     output_dir: str = "data/processed/",
     skip_enrichment: bool = False,
+    skip_indexing: bool = False,
 ) -> dict:
     """
     Full pipeline: Parse → Chunk → Enrich → Index
@@ -144,11 +148,30 @@ async def run_ingestion_pipeline(
     else:
         logger.info("[Step 3] Skipping enrichment (test mode)")
 
-    # Step 4-6: Indexing (Qdrant, BM25, Neo4j) — covered in 04-INDEXING.md
-    logger.info("\n[Steps 4-6] Indexing (will be implemented in 04-INDEXING.md)")
-    logger.info("- Step 4: Embedding & Vector Indexing (Qdrant)")
-    logger.info("- Step 5: BM25 Sparse Indexing")
-    logger.info("- Step 6: Knowledge Graph Construction (Neo4j)")
+    # Convert LegalChunk objects to plain dicts for indexers
+    chunks_json = [chunk.dict() for chunk in chunks]
+
+    nodes_created = 0
+    edges_created = 0
+    points_indexed = 0
+
+    if skip_indexing:
+        logger.info("\n[Steps 4-6] Indexing SKIPPED (--skip-indexing flag)")
+    else:
+        # Step 4: Embedding & Vector Indexing (Qdrant)
+        logger.info("\n[Step 4] Embedding & indexing into Qdrant...")
+        points_indexed = index_chunks_to_qdrant(chunks_json)
+
+        # Step 5: BM25 Sparse Indexing
+        logger.info("\n[Step 5] Building BM25 sparse index...")
+        bm25_path = str(output_path / "bm25_index.pkl")
+        build_bm25_index(chunks_json, index_path=bm25_path)
+
+        # Step 6: Knowledge Graph Construction (Neo4j)
+        logger.info("\n[Step 6] Building knowledge graph in Neo4j...")
+        nodes_created, edges_created = build_knowledge_graph(
+            chunks_json, clear_existing=True
+        )
 
     # Count chunk types
     chunk_counts: dict[str, int] = {}
@@ -163,13 +186,17 @@ async def run_ingestion_pipeline(
     for chunk_type, count in chunk_counts.items():
         logger.info(f"  - {chunk_type}: {count}")
     logger.info(f"Total chunks: {len(chunks)}")
+    if not skip_indexing:
+        logger.info(f"Qdrant points: {points_indexed}")
+        logger.info(f"Neo4j nodes: {nodes_created} | edges: {edges_created}")
 
     return {
         "documents_parsed": len(parsed_docs),
         "chunks_created": len(chunks),
         "chunk_counts": chunk_counts,
-        "nodes_created": 0,  # Will be populated in 04-INDEXING.md
-        "edges_created": 0,  # Will be populated in 04-INDEXING.md
+        "points_indexed": points_indexed,
+        "nodes_created": nodes_created,
+        "edges_created": edges_created,
     }
 
 
@@ -182,7 +209,13 @@ if __name__ == "__main__":
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
-    # Run with optional skip_enrichment for testing
+    # Run with optional flags for testing
     skip_enrichment = "--skip-enrichment" in sys.argv
-    result = asyncio.run(run_ingestion_pipeline(skip_enrichment=skip_enrichment))
+    skip_indexing = "--skip-indexing" in sys.argv
+    result = asyncio.run(
+        run_ingestion_pipeline(
+            skip_enrichment=skip_enrichment,
+            skip_indexing=skip_indexing,
+        )
+    )
     print(json.dumps(result, indent=2))
