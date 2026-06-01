@@ -1,0 +1,11 @@
+{
+  "documents_parsed": 10,
+  "chunks_created": 13987,
+  "chunk_counts": {
+    "parent": 6438,
+    "table": 182,
+    "child": 7367
+  },
+  "nodes_created": 0,
+  "edges_created": 0
+}
