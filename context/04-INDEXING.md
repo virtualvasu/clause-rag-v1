@@ -1,5 +1,47 @@
 # 04 — Indexing & Vector/Graph Stores
 
+## ✅ Status: COMPLETE
+
+| Step | Status | Output |
+|---|---|---|
+| Step 4: Vector Indexing (Qdrant) | ✅ Complete | 7,549 points @ 1024 dims, cosine metric |
+| Step 5: BM25 Sparse Indexing | ✅ Complete | `data/processed/bm25_index.pkl` |
+| Step 6: Knowledge Graph (Neo4j) | ✅ Complete | 12,568 nodes, 28,859 edges |
+
+### Actual implementation (differs from design)
+
+**Step 4 — Embedding model:**
+- Used `BAAI/bge-large-en-v1.5` (local, free) via `sentence-transformers` — NOT OpenAI
+- Dimensions: **1024** (not 3072)
+- Query prefix: `"Represent this sentence for searching relevant passages: {query}"`
+- File: `clause/indexing/vector_indexer.py`
+- What gets indexed: child + table chunks only (7,549 total). Parents skipped.
+
+**Step 5 — BM25 library:**
+- Used `rank-bm25` (BM25Okapi) — NOT `bm25s`
+- File: `clause/indexing/bm25_indexer.py`
+
+**Step 6 — Graph schema actually built:**
+```
+(Act)-[:HAS_SECTION]->(Section)-[:HAS_CHUNK]->(Chunk)
+(Section)-[:PARENT_OF]->(Chunk)
+(Section)-[:NEXT_SECTION]->(Section)   ← sequential order within act
+(Chunk)-[:CROSS_REFERENCES]->(Section) ← from chunk metadata
+```
+- Nodes: 4 Act + 6,438 Section + 7,549 Chunk = 12,568 total (approx — some orphaned)
+- File: `clause/indexing/graph_indexer.py`
+
+### Run command
+```bash
+python scripts/run_indexing.py             # index enriched_chunks.json (default)
+python scripts/run_indexing.py --recreate  # wipe Qdrant collection and re-index
+python scripts/run_indexing.py --raw       # index raw chunks (no enrichment)
+python scripts/run_indexing.py --skip-neo4j    # skip graph only
+python scripts/run_indexing.py --skip-qdrant   # skip vector only
+```
+
+---
+
 Covers Steps 4-6: Embedding & Vector Indexing, BM25 Sparse Indexing, Knowledge Graph Construction.
 
 ---

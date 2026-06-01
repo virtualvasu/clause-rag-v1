@@ -1,5 +1,31 @@
 # 03 — Ingestion Pipeline
 
+## ✅ Status: COMPLETE
+
+| Step | Status | Output |
+|---|---|---|
+| Step 1: Document Parsing | ✅ Complete | 10 documents parsed (PDF + HTML) |
+| Step 2: Hierarchical Chunking | ✅ Complete | 13,987 chunks (6,438 parent / 7,367 child / 182 table) |
+| Step 3: Contextual Enrichment | ✅ Complete | 7,367 child chunks enriched → `enriched_chunks.json` |
+
+### Key deviations from design
+- **Enrichment LLM**: Used **Ollama qwen2.5:7b** (local) instead of Claude Haiku (no API key)
+  - Concurrency: 10 parallel requests via asyncio semaphore
+  - Speed: ~25 min for 7,367 chunks at ~1 chunk/sec
+- **Chunk IDs**: Format is `ACT_S{n}_{m}` (e.g. `COMPAN_S42_3`, `SEBI_S904_1`)
+- **Acts in corpus**: DPIIT, Companies, SEBI, Startup (4 acts, 10 source PDFs)
+- **Enriched file**: `data/processed/chunks/enriched_chunks.json` (17 MB)
+- **Raw file**: `data/processed/chunks/raw_chunks.json` (13 MB)
+
+### Run commands
+```bash
+python scripts/run_ingestion.py                    # full pipeline
+python scripts/run_ingestion.py --skip-enrichment  # skip enrichment (test mode)
+python scripts/run_ingestion.py --skip-indexing    # skip indexing
+```
+
+---
+
 Covers Steps 1-3: Document Parsing, Hierarchical Chunking, and Contextual Enrichment.
 
 ---

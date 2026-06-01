@@ -1,5 +1,66 @@
 # 05 — Retrieval Pipeline
 
+## ✅ Status: COMPLETE (Step 7)
+
+| Component | Status | Notes |
+|---|---|---|
+| Vector retriever (Qdrant) | ✅ Complete | `clause/retrieval/vector_retriever.py` |
+| BM25 retriever | ✅ Complete | `clause/retrieval/hybrid_retriever.py` (inline) |
+| Graph expansion (Neo4j) | ✅ Complete | `clause/retrieval/graph_retriever.py` |
+| RRF fusion | ✅ Complete | `clause/retrieval/hybrid_retriever.py` |
+| Reranker | ✅ Complete | `clause/retrieval/hybrid_retriever.py` (inline) |
+
+### Actual implementation (differs from design)
+
+**Reranker**: Used `cross-encoder/ms-marco-MiniLM-L-6-v2` (local, free, ~80 MB) — NOT Cohere
+- Loaded via `sentence_transformers.CrossEncoder`
+- Reads (query, chunk_text) pairs together — much better than bi-encoder similarity
+- Correctly demotes irrelevant chunks to negative scores
+
+**Graph expansion** (not in original design — added):
+- Sibling chunks: other chunks in the same parent Section
+- Adjacent sections: 1-2 `NEXT_SECTION` hops within same Act
+- Cross-references: chunks from explicitly cited sections
+- Adds ~40 extra candidates before reranking
+
+**What was NOT built yet** (from original design):
+- Query classification (SIMPLE / MULTI_HOP / CROSS_DOC)
+- Query expansion (1 → 3 sub-queries)
+- HyDE (Hypothetical Document Embedding)
+- Parent chunk fetcher (separate module — currently parents fetched via Neo4j)
+
+### Usage
+```python
+from clause.retrieval.hybrid_retriever import hybrid_retrieve
+
+result = hybrid_retrieve(
+    query="What are the eligibility criteria for DPIIT startup recognition?",
+    top_k_retrieval=20,   # candidates before reranking
+    top_k_rerank=5,       # final results
+    filter_act="DPIIT",   # optional: restrict to one act
+    use_graph=True,       # include Neo4j expansion
+    use_reranker=True,    # apply cross-encoder
+)
+# result["results"]     → top 5 reranked chunks
+# result["candidates"]  → top 20 before reranking
+# result["vector_hits"] → raw Qdrant results
+# result["bm25_hits"]   → raw BM25 results
+# result["graph_hits"]  → Neo4j expansion chunks
+```
+
+### Tested query result (with reranker)
+```
+Query: "What are the eligibility criteria for a startup to be recognized under DPIIT?"
+Vector:20 | BM25:20 | Graph:40 → fused:20 → Final:5
+[1] DPIIT_S9_1  | rerank=4.870  ← correctly top DPIIT result
+[2] DPIIT_S2_1  | rerank=3.185  ← DPIIT result
+[3] DPIIT_S6_1  | rerank=-0.552
+[4] DPIIT_S1_1  | rerank=-0.763
+[5] SEBI_S6_6   | rerank=-2.682 ← irrelevant, correctly scored lowest
+```
+
+---
+
 Covers Step 7: Query Processing.
 
 ---

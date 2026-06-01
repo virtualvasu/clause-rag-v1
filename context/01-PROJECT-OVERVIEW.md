@@ -78,27 +78,25 @@
 
 ## 3. Tech Stack
 
-| Layer | Technology | Version |
-|---|---|---|
-| Language | Python | 3.11+ |
-| Orchestration | LangGraph | latest |
-| LLM — Generation | Claude Sonnet | latest |
-| LLM — Contextualization | Claude Haiku | latest |
-| Embeddings | text-embedding-3-large | OpenAI |
-| Vector DB | Qdrant | latest |
-| Sparse Search | BM25s | latest |
-| Graph DB | Neo4j | 5.x |
-| Reranker | Cohere Rerank v3 | API |
-| Document Parsing | unstructured[pdf] | latest |
-| Table Extraction | pdfplumber + camelot | latest |
-| HTML Parsing | BeautifulSoup4 | latest |
-| Token Counting | tiktoken | latest |
-| Evaluation | ragas | latest |
-| Tracing | LangSmith | latest |
-| API | FastAPI | latest |
-| Frontend | Streamlit | latest |
-| Infra | Docker Compose | latest |
-| Config | pydantic-settings | latest |
+| Layer | Technology | Version | Status |
+|---|---|---|---|
+| Language | Python | 3.11+ | ✅ |
+| LLM — Generation | Claude Sonnet / Ollama qwen2.5:7b | latest | ⬜ generation / ✅ enrichment done |
+| LLM — Contextualization | Ollama qwen2.5:7b (local, free) | 7b | ✅ Done |
+| Embeddings | BAAI/bge-large-en-v1.5 (local, free) | HuggingFace | ✅ Done |
+| Vector DB | Qdrant | 1.18.1 | ✅ Running |
+| Sparse Search | rank-bm25 (BM25Okapi) | 0.2.2 | ✅ Done |
+| Graph DB | Neo4j | 5.20.0 Community | ✅ Running |
+| Reranker | cross-encoder/ms-marco-MiniLM-L-6-v2 (local, free) | HuggingFace | ✅ Done |
+| Document Parsing | unstructured[pdf] + pdfplumber | latest | ✅ Done |
+| Table Extraction | pdfplumber + camelot | latest | ✅ Done |
+| HTML Parsing | BeautifulSoup4 | latest | ✅ Done |
+| Orchestration | LangGraph | latest | ⬜ Pending |
+| Evaluation | ragas | latest | ⬜ Pending |
+| API | FastAPI | latest | ⬜ Pending |
+| Frontend | Streamlit | latest | ⬜ Pending |
+| Infra | Docker Compose (v2) | latest | ✅ Running |
+| Config | pydantic-settings | 2.1.0 | ✅ Done |
 
 ---
 
@@ -257,8 +255,38 @@ clause/
 
 ---
 
+## 5. Implementation Status
+
+| Step | Description | Status | Output |
+|---|---|---|---|
+| Step 1 | Document Parsing (PDF + HTML + Tables) | ✅ Complete | 10 documents parsed |
+| Step 2 | Hierarchical Chunking (parent/child/table) | ✅ Complete | 13,987 chunks created |
+| Step 3 | Contextual Enrichment (Ollama qwen2.5:7b) | ✅ Complete | 7,367 child chunks enriched |
+| Step 4 | Vector Indexing (BGE → Qdrant) | ✅ Complete | 7,549 points @ 1024 dims |
+| Step 5 | BM25 Sparse Indexing | ✅ Complete | 7,549 chunks → bm25_index.pkl |
+| Step 6 | Knowledge Graph (Neo4j) | ✅ Complete | 12,568 nodes, 28,859 edges |
+| Step 7 | Hybrid Retrieval (Vector + BM25 + Graph + Reranker) | ✅ Complete | Tested and working |
+| Step 8 | Answer Generation | ⬜ Next | — |
+| Step 9 | API (FastAPI) | ⬜ Pending | — |
+| Step 10 | Frontend (Streamlit) | ⬜ Pending | — |
+
+---
+
+## 6. Key Design Decisions Made
+
+| Decision | Original Plan | Actual Implementation | Reason |
+|---|---|---|---|
+| Enrichment LLM | Claude Haiku (API) | Ollama qwen2.5:7b (local) | No API key |
+| Embedding model | OpenAI text-embedding-3-large (3072 dims) | BAAI/bge-large-en-v1.5 (1024 dims) | No API key — local/free |
+| Reranker | Cohere Rerank v3 (API) | cross-encoder/ms-marco-MiniLM-L-6-v2 (local) | No API key |
+| Docker Compose | v1 (`docker-compose`) | v2 (`docker compose`) | v1 broken with urllib3 v2 |
+
+---
+
 ## 🔗 Next Steps
 
 - Infrastructure setup: [02-INFRASTRUCTURE.md](02-INFRASTRUCTURE.md)
 - Ingestion pipeline: [03-INGESTION-PIPELINE.md](03-INGESTION-PIPELINE.md)
-- Learn constraints: [13-CONSTRAINTS.md](13-CONSTRAINTS.md)
+- Indexing: [04-INDEXING.md](04-INDEXING.md)
+- Retrieval pipeline: [05-RETRIEVAL-PIPELINE.md](05-RETRIEVAL-PIPELINE.md)
+- Generation: [07-GENERATION-CITATIONS.md](07-GENERATION-CITATIONS.md)

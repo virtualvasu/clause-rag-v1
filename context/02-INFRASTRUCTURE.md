@@ -1,5 +1,30 @@
 # 02 — Infrastructure & Environment Setup
 
+## ✅ Status: COMPLETE
+
+| Item | Status | Notes |
+|---|---|---|
+| Docker Compose | ✅ Running | Using `sudo docker compose` (v2 plugin) — v1 broken with urllib3 v2 |
+| Qdrant | ✅ Running | `localhost:6333` — v1.18.1, named volume `clause-rag-v1_qdrant_data` |
+| Neo4j | ✅ Running | `localhost:7687` — v5.20.0 Community, named volume `clause-rag-v1_neo4j_data` |
+| .env | ✅ Configured | `EMBEDDING_PROVIDER=local`, `NEO4J_PASSWORD=clausepassword` |
+| config.py | ✅ Done | Pydantic settings with `embedding_provider` field added |
+
+### Commands that actually work
+```bash
+sudo docker compose up -d    # start both services
+sudo docker compose down     # stop (data persists in named volumes)
+sudo docker compose down -v  # DANGER: deletes volumes + all data
+sudo docker ps               # check status
+curl http://localhost:6333/  # verify Qdrant
+curl http://localhost:7474/  # verify Neo4j
+```
+
+> **Note:** `docker-compose` (v1) is broken — use `docker compose` (v2, space not hyphen).
+> To use without sudo: `sudo usermod -aG docker $USER` then re-login.
+
+---
+
 ## Overview
 
 This section covers all infrastructure setup needed before implementing the system: Docker services, environment variables, and configuration management.
