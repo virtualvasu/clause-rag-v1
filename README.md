@@ -1,164 +1,162 @@
-# 🏛️ Clause: Advanced Legal GraphRAG
+# Clause
 
-Clause is a production-grade, fully local Retrieval-Augmented Generation (RAG) system built for the complex domain of Indian Corporate Law (Companies Act, SEBI Regulations, DPIIT Guidelines). 
+A production-grade, fully local Legal GraphRAG system for Indian Corporate Law — built on hybrid retrieval, knowledge graph expansion, and a Corrective RAG (CRAG) quality loop.
 
-It implements a state-of-the-art **GraphRAG architecture** augmented with a **Corrective RAG (CRAG)** loop, prioritizing strict legal faithfulness and zero hallucination over raw speed.
-
-![Clause UI Demo](frontend/public/favicon.ico) *(Placeholder for actual UI screenshot)*
+Corpus: Companies Act 2013, SEBI AIF Regulations 2012, DPIIT Startup Guidelines.
 
 ---
 
-## 🏗️ Architecture & Pipeline Diagrams
+## System Architecture
 
-### 1. High-Level System Architecture
-```mermaid
-graph LR
-    User([User]) <--> NextJS[Next.js Frontend]
-    NextJS <--> FastAPI[FastAPI Backend]
-    
-    subgraph Local AI Stack
-        FastAPI <--> Ollama[Ollama qwen2.5:7b]
-        FastAPI <--> Reranker[Cross-Encoder]
-    end
-    
-    subgraph Data Stores
-        FastAPI <--> Qdrant[(Qdrant Vector DB)]
-        FastAPI <--> Neo4j[(Neo4j Knowledge Graph)]
-    end
-```
+![System Architecture](docs/system_architecture.png)
 
-### 2. Ingestion Pipeline (Legal Text Processing)
-```mermaid
-graph TD
-    Raw[Raw Legal PDFs/Markdown] --> Parser[Hierarchical Parser]
-    Parser --> Chunker[Semantic Chunker]
-    
-    Chunker --> Parent[Parent Chunks]
-    Chunker --> Child[Child Chunks]
-    
-    Child --> VectorEmbed[BGE-M3 Embeddings]
-    VectorEmbed --> Qdrant[(Qdrant)]
-    
-    Child --> EntityExtraction[Ollama Entity/Relation Extraction]
-    EntityExtraction --> Neo4j[(Neo4j)]
-    
-    Parent --> Neo4j
-```
-
-### 3. Query Pipeline (Hybrid + Graph + CRAG)
-```mermaid
-graph TD
-    Query[User Query] --> Retrieve[Hybrid Retrieval]
-    
-    subgraph 1. Retrieval Phase
-        Retrieve --> V[Vector Search]
-        Retrieve --> B[BM25 Keyword Search]
-        V & B --> RRF[Reciprocal Rank Fusion]
-        RRF --> GraphExp[Neo4j Graph Expansion]
-        GraphExp --> Rerank[Cross-Encoder Reranking]
-    end
-    
-    subgraph 2. CRAG Quality Loop
-        Rerank --> Eval[LLM Context Evaluator]
-        Eval -- Score < 0.6 --> Refine[Query Refiner]
-        Refine --> Retrieve
-        Eval -- Score >= 0.6 --> Gen[Final Context]
-    end
-    
-    subgraph 3. Generation
-        Gen --> LLM[LLM Generator]
-        LLM --> Answer[Answer with Inline Citations]
-    end
-```
+A Next.js frontend communicates with a FastAPI backend that orchestrates hybrid retrieval across Qdrant (dense vectors) and Neo4j (knowledge graph), with answer generation via a local Ollama LLM instance.
 
 ---
 
-## 📊 Evaluation & Benchmarks
+## Pipeline
 
-Clause was rigorously evaluated using **RAGAS-style metrics** against a 20-question expert-annotated ground truth dataset. The evaluation utilized an Ollama Chain-of-Thought (CoT) judge to enforce strict legal reasoning.
+### Ingestion
 
-We conducted a 3-variant ablation study to understand the architectural trade-offs:
+![Ingestion Pipeline](docs/ingestion_pipeline.png)
 
-| Metric | Naive RAG (Vector only) | Advanced RAG (Hybrid + Rerank) | Clause Full (Graph + CRAG) |
+Raw legal PDFs are parsed hierarchically (Act → Section → Subsection) into parent/child chunk pairs. Child chunks are embedded with `BAAI/bge-m3` and stored in Qdrant. In parallel, an LLM extracts legal entities and relationships into a Neo4j knowledge graph.
+
+**Corpus stats:** 3 acts · 7,367 child chunks · 1,024-dim embeddings
+
+### Query & CRAG Loop
+
+![Query Pipeline](docs/query_pipeline.png)
+
+Every query runs through a 6-stage pipeline:
+
+1. **Hybrid Retrieval** — Qdrant vector search + BM25 keyword search fused via Reciprocal Rank Fusion (RRF)
+2. **Graph Expansion** — Neo4j traversal fetches structurally related legal sections (parent/sibling/reference)
+3. **Reranking** — Cross-encoder scores all candidates; top-k are selected
+4. **CRAG Check** — LLM evaluates context quality (score 0–1). If score < 0.6, the query is refined and retrieval restarts (max 3 iterations)
+5. **Generation** — Final context passed to Ollama with a structured legal reasoning prompt
+6. **Citation Extraction** — Inline citations parsed from the answer and surfaced to the UI
+
+---
+
+## Evaluation
+
+Evaluated using RAGAS-style metrics with an Ollama CoT judge against a 20-question expert-annotated ground truth dataset (4 categories: Simple, Multi-hop, Cross-document, Conditional).
+
+### Ablation Study
+
+| Metric | Naive RAG | Advanced RAG | Clause Full |
 |---|---|---|---|
-| **Faithfulness** | 0.61 | 0.585 | **0.642** 🏆 |
-| **Answer Relevancy**| 0.94 | **0.945** | 0.91 |
-| **Context Recall** | 0.338 | **0.342** | 0.241 |
-| **Avg Latency** | **3.77s** | 11.93s | 24.28s |
+| Faithfulness | 0.610 | 0.585 | **0.642** |
+| Answer Relevancy | 0.940 | **0.945** | 0.910 |
+| Context Precision | **0.600** | 0.550 | 0.560 |
+| Context Recall | 0.338 | **0.342** | 0.241 |
+| Avg Latency | **3.8s** | 11.9s | 24.3s |
 
-### Key Takeaways (The Faithfulness vs. Recall Trade-off)
-1. **Zero Hallucination Focus:** The `clause_full` architecture explicitly trades latency (24s) and broad recall for **strict legal faithfulness (0.642)**. The CRAG loop successfully detects when context is insufficient and prevents the LLM from inventing answers.
-2. **Realistic Baselines:** Evaluated against highly detailed, 150-word expert ground truth answers (containing exact section numbers and numeric thresholds), a context recall of ~0.34 represents a highly realistic baseline for dense legal text retrieval.
+**Variants:**
+- `Naive RAG` — vector-only retrieval, no graph, no CRAG, no reranking
+- `Advanced RAG` — hybrid (vector + BM25 + RRF) + cross-encoder reranking
+- `Clause Full` — all of the above + Neo4j graph expansion + CRAG loop
+
+### Key Finding
+
+`Clause Full` achieves the highest faithfulness (+5.2% over naive baseline) by trading broad recall for strict answer grounding. The CRAG loop detects low-quality context and prevents the LLM from generating unsupported answers — a deliberate design choice for the legal domain where hallucination is unacceptable.
+
+### CRAG Self-Assessment (Clause Full)
+
+| Question Category | Avg CRAG Score |
+|---|---|
+| Simple | 0.70 |
+| Multi-hop | 0.62 |
+| Cross-document | 0.54 |
+| Conditional | 0.58 |
 
 ---
 
-## 🛠️ Technology Stack
+## Stack
 
-* **Backend:** FastAPI, Python 3.11
-* **Frontend:** Next.js 16 (App Router), React 19, Tailwind CSS v3
-* **Vector Database:** Qdrant (Local Docker)
-* **Graph Database:** Neo4j Community (Local Docker)
-* **LLM Engine:** Ollama (qwen2.5:7b)
-* **Embeddings:** `BAAI/bge-m3`
-* **Reranker:** `cross-encoder/ms-marco-MiniLM-L-6-v2`
+| Layer | Technology |
+|---|---|
+| Backend | FastAPI, Python 3.11, Uvicorn |
+| Frontend | Next.js 16, React 19, Tailwind CSS v3 |
+| Vector Store | Qdrant v1.18 (Docker) |
+| Knowledge Graph | Neo4j v5.20 Community (Docker) |
+| LLM | Ollama — qwen2.5:7b |
+| Embeddings | BAAI/bge-m3 (1024-dim, local) |
+| Reranker | cross-encoder/ms-marco-MiniLM-L-6-v2 |
+
+Entirely local — no external API calls required.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-* Docker & Docker Compose
-* Python 3.11+
-* Node.js v20+
-* Ollama installed locally with the `qwen2.5:7b` model pulled (`ollama run qwen2.5:7b`)
 
-### 1. Start Infrastructure
+- Docker + Docker Compose
+- Python 3.11+
+- Node.js v20+
+- Ollama with `qwen2.5:7b` pulled (`ollama pull qwen2.5:7b`)
+
+### 1. Start infrastructure
+
 ```bash
-# Start Qdrant and Neo4j
 sudo docker compose up -d
 ```
 
-### 2. Setup Backend & API
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+### 2. Backend
 
-# Start FastAPI server (runs on http://localhost:8000)
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
 uvicorn clause.api.main:app --reload
+# API: http://localhost:8000
 ```
 
-### 3. Setup Frontend
+### 3. Frontend
+
 ```bash
 cd frontend
 npm install
-# Start Next.js dev server (runs on http://localhost:3000)
 npm run dev
+# UI: http://localhost:3000
 ```
 
-### 4. Run Evaluations (Optional)
+### 4. Run evaluation (optional)
+
 ```bash
-# Run the full RAGAS ablation benchmark
+# Full ablation benchmark — all 3 variants, 20 questions
 python scripts/run_eval.py --all
+
+# Single variant, skip RAGAS scoring (fast mode)
+python scripts/run_eval.py --variant clause_full --skip-ragas
 ```
 
 ---
 
-## 📁 Repository Structure
-```text
+## Repository Structure
+
+```
 clause-rag-v1/
-├── clause/                 # Core Python Backend
-│   ├── api/                # FastAPI routes & schemas
-│   ├── generation/         # LLM Generation & CRAG logic
-│   ├── ingestion/          # PDF parsing & Graph/Vector extraction
-│   ├── retrieval/          # Hybrid search & Graph expansion
-│   └── evaluation/         # RAGAS metrics & benchmark scripts
-├── data/                   # Raw PDFs, Processed chunks, Eval datasets
-├── frontend/               # Next.js Web Application
-├── context/                # Detailed system design & architectural docs
-└── docker-compose.yml      # Infrastructure definitions
+├── clause/
+│   ├── api/            # FastAPI routes and Pydantic schemas
+│   ├── ingestion/      # PDF parsing, embedding, graph extraction
+│   ├── retrieval/      # Hybrid search, RRF, graph expansion, reranking
+│   ├── generation/     # LLM generation, CRAG check, query refinement
+│   └── evaluation/     # RAGAS metrics, ablation benchmark
+├── data/
+│   ├── raw/            # Source legal documents
+│   ├── processed/      # Parsed chunks and enriched JSON
+│   └── eval/           # Questions, ground truth, results
+├── frontend/           # Next.js web application
+├── docs/               # Architecture diagrams
+├── scripts/            # CLI utilities and eval runner
+├── context/            # Detailed design documentation per component
+└── docker-compose.yml
 ```
 
-## 📝 License
-MIT License
+---
+
+## License
+
+MIT
