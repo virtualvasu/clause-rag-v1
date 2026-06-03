@@ -1,0 +1,122 @@
+[
+  {
+    "id": "Q001",
+    "category": "SIMPLE",
+    "question": "What are the duties of a director under the Companies Act?",
+    "relevant_sections": ["COMPAN_S1229_1", "COMPAN_S1231_1", "COMPAN_S1232_1"]
+  },
+  {
+    "id": "Q002",
+    "category": "SIMPLE",
+    "question": "What is a private placement under the Companies Act?",
+    "relevant_sections": ["COMPAN_S7_1"]
+  },
+  {
+    "id": "Q003",
+    "category": "SIMPLE",
+    "question": "What is an Alternative Investment Fund under SEBI regulations?",
+    "relevant_sections": ["SEBI_S6_1", "SEBI_S6_2"]
+  },
+  {
+    "id": "Q004",
+    "category": "SIMPLE",
+    "question": "What documents must a company deliver to the Registrar when operating as a foreign company?",
+    "relevant_sections": ["COMPAN_S91_1"]
+  },
+  {
+    "id": "Q005",
+    "category": "SIMPLE",
+    "question": "What is the annual return filing requirement for a company?",
+    "relevant_sections": ["COMPAN_S18_1", "COMPAN_S91_1"]
+  },
+  {
+    "id": "Q006",
+    "category": "MULTI_HOP",
+    "question": "What are the conditions and restrictions for a company making a private placement of shares, including any offer size and investor limits?",
+    "relevant_sections": ["COMPAN_S7_1", "COMPAN_S5_1"]
+  },
+  {
+    "id": "Q007",
+    "category": "MULTI_HOP",
+    "question": "What are a director's duties to act in good faith and with due diligence, and what are the consequences of failing to do so?",
+    "relevant_sections": ["COMPAN_S1229_1", "COMPAN_S1231_1", "COMPAN_S1232_1", "COMPAN_S3891_1"]
+  },
+  {
+    "id": "Q008",
+    "category": "MULTI_HOP",
+    "question": "What are the eligibility and registration requirements for an Alternative Investment Fund under SEBI?",
+    "relevant_sections": ["SEBI_S6_1", "SEBI_S6_2", "SEBI_S6_3"]
+  },
+  {
+    "id": "Q009",
+    "category": "MULTI_HOP",
+    "question": "What is the procedure for inspection of company books and what powers does the Registrar have to conduct inquiries?",
+    "relevant_sections": ["COMPAN_S34_1", "COMPAN_S30_1"]
+  },
+  {
+    "id": "Q010",
+    "category": "MULTI_HOP",
+    "question": "What are the requirements for appointment of directors and what disqualifications apply?",
+    "relevant_sections": ["COMPAN_S30_1", "COMPAN_S164_1"]
+  },
+  {
+    "id": "Q011",
+    "category": "CROSS_DOC",
+    "question": "What are the compliance requirements for a DPIIT-recognised startup that also issues securities under SEBI regulations?",
+    "relevant_sections": ["DPIIT_S1_1", "SEBI_S2_1", "SEBI_S6_1"]
+  },
+  {
+    "id": "Q012",
+    "category": "CROSS_DOC",
+    "question": "What SEBI rules apply when a company makes a private placement to an Alternative Investment Fund?",
+    "relevant_sections": ["COMPAN_S7_1", "SEBI_S6_1", "SEBI_S6_6"]
+  },
+  {
+    "id": "Q013",
+    "category": "CROSS_DOC",
+    "question": "What are the corporate governance obligations that apply both under the Companies Act and SEBI regulations for a company's directors?",
+    "relevant_sections": ["COMPAN_S1229_1", "COMPAN_S2444_1", "SEBI_S6_1"]
+  },
+  {
+    "id": "Q014",
+    "category": "CROSS_DOC",
+    "question": "What restrictions apply to a DPIIT startup entity formed through merger or demerger, and how do Companies Act restructuring provisions relate?",
+    "relevant_sections": ["DPIIT_S2_1", "DPIIT_S3_1", "COMPAN_S5_1"]
+  },
+  {
+    "id": "Q015",
+    "category": "CROSS_DOC",
+    "question": "What are the disclosure and registration requirements under SEBI for an entity that wants to operate as a Category II Alternative Investment Fund?",
+    "relevant_sections": ["SEBI_S6_1", "SEBI_S6_2", "SEBI_S6_6"]
+  },
+  {
+    "id": "Q016",
+    "category": "CONDITIONAL",
+    "question": "Under what conditions can a DPIIT-recognised startup continue to retain its recognition when it undergoes a name change?",
+    "relevant_sections": ["DPIIT_S6_1"]
+  },
+  {
+    "id": "Q017",
+    "category": "CONDITIONAL",
+    "question": "What conditions must a partnership firm satisfy to be eligible for registration as an Alternative Investment Fund under SEBI?",
+    "relevant_sections": ["SEBI_S6_6"]
+  },
+  {
+    "id": "Q018",
+    "category": "CONDITIONAL",
+    "question": "Under what circumstances must a director disclose their interest in a contract or arrangement, and what are the consequences of non-disclosure?",
+    "relevant_sections": ["COMPAN_S2444_1", "COMPAN_S3891_1"]
+  },
+  {
+    "id": "Q019",
+    "category": "CONDITIONAL",
+    "question": "What conditions apply when a DPIIT startup incorporates an additional entity with similar address and common directors?",
+    "relevant_sections": ["DPIIT_S9_1", "DPIIT_S10_1"]
+  },
+  {
+    "id": "Q020",
+    "category": "CONDITIONAL",
+    "question": "Under what circumstances is a company required to appoint a director elected by small shareholders, and what are the eligibility conditions for such a director?",
+    "relevant_sections": ["COMPAN_S30_1"]
+  }
+]

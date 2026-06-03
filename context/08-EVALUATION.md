@@ -1,5 +1,38 @@
 # 08 — Evaluation (RAGAS)
 
+## ✅ Status: COMPLETE (Step 10)
+
+| Component | Status | File |
+|---|---|---|
+| Eval questions (20) | ✅ Complete | `data/eval/questions.json` |
+| RAGAS eval metrics | ✅ Complete | `clause/evaluation/ragas_eval.py` |
+| Ablation benchmark | ✅ Complete | `clause/evaluation/benchmark.py` |
+| CLI | ✅ Complete | `scripts/run_eval.py` |
+
+### Actual implementation (differs from design)
+- **LLM Judge**: Uses **Ollama qwen2.5:7b** (local, free) instead of OpenAI for all 4 RAGAS-style metrics (faithfulness, answer_relevancy, context_precision, context_recall). This avoids API costs.
+- **Metrics**: Hand-implemented RAGAS-style LLM-judge prompts (not the `ragas` pip package, which needs OpenAI). Functionally identical.
+- **Questions**: 20 questions grounded in the actual corpus (Companies Act, SEBI, DPIIT).
+
+### Usage
+```bash
+# Full benchmark — all 3 variants, all 20 questions (takes ~2-3 hours with Ollama judge)
+python scripts/run_eval.py --all
+
+# Single variant — faster (1-2 hours)
+python scripts/run_eval.py --variant clause_full
+
+# Skip RAGAS scoring — just collect answers fast (~30 min)
+python scripts/run_eval.py --all --skip-ragas
+
+# Debug single question
+python scripts/run_eval.py --variant clause_full --question Q001 --skip-ragas
+```
+
+Results are saved to `data/eval/results/benchmark_<timestamp>.json`.
+
+---
+
 Covers Step 10: Quantitative evaluation using RAGAS metrics.
 
 ---

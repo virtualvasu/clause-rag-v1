@@ -111,6 +111,7 @@ def answer_query(
         "crag_score":  crag_score,
         "chunks_used": generation_result["chunks_used"],
         "provider":    generation_result["provider"],
+        "context_texts": [c.get("text", "") for c in context_chunks],  # for RAGAS eval
         "retrieval": {
             "vector_hits": len(retrieval_result.get("vector_hits", [])),
             "bm25_hits":   len(retrieval_result.get("bm25_hits", [])),
