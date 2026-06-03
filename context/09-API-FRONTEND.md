@@ -1,6 +1,35 @@
 # 09 — API & Frontend
 
-Covers Steps 11-12: FastAPI service layer and Streamlit demo UI.
+## ✅ Status: COMPLETE (Steps 11-12)
+
+| Component | Status | Notes |
+|---|---|---|
+| FastAPI App Factory | ✅ Complete | `clause/api/main.py` |
+| Pydantic Schemas | ✅ Complete | `clause/api/schemas.py` |
+| Query Routes | ✅ Complete | `clause/api/routes/query.py` |
+| Frontend UI | ✅ Complete | Next.js App Router (React) replacing Streamlit for a more premium look. `frontend/` directory. |
+
+### Actual implementation (differs from design)
+- **Frontend**: Used **Next.js 16 (App Router)** with Tailwind CSS instead of Streamlit.
+- **Design**: Premium dark mode, glass-morphism chat UI, expandable citations, metadata chips, sidebar controls.
+- **Tailwind Version**: Downgraded to Tailwind v3 (`tailwindcss@3`) because Tailwind v4 postcss plugin had native binding issues with npm optional dependencies. Node v20 activated via `nvm`.
+
+### Usage
+```bash
+# Terminal 1 - Start Backend
+cd /home/netweb/vasu/clause-rag-v1
+venv/bin/uvicorn clause.api.main:app --port 8000 --host 0.0.0.0 --reload
+
+# Terminal 2 - Start Frontend
+cd /home/netweb/vasu/clause-rag-v1/frontend
+export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use 20
+npm run dev -- --port 3000
+```
+Then visit `http://localhost:3000`.
+
+---
+
+Covers Steps 11-12: FastAPI service layer and Frontend UI.
 
 ---
 

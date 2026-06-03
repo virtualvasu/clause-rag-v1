@@ -266,9 +266,10 @@ clause/
 | Step 5 | BM25 Sparse Indexing | ✅ Complete | 7,549 chunks → bm25_index.pkl |
 | Step 6 | Knowledge Graph (Neo4j) | ✅ Complete | 12,568 nodes, 28,859 edges |
 | Step 7 | Hybrid Retrieval (Vector + BM25 + Graph + Reranker) | ✅ Complete | Tested and working |
-| Step 8 | Answer Generation | ⬜ Next | — |
-| Step 9 | API (FastAPI) | ⬜ Pending | — |
-| Step 10 | Frontend (Streamlit) | ⬜ Pending | — |
+| Step 8 | Answer Generation | ✅ Complete | Done via Ollama |
+| Step 9 | API (FastAPI) | ✅ Complete | Ready on port 8000 |
+| Step 10 | Frontend (Next.js) | ✅ Complete | Next.js replacing Streamlit |
+| Step 11 | Evaluation (RAGAS) | ⬜ Next | — |
 
 ---
 
