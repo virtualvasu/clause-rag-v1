@@ -8,7 +8,21 @@ Corpus: Companies Act 2013, SEBI AIF Regulations 2012, DPIIT Startup Guidelines.
 
 ## System Architecture
 
-![System Architecture](docs/system_architecture.png)
+```mermaid
+flowchart LR
+    User([User]) --> FE["Next.js Frontend\n:3000"]
+    FE --> API["FastAPI Backend\n:8000"]
+
+    API --> Qdrant[("Qdrant\nVector DB")]
+    API --> Neo4j[("Neo4j\nGraph DB")]
+    API --> Ollama["Ollama LLM\nqwen2.5:7b"]
+    API --> Reranker["Cross-Encoder\nReranker"]
+
+    Qdrant -->|dense vectors| API
+    Neo4j -->|graph context| API
+    Ollama -->|generated answer| API
+    Reranker -->|top-k chunks| API
+```
 
 A Next.js frontend communicates with a FastAPI backend that orchestrates hybrid retrieval across Qdrant (dense vectors) and Neo4j (knowledge graph), with answer generation via a local Ollama LLM instance.
 
@@ -18,7 +32,21 @@ A Next.js frontend communicates with a FastAPI backend that orchestrates hybrid 
 
 ### Ingestion
 
-![Ingestion Pipeline](docs/ingestion_pipeline.png)
+```mermaid
+flowchart TD
+    PDFs(["Raw Legal PDFs\nCompanies Act · SEBI · DPIIT"])
+    PDFs --> Parser["Hierarchical Parser\nAct → Section → Subsection"]
+
+    Parser --> Parent["Parent Chunks\nFull sections"]
+    Parser --> Child["Child Chunks\nSub-sections"]
+
+    Child --> Embed["BGE-M3 Embeddings\n1024-dim, local"]
+    Child --> Extract["LLM Entity Extraction\nOllama qwen2.5:7b"]
+
+    Embed --> Qdrant[("Qdrant\n7,367 chunks")]
+    Extract --> Neo4j[("Neo4j\nEntities + Relations")]
+    Parent --> Neo4j
+```
 
 Raw legal PDFs are parsed hierarchically (Act → Section → Subsection) into parent/child chunk pairs. Child chunks are embedded with `BAAI/bge-m3` and stored in Qdrant. In parallel, an LLM extracts legal entities and relationships into a Neo4j knowledge graph.
 
@@ -26,7 +54,25 @@ Raw legal PDFs are parsed hierarchically (Act → Section → Subsection) into p
 
 ### Query & CRAG Loop
 
-![Query Pipeline](docs/query_pipeline.png)
+```mermaid
+flowchart TD
+    Q(["User Legal Question"])
+
+    Q --> VS["Vector Search\nQdrant top-20"]
+    Q --> BM25["BM25 Keyword Search\nlocal index"]
+
+    VS & BM25 --> RRF["Reciprocal Rank Fusion\nRRF merge"]
+    RRF --> GE["Graph Expansion\nNeo4j — parent / sibling / reference"]
+    GE --> CE["Cross-Encoder Reranking\nms-marco-MiniLM"]
+
+    CE --> CRAG{"CRAG Quality Check\nLLM score 0–1"}
+
+    CRAG -->|"score < 0.6\nmax 3 iterations"| Refine["Query Refinement\nOllama"]
+    Refine --> VS
+
+    CRAG -->|"score >= 0.6"| Gen["LLM Generation\nOllama qwen2.5:7b"]
+    Gen --> Ans(["Answer with Inline Citations"])
+```
 
 Every query runs through a 6-stage pipeline:
 
