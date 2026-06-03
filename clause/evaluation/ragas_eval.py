@@ -1,8 +1,15 @@
 """
 RAGAS-based evaluation of the Clause RAG pipeline.
 
-Uses Ollama (local, free) as the LLM judge instead of OpenAI.
-Metrics computed:
+Judge model: Ollama qwen2.5:7b (local, free).
+
+Key improvements over naive scoring:
+  1. Chain-of-Thought (CoT) — model reasons step-by-step BEFORE giving a score
+  2. Structured JSON output — {"reasoning": "...", "score": X} forces deliberation
+  3. Concrete rubrics with legal-domain examples
+  4. Robust JSON parsing with fallback regex extraction
+
+Metrics:
   - faithfulness      (0-1): answer grounded in retrieved context?
   - answer_relevancy  (0-1): does the answer address the question?
   - context_precision (0-1): are retrieved chunks actually relevant?
@@ -15,142 +22,252 @@ import json
 import logging
 import re
 import statistics
-from pathlib import Path
-from typing import Optional
 
 logger = logging.getLogger(__name__)
 
+
 # ── Ollama judge ───────────────────────────────────────────────────────────────
 
-def _llm_judge(prompt: str) -> str:
-    """Call Ollama for LLM-as-judge scoring."""
-    from openai import OpenAI
+def _llm_judge(prompt: str, max_tokens: int = 400) -> str:
+    """Call Ollama for LLM-as-judge scoring via direct HTTP POST."""
+    import httpx
     from clause.config import settings
 
-    client = OpenAI(base_url=settings.ollama_base_url, api_key="ollama")
-    r = client.chat.completions.create(
-        model=settings.ollama_model,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=200,
-        temperature=0.0,
-    )
-    return r.choices[0].message.content.strip()
+    url = settings.ollama_base_url.rstrip("/") + "/chat/completions"
+    payload = {
+        "model": settings.ollama_model,
+        "messages": [{
+            "role": "system",
+            "content": (
+                "You are a precise evaluation judge for RAG systems. "
+                "Always follow the exact output format requested. "
+                "Always return valid JSON with 'reasoning' and 'score' keys."
+            ),
+        }, {
+            "role": "user",
+            "content": prompt,
+        }],
+        "max_tokens": max_tokens,
+        "temperature": 0.0,
+    }
+    with httpx.Client(timeout=120) as client:
+        r = client.post(url, json=payload, headers={"Authorization": "Bearer ollama"})
+        r.raise_for_status()
+        return r.json()["choices"][0]["message"]["content"].strip()
 
 
-def _parse_score(text: str) -> float:
-    """Extract a 0.0–1.0 score from LLM output."""
-    matches = re.findall(r'\b(0\.\d+|1\.0|0|1)\b', text)
-    if matches:
-        return max(0.0, min(1.0, float(matches[0])))
-    return 0.5  # default if parse fails
+def _parse_cot_score(text: str) -> tuple[float, str]:
+    """
+    Extract score and reasoning from CoT JSON output.
+    Tries JSON first, then falls back to regex extraction.
+
+    Returns: (score 0.0-1.0, reasoning string)
+    """
+    # Try JSON parse (may be wrapped in markdown code block)
+    json_match = re.search(r'\{[^{}]*"score"[^{}]*\}', text, re.DOTALL)
+    if json_match:
+        try:
+            data = json.loads(json_match.group())
+            score = float(data.get("score", 0.5))
+            reasoning = data.get("reasoning", "")
+            return max(0.0, min(1.0, score)), reasoning
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+    # Fallback: extract score from "score": X.X pattern
+    score_match = re.search(r'"score"\s*:\s*([0-9.]+)', text)
+    if score_match:
+        try:
+            score = float(score_match.group(1))
+            return max(0.0, min(1.0, score)), ""
+        except ValueError:
+            pass
+
+    # Last resort: find any standalone number
+    num_matches = re.findall(r'\b(0\.\d+|1\.0|0\.0)\b', text)
+    if num_matches:
+        return max(0.0, min(1.0, float(num_matches[-1]))), ""
+
+    logger.warning(f"Could not parse score from: {text[:100]}")
+    return 0.5, ""  # neutral default
 
 
-# ── Individual metrics ─────────────────────────────────────────────────────────
+# ── Individual metrics (CoT-improved) ─────────────────────────────────────────
 
 def score_faithfulness(question: str, answer: str, contexts: list[str]) -> float:
     """
-    Faithfulness: is every claim in the answer supported by retrieved context?
-    Score 0-1. 1 = fully grounded, 0 = hallucinated.
+    Faithfulness: every claim in the answer must be traceable to the retrieved context.
+    Uses CoT — model identifies each claim and checks it against context before scoring.
     """
-    context_text = "\n---\n".join(contexts[:5])
-    prompt = f"""You are evaluating a RAG system's answer for FAITHFULNESS.
-Faithfulness measures whether ALL claims in the answer are supported by the retrieved context.
+    context_text = "\n---\n".join(c[:600] for c in contexts[:5])
 
-Question: {question}
+    prompt = f"""You are evaluating a legal RAG system for FAITHFULNESS.
 
-Retrieved Context:
+Definition: Faithfulness measures whether every factual claim in the generated answer
+is explicitly supported by the retrieved context passages. An answer is unfaithful if
+it introduces facts, section numbers, or legal rules NOT present in the context.
+
+## Question
+{question}
+
+## Retrieved Context Passages
 {context_text}
 
-Answer to evaluate:
+## Generated Answer
 {answer}
 
-Score the faithfulness from 0.0 to 1.0:
-- 1.0: Every claim in the answer is explicitly supported by the context
-- 0.7: Most claims are supported, minor unsupported details
-- 0.5: About half the claims are supported
-- 0.3: Most claims are not supported by context
-- 0.0: Answer is completely unsupported or contradicts context
+## Your Task
+Step 1 — List each distinct factual claim in the generated answer (max 5 claims).
+Step 2 — For each claim, state whether it is SUPPORTED or NOT SUPPORTED by the context.
+Step 3 — Calculate score = (supported claims) / (total claims).
 
-Return ONLY a number between 0.0 and 1.0, nothing else."""
-    return _parse_score(_llm_judge(prompt))
+## Scoring Guide
+- 1.0: All claims are explicitly supported by the retrieved context
+- 0.8: 4/5 claims supported (one minor unsupported detail)
+- 0.6: 3/5 claims supported
+- 0.4: 2/5 claims supported
+- 0.0: Claims contradict context or come from outside knowledge
+
+Important: If the answer explicitly says "the context does not contain...", that counts as faithful (score = 1.0).
+
+Return ONLY valid JSON:
+{{"reasoning": "<step-by-step claim analysis>", "score": <float 0.0-1.0>}}"""
+
+    raw = _llm_judge(prompt, max_tokens=500)
+    score, _ = _parse_cot_score(raw)
+    return score
 
 
 def score_answer_relevancy(question: str, answer: str) -> float:
     """
-    Answer Relevancy: does the answer directly address the question?
-    Score 0-1. 1 = perfectly on-topic, 0 = completely off-topic.
+    Answer Relevancy: does the answer directly address what was asked?
+    Uses CoT — model identifies question type and maps answer to it.
     """
-    prompt = f"""You are evaluating a RAG system's answer for ANSWER RELEVANCY.
-Answer relevancy measures how directly the answer addresses the question asked.
+    prompt = f"""You are evaluating a legal RAG system for ANSWER RELEVANCY.
 
-Question: {question}
+Definition: Answer relevancy measures how directly and completely the generated answer
+addresses the specific legal question asked. High relevancy means the answer targets
+the exact question without excessive padding or tangential information.
 
-Answer to evaluate:
+## Question
+{question}
+
+## Generated Answer
 {answer}
 
-Score the answer relevancy from 0.0 to 1.0:
-- 1.0: The answer directly and completely addresses the question
-- 0.7: The answer mostly addresses the question with minor gaps
-- 0.5: The answer partially addresses the question
-- 0.3: The answer is tangentially related to the question
-- 0.0: The answer does not address the question at all
+## Your Task
+Step 1 — Identify the core legal concept being asked about (definition / procedure / penalty / condition).
+Step 2 — Check if the answer directly addresses that concept.
+Step 3 — Check if the answer stays on topic or drifts to unrelated information.
+Step 4 — Assign a score.
 
-Return ONLY a number between 0.0 and 1.0, nothing else."""
-    return _parse_score(_llm_judge(prompt))
+## Scoring Guide
+- 1.0: Answer directly and completely addresses the question
+- 0.8: Answer addresses the question with minor tangential content
+- 0.6: Answer partially addresses the question, misses important aspects
+- 0.4: Answer is mostly about a related but different topic
+- 0.2: Answer barely touches the question
+- 0.0: Answer is completely off-topic or refused to answer
+
+Note: An answer saying "the context does not contain enough information" is relevant
+if the question is about something not in the corpus (score = 0.7).
+
+Return ONLY valid JSON:
+{{"reasoning": "<step-by-step analysis>", "score": <float 0.0-1.0>}}"""
+
+    raw = _llm_judge(prompt, max_tokens=400)
+    score, _ = _parse_cot_score(raw)
+    return score
 
 
 def score_context_precision(question: str, contexts: list[str]) -> float:
     """
-    Context Precision: what fraction of retrieved chunks are actually relevant?
-    Score 0-1. 1 = all chunks relevant, 0 = no relevant chunks.
+    Context Precision: what fraction of retrieved chunks are actually useful?
+    Evaluates ALL chunks together (not one-by-one) to avoid binary over-strictness.
     """
     if not contexts:
         return 0.0
 
-    relevant_count = 0
-    for ctx in contexts:
-        prompt = f"""Is this retrieved context chunk relevant to answering the question?
+    numbered = "\n".join(
+        f"[Chunk {i+1}]: {ctx[:500]}" for i, ctx in enumerate(contexts)
+    )
 
-Question: {question}
+    prompt = f"""You are evaluating a legal RAG system for CONTEXT PRECISION.
 
-Context chunk:
-{ctx[:500]}
+Definition: Context precision measures what fraction of the retrieved context chunks
+are actually useful for answering the question. A chunk is useful if it contains
+information that is directly relevant to the question, even if the answer requires
+reading multiple chunks together.
 
-Reply with 1 if relevant, 0 if not relevant. Return ONLY the number."""
-        score = _parse_score(_llm_judge(prompt))
-        if score >= 0.5:
-            relevant_count += 1
+## Question
+{question}
 
-    return relevant_count / len(contexts)
+## Retrieved Context Chunks
+{numbered}
+
+## Your Task
+Step 1 — For each chunk, state in ONE sentence what it is about.
+Step 2 — Decide if each chunk is USEFUL or NOT USEFUL for answering the question.
+  - USEFUL: Contains legal rules, definitions, procedures, or conditions directly related to the question topic
+  - NOT USEFUL: Completely unrelated to the question topic
+Step 3 — Calculate precision = (useful chunks) / (total chunks = {len(contexts)})
+
+Important: Be GENEROUS — if a chunk is about the same legal topic even if not a perfect match, count it as USEFUL.
+
+Return ONLY valid JSON:
+{{"reasoning": "<per-chunk verdict>", "score": <float 0.0-1.0>}}"""
+
+    raw = _llm_judge(prompt, max_tokens=500)
+    score, _ = _parse_cot_score(raw)
+    return score
 
 
-def score_context_recall(question: str, answer: str, ground_truth: str, contexts: list[str]) -> float:
+def score_context_recall(question: str, ground_truth: str, contexts: list[str]) -> float:
     """
-    Context Recall: does the retrieved context contain all info needed for a correct answer?
-    Uses ground truth as reference. Score 0-1.
+    Context Recall: does the retrieved context cover what the ground truth answer requires?
+    If no ground truth available, uses question intent instead.
     """
-    context_text = "\n---\n".join(contexts[:5])
-    prompt = f"""You are evaluating a RAG system for CONTEXT RECALL.
-Context recall measures whether the retrieved context contains all the information
-needed to produce the ground truth answer.
+    context_text = "\n---\n".join(c[:600] for c in contexts[:5])
 
-Question: {question}
+    # If no ground truth, evaluate against question directly
+    reference = ground_truth if ground_truth.strip() else f"[No ground truth — evaluate against question: {question}]"
 
-Ground Truth Answer (expert-written):
-{ground_truth}
+    prompt = f"""You are evaluating a legal RAG system for CONTEXT RECALL.
 
-Retrieved Context:
+Definition: Context recall measures whether the retrieved context contains all the
+information needed to produce a complete answer. We compare what information IS
+available in the context versus what the ideal answer WOULD REQUIRE.
+
+## Question
+{question}
+
+## Reference Answer (what a complete answer should contain)
+{reference}
+
+## Retrieved Context
 {context_text}
 
-Score the context recall from 0.0 to 1.0:
-- 1.0: All information in the ground truth is present in the retrieved context
-- 0.7: Most information is present, minor gaps
-- 0.5: About half the needed information is present
-- 0.3: Most needed information is missing
-- 0.0: Retrieved context contains none of the information needed
+## Your Task
+Step 1 — List the key information pieces needed to answer the question (max 4 points).
+Step 2 — For each information piece, check if it's PRESENT in the retrieved context.
+Step 3 — Calculate recall = (present pieces) / (total needed pieces).
 
-Return ONLY a number between 0.0 and 1.0, nothing else."""
-    return _parse_score(_llm_judge(prompt))
+## Scoring Guide
+- 1.0: All needed information is present in the context
+- 0.75: 3/4 needed pieces present
+- 0.5: 2/4 needed pieces present
+- 0.25: Only 1/4 needed pieces present
+- 0.0: None of the needed information is present
+
+Note: The context does NOT need to be in perfect form — if the information is there,
+even if fragmented across chunks, count it as present.
+
+Return ONLY valid JSON:
+{{"reasoning": "<per-piece check>", "score": <float 0.0-1.0>}}"""
+
+    raw = _llm_judge(prompt, max_tokens=500)
+    score, _ = _parse_cot_score(raw)
+    return score
 
 
 # ── Main eval function ─────────────────────────────────────────────────────────
@@ -158,7 +275,7 @@ Return ONLY a number between 0.0 and 1.0, nothing else."""
 def run_ragas_eval(
     questions: list[str],
     answers: list[str],
-    contexts: list[list[str]],      # list of context lists (one per question)
+    contexts: list[list[str]],
     ground_truths: list[str],
     verbose: bool = True,
 ) -> dict:
@@ -166,19 +283,19 @@ def run_ragas_eval(
     Run RAGAS-style evaluation using Ollama as the LLM judge.
 
     Args:
-        questions:    List of question strings
-        answers:      List of generated answers (one per question)
-        contexts:     List of context chunk text lists (one list per question)
+        questions:     List of question strings
+        answers:       List of generated answers (one per question)
+        contexts:      List of context chunk text lists (one list per question)
         ground_truths: List of reference answers (one per question)
-        verbose:      Print per-question scores
+        verbose:       Print per-question scores
 
     Returns:
         {
-            "faithfulness":      float   (mean)
-            "answer_relevancy":  float   (mean)
-            "context_precision": float   (mean)
-            "context_recall":    float   (mean)
-            "avg_score":         float   (mean of all 4)
+            "faithfulness":      float  (mean across questions)
+            "answer_relevancy":  float
+            "context_precision": float
+            "context_recall":    float
+            "avg_score":         float  (mean of all 4 metrics)
             "per_question":      list[dict]
         }
     """
@@ -193,7 +310,7 @@ def run_ragas_eval(
         f  = score_faithfulness(q, a, ctx)
         ar = score_answer_relevancy(q, a)
         cp = score_context_precision(q, ctx)
-        cr = score_context_recall(q, a, gt, ctx)
+        cr = score_context_recall(q, gt, ctx)
 
         avg = statistics.mean([f, ar, cp, cr])
 

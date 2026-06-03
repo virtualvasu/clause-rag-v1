@@ -43,20 +43,20 @@ def format_context_blocks(chunks: list[dict]) -> str:
 # ── LLM backends ──────────────────────────────────────────────────────────────
 
 def _call_ollama(prompt: str, max_tokens: int = 1000) -> str:
-    """Call Ollama local LLM (OpenAI-compatible API)."""
-    from openai import OpenAI
+    """Call Ollama local LLM via direct HTTP POST (avoids openai SDK proxy issues)."""
+    import httpx
 
-    client = OpenAI(
-        base_url=settings.ollama_base_url,
-        api_key="ollama",  # required by client but unused
-    )
-    response = client.chat.completions.create(
-        model=settings.ollama_model,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=max_tokens,
-        temperature=0.1,  # low temp for factual legal answers
-    )
-    return response.choices[0].message.content.strip()
+    url = settings.ollama_base_url.rstrip("/") + "/chat/completions"
+    payload = {
+        "model": settings.ollama_model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": max_tokens,
+        "temperature": 0.1,
+    }
+    with httpx.Client(timeout=300) as client:
+        r = client.post(url, json=payload, headers={"Authorization": "Bearer ollama"})
+        r.raise_for_status()
+        return r.json()["choices"][0]["message"]["content"].strip()
 
 
 def _call_claude(prompt: str, max_tokens: int = 1000) -> str:

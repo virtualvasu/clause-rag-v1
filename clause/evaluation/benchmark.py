@@ -112,6 +112,9 @@ def run_variant(
             contexts = result.get("context_texts", [])  # list of chunk text strings
             elapsed = time.time() - t0
 
+            # If CRAG is disabled for this variant, mark crag_score as None
+            crag_score_val = result.get("crag_score", None) if config["use_crag"] else None
+
             results.append({
                 "id":       qid,
                 "category": category,
@@ -119,11 +122,12 @@ def run_variant(
                 "answer":   answer,
                 "contexts": contexts,
                 "ground_truth": gt,
-                "crag_score":   result.get("crag_score", 0),
+                "crag_score":   crag_score_val,
                 "iterations":   result.get("iterations", 1),
                 "latency_s":    round(elapsed, 2),
             })
-            print(f"  ✓ {qid} ({elapsed:.1f}s) CRAG={result.get('crag_score', 0):.2f}")
+            crag_display = f"{crag_score_val:.2f}" if crag_score_val is not None else "N/A"
+            print(f"  ✓ {qid} ({elapsed:.1f}s) CRAG={crag_display}")
 
         except Exception as e:
             logger.error(f"  ✗ {qid} failed: {e}")
@@ -194,18 +198,25 @@ def run_benchmark(
                 )
                 variant_result["ragas_scores"] = ragas
 
-        # Per-category breakdown
-        by_category = {}
+        # Per-category CRAG breakdown — only for variants where CRAG is enabled
+        use_crag = VARIANTS[variant_name]["use_crag"]
+        by_category: dict[str, list] = {}
         for r in raw:
             cat = r["category"]
-            by_category.setdefault(cat, []).append(r.get("crag_score", 0))
-        variant_result["avg_crag_by_category"] = {
-            cat: round(statistics.mean(scores), 3)
-            for cat, scores in by_category.items()
-        }
+            cs = r.get("crag_score")
+            if cs is not None:
+                by_category.setdefault(cat, []).append(cs)
+        if use_crag and by_category:
+            variant_result["avg_crag_by_category"] = {
+                cat: round(statistics.mean(scores), 3)
+                for cat, scores in by_category.items()
+            }
+        else:
+            variant_result["avg_crag_by_category"] = None  # N/A for disabled variants
+        valid_latencies = [r["latency_s"] for r in raw if r["latency_s"] > 0]
         variant_result["avg_latency_s"] = round(
-            statistics.mean(r["latency_s"] for r in raw if r["latency_s"] > 0), 2
-        ) if raw else 0
+            statistics.mean(valid_latencies), 2
+        ) if valid_latencies else 0
 
         all_results["variants"][variant_name] = variant_result
 
@@ -228,7 +239,7 @@ def print_comparison_table(all_results: dict):
     metrics  = ["faithfulness", "answer_relevancy", "context_precision", "context_recall", "avg_score"]
 
     print(f"\n{'='*70}")
-    print("BENCHMARK RESULTS")
+    print("BENCHMARK RESULTS (RAGAS metrics, Ollama CoT judge)")
     print(f"{'='*70}")
 
     col_w = 16
@@ -250,11 +261,16 @@ def print_comparison_table(all_results: dict):
     ))
 
     print(f"\n{'='*70}")
-    print("CRAG Score by Category")
+    print("CRAG Context Quality Score by Category")
+    print("(N/A = CRAG disabled for this variant — no quality check performed)")
     print(f"{'='*70}")
     for cat in ["SIMPLE", "MULTI_HOP", "CROSS_DOC", "CONDITIONAL"]:
         row = f"{cat:<22}"
         for v in variants:
-            val = all_results["variants"][v].get("avg_crag_by_category", {}).get(cat, "—")
+            crag_data = all_results["variants"][v].get("avg_crag_by_category")
+            if crag_data is None:
+                val = "N/A"
+            else:
+                val = crag_data.get(cat, "—")
             row += f"{str(val):<{col_w}}"
         print(row)
