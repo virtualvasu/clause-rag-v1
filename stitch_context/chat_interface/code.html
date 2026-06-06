@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clause - Chat Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Geist Font Fallback Setup */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        @layer base {
+            body {
+                font-family: 'Geist', 'Inter', sans-serif;
+            }
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Typing Indicator Animation */
+        @keyframes typing {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); }
+        }
+        .dot { animation: typing 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* Custom Scrollbar for sleekness */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #2e3447; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #404944; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "var(--color-surface-tint, #95d3ba)",
+                        "on-error-container": "var(--color-on-error-container, #ffdad6)",
+                        "surface-container-low": "var(--color-surface-container-low, #151b2d)",
+                        "on-error": "var(--color-on-error, #690005)",
+                        "tertiary": "var(--color-tertiary, #c4c7c9)",
+                        "inverse-on-surface": "var(--color-inverse-on-surface, #2a3043)",
+                        "on-secondary": "var(--color-on-secondary, #532200)",
+                        "on-surface": "var(--color-on-surface, #dce1fb)",
+                        "inverse-primary": "var(--color-inverse-primary, #2b6954)",
+                        "error-container": "var(--color-error-container, #93000a)",
+                        "primary-container": "var(--color-primary-container, #064e3b)",
+                        "inverse-surface": "var(--color-inverse-surface, #dce1fb)",
+                        "error": "var(--color-error, #ffb4ab)",
+                        "surface-container-highest": "var(--color-surface-container-highest, #2e3447)",
+                        "primary-fixed-dim": "var(--color-primary-fixed-dim, #95d3ba)",
+                        "on-secondary-fixed": "var(--color-on-secondary-fixed, #331200)",
+                        "on-primary-fixed": "var(--color-on-primary-fixed, #002117)",
+                        "background": "var(--color-background, #0c1324)",
+                        "on-tertiary-fixed": "var(--color-on-tertiary-fixed, #191c1e)",
+                        "primary": "var(--color-primary, #95d3ba)",
+                        "outline": "var(--color-outline, #89938d)",
+                        "on-background": "var(--color-on-background, #dce1fb)",
+                        "outline-variant": "var(--color-outline-variant, #404944)",
+                        "tertiary-fixed": "var(--color-tertiary-fixed, #e0e3e5)",
+                        "surface-container-lowest": "var(--color-surface-container-lowest, #070d1f)",
+                        "on-tertiary-fixed-variant": "var(--color-on-tertiary-fixed-variant, #444749)",
+                        "on-secondary-container": "var(--color-on-secondary-container, #ffe2d5)",
+                        "on-tertiary-container": "var(--color-on-tertiary-container, #afb2b4)",
+                        "surface-container": "var(--color-surface-container, #191f31)",
+                        "surface": "var(--color-surface, #0c1324)",
+                        "surface-variant": "var(--color-surface-variant, #2e3447)",
+                        "on-surface-variant": "var(--color-on-surface-variant, #bfc9c3)",
+                        "on-secondary-fixed-variant": "var(--color-on-secondary-fixed-variant, #763300)",
+                        "on-primary-container": "var(--color-on-primary-container, #80bea6)",
+                        "on-primary": "var(--color-on-primary, #003829)",
+                        "secondary-fixed-dim": "var(--color-secondary-fixed-dim, #ffb68e)",
+                        "surface-dim": "var(--color-surface-dim, #0c1324)",
+                        "secondary": "var(--color-secondary, #ffb68e)",
+                        "secondary-fixed": "var(--color-secondary-fixed, #ffdbca)",
+                        "surface-bright": "var(--color-surface-bright, #33394c)",
+                        "on-tertiary": "var(--color-on-tertiary, #2d3133)",
+                        "tertiary-fixed-dim": "var(--color-tertiary-fixed-dim, #c4c7c9)",
+                        "on-primary-fixed-variant": "var(--color-on-primary-fixed-variant, #0b513d)",
+                        "primary-fixed": "var(--color-primary-fixed, #b0f0d6)",
+                        "surface-container-high": "var(--color-surface-container-high, #23293c)",
+                        "secondary-container": "var(--color-secondary-container, #ab4c00)",
+                        "tertiary-container": "var(--color-tertiary-container, #424547)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-sm": ["10px", { "lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* CSS Custom Properties for Light/Dark Theme */
+        :root {
+            /* Light Theme Defaults (Emerald Professional) */
+            --color-surface-tint: #1c6148;
+            --color-on-error-container: #410002;
+            --color-surface-container-low: #f4f8f5;
+            --color-on-error: #ffffff;
+            --color-tertiary: #5c5f61;
+            --color-inverse-on-surface: #f1f5f9;
+            --color-on-secondary: #ffffff;
+            --color-on-surface: #191c1e;
+            --color-inverse-primary: #95d3ba;
+            --color-error-container: #ffdad6;
+            --color-primary-container: #b0f0d6;
+            --color-inverse-surface: #2d3133;
+            --color-error: #ba1a1a;
+            --color-surface-container-highest: #e0e4e2;
+            --color-primary-fixed-dim: #95d3ba;
+            --color-on-secondary-fixed: #331200;
+            --color-on-primary-fixed: #002117;
+            --color-background: #fbfdf9;
+            --color-on-tertiary-fixed: #191c1e;
+            --color-primary: #1c6148;
+            --color-outline: #707974;
+            --color-on-background: #191c1e;
+            --color-outline-variant: #bfc9c3;
+            --color-tertiary-fixed: #e0e3e5;
+            --color-surface-container-lowest: #ffffff;
+            --color-on-tertiary-fixed-variant: #444749;
+            --color-on-secondary-container: #331200;
+            --color-on-tertiary-container: #191c1e;
+            --color-surface-container: #eef2ef;
+            --color-surface: #fbfdf9;
+            --color-surface-variant: #dce5df;
+            --color-on-surface-variant: #404944;
+            --color-on-secondary-fixed-variant: #763300;
+            --color-on-primary-container: #002117;
+            --color-on-primary: #ffffff;
+            --color-secondary-fixed-dim: #ffb68e;
+            --color-surface-dim: #d9dbd8;
+            --color-secondary: #904100;
+            --color-secondary-fixed: #ffdbca;
+            --color-surface-bright: #fbfdf9;
+            --color-on-tertiary: #ffffff;
+            --color-tertiary-fixed-dim: #c4c7c9;
+            --color-on-primary-fixed-variant: #0b513d;
+            --color-primary-fixed: #b0f0d6;
+            --color-surface-container-high: #e8ece9;
+            --color-secondary-container: #ffdbca;
+            --color-tertiary-container: #e0e3e5;
+        }
+
+        .dark {
+            /* Dark Theme Overrides (Original Emerald Legal) */
+            --color-surface-tint: #95d3ba;
+            --color-on-error-container: #ffdad6;
+            --color-surface-container-low: #151b2d;
+            --color-on-error: #690005;
+            --color-tertiary: #c4c7c9;
+            --color-inverse-on-surface: #2a3043;
+            --color-on-secondary: #532200;
+            --color-on-surface: #dce1fb;
+            --color-inverse-primary: #2b6954;
+            --color-error-container: #93000a;
+            --color-primary-container: #064e3b;
+            --color-inverse-surface: #dce1fb;
+            --color-error: #ffb4ab;
+            --color-surface-container-highest: #2e3447;
+            --color-primary-fixed-dim: #95d3ba;
+            --color-on-secondary-fixed: #331200;
+            --color-on-primary-fixed: #002117;
+            --color-background: #0c1324;
+            --color-on-tertiary-fixed: #191c1e;
+            --color-primary: #95d3ba;
+            --color-outline: #89938d;
+            --color-on-background: #dce1fb;
+            --color-outline-variant: #404944;
+            --color-tertiary-fixed: #e0e3e5;
+            --color-surface-container-lowest: #070d1f;
+            --color-on-tertiary-fixed-variant: #444749;
+            --color-on-secondary-container: #ffe2d5;
+            --color-on-tertiary-container: #afb2b4;
+            --color-surface-container: #191f31;
+            --color-surface: #0c1324;
+            --color-surface-variant: #2e3447;
+            --color-on-surface-variant: #bfc9c3;
+            --color-on-secondary-fixed-variant: #763300;
+            --color-on-primary-container: #80bea6;
+            --color-on-primary: #003829;
+            --color-secondary-fixed-dim: #ffb68e;
+            --color-surface-dim: #0c1324;
+            --color-secondary: #ffb68e;
+            --color-secondary-fixed: #ffdbca;
+            --color-surface-bright: #33394c;
+            --color-on-tertiary: #2d3133;
+            --color-tertiary-fixed-dim: #c4c7c9;
+            --color-on-primary-fixed-variant: #0b513d;
+            --color-primary-fixed: #b0f0d6;
+            --color-surface-container-high: #23293c;
+            --color-secondary-container: #ab4c00;
+            --color-tertiary-container: #424547;
+        }
+    </style>
+<script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            const themeIcon = document.getElementById('theme-icon');
+            if(isDark) {
+                themeIcon.textContent = 'light_mode';
+            } else {
+                themeIcon.textContent = 'dark_mode';
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden flex font-body-md selection:bg-primary-container selection:text-primary transition-colors duration-300">
+<!-- JSON Component: SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant flex flex-col py-lg z-50 transition-colors duration-300">
+<!-- Header -->
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary fill text-[18px]" data-icon="gavel">gavel</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">Research Assistant</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Institutional Grade</p>
+</div>
+</div>
+</div>
+<!-- Added Emerald New Conversation Button per requirements -->
+<div class="px-md mb-md">
+<button class="w-full bg-primary hover:bg-inverse-primary text-on-primary font-label-md text-label-md rounded flex items-center justify-center gap-sm py-sm transition-colors duration-200">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+                New Conversation
+            </button>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto mt-sm">
+<ul class="flex flex-col gap-unit px-unit">
+<!-- Active Item -->
+<li>
+<a class="flex items-center gap-sm py-sm rounded-r-DEFAULT text-primary font-bold border-l-2 border-secondary pl-3 bg-surface-bright/20 transition-all duration-150 ease-in-out hover:bg-surface-bright hover:text-on-surface font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+                        Current Chat
+                    </a>
+</li>
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-sm py-sm rounded-r-DEFAULT text-on-surface-variant pl-4 transition-all duration-150 ease-in-out hover:bg-surface-bright hover:text-on-surface font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="bookmark">bookmark</span>
+                        Saved Clauses
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm rounded-r-DEFAULT text-on-surface-variant pl-4 transition-all duration-150 ease-in-out hover:bg-surface-bright hover:text-on-surface font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="gavel">gavel</span>
+                        Case Law
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm rounded-r-DEFAULT text-on-surface-variant pl-4 transition-all duration-150 ease-in-out hover:bg-surface-bright hover:text-on-surface font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="menu_book">menu_book</span>
+                        Legal Statutes
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm rounded-r-DEFAULT text-on-surface-variant pl-4 transition-all duration-150 ease-in-out hover:bg-surface-bright hover:text-on-surface font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="analytics">analytics</span>
+                        Execution Traces
+                    </a>
+</li>
+</ul>
+</div>
+<!-- Footer Actions -->
+<div class="px-md mt-auto pt-md border-t border-outline-variant">
+<button class="w-full mb-md py-sm border border-secondary text-secondary rounded font-label-md text-label-md hover:bg-secondary/10 transition-colors">
+                Upgrade to Pro
+            </button>
+<ul class="flex flex-col gap-unit">
+<li>
+<a class="flex items-center gap-sm py-sm text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="help">help</span>
+                        Help Center
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+                        Log Out
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Layout Workspace -->
+<div class="flex-1 flex ml-64 h-full bg-surface transition-colors duration-300">
+<!-- Center Column: Chat Canvas -->
+<main class="flex-1 flex flex-col h-full border-r border-outline-variant relative">
+<!-- Context Header -->
+<header class="h-[60px] min-h-[60px] border-b border-outline-variant flex items-center justify-between px-lg bg-surface/90 backdrop-blur-sm sticky top-0 z-10 transition-colors duration-300">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Active Inquiry</span>
+<h2 class="font-headline-md text-headline-md text-on-surface truncate">Analysis: Indemnification Clause 4.2</h2>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+</button>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="share">share</span>
+</button>
+<div class="w-[1px] h-5 bg-outline-variant mx-1"></div>
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-[20px]" data-icon="light_mode" id="theme-icon">light_mode</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Chat History -->
+<div class="flex-1 overflow-y-auto px-lg py-xl flex flex-col gap-xl">
+<!-- Timestamp -->
+<div class="flex justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-sm py-xs border border-outline-variant rounded-full">Today, 14:03 GMT</span>
+</div>
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="max-w-[75%] flex gap-md">
+<div class="bg-primary-container text-on-primary-container rounded-lg rounded-tr-none p-md border border-outline-variant shadow-[2px_2px_0px_0px_rgba(6,78,59,0.5)]">
+<p class="font-body-md text-body-md">
+                                Please analyze Clause 4.2 (Indemnification) in the provided Meridian Merger Agreement. Specifically, assess our exposure regarding third-party intellectual property infringement claims originating before the closing date.
+                            </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex-shrink-0 flex items-center justify-center overflow-hidden">
+<span class="font-label-md text-label-md text-on-surface">JD</span>
+</div>
+</div>
+</div>
+<!-- Assistant Message -->
+<div class="flex justify-start">
+<div class="max-w-[85%] flex gap-md">
+<div class="w-8 h-8 rounded bg-surface-container border border-outline-variant flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary fill text-[18px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="bg-surface-container text-on-surface rounded-lg rounded-tl-none p-md border border-outline-variant border-l-2 border-l-secondary">
+<p class="font-body-md text-body-md mb-md">
+                                    Based on the analysis of Clause 4.2 in the Meridian Merger Agreement, there is significant retained exposure regarding pre-closing IP infringement claims.
+                                </p>
+<p class="font-body-md text-body-md mb-md text-on-surface-variant">
+                                    The current drafting employs a narrow definition of "Covered Claims," which restricts indemnification strictly to claims explicitly filed prior to closing, rather than claims originating from acts occurring prior to closing.
+                                </p>
+<!-- Structured Insight -->
+<div class="bg-surface-container-high border border-outline-variant rounded p-sm mb-md">
+<h4 class="font-label-md text-label-md text-secondary mb-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span>
+                                        Critical Vulnerability Identified
+                                    </h4>
+<p class="font-body-sm text-body-sm">
+                                        Section 4.2(b) contains a carve-out for "Unknown IP Liabilities" capped at $500k, which is historically insufficient for enterprise software M&amp;A of this scale.
+                                    </p>
+</div>
+<!-- Citations Collapsible -->
+<details class="group cursor-pointer">
+<summary class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs select-none hover:text-on-surface transition-colors list-none">
+<span class="material-symbols-outlined text-[16px] group-open:rotate-90 transition-transform" data-icon="chevron_right">chevron_right</span>
+                                        View Citations &amp; Precedents
+                                    </summary>
+<div class="mt-sm pl-lg border-l border-outline-variant flex flex-col gap-xs">
+<div class="flex items-start gap-sm">
+<span class="font-label-md text-label-md text-secondary whitespace-nowrap pt-[2px]">[Sec 4.2(b)]</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">"Indemnifying Party shall not be liable for any Unknown IP Liabilities exceeding the Escrow Amount..."</p>
+</div>
+<div class="flex items-start gap-sm">
+<span class="font-label-md text-label-md text-secondary whitespace-nowrap pt-[2px]">[Prec. 2021]</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Delaware Chancery Court: <em>Akorn, Inc. v. Fresenius Kabi AG</em> (Highlighting risks of narrow carve-outs in MAE definitions).</p>
+</div>
+</div>
+</details>
+</div>
+<!-- Action Bar below bubble -->
+<div class="flex items-center gap-sm px-unit">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="content_copy">content_copy</span> Copy
+                                </button>
+<div class="w-[1px] h-3 bg-outline-variant"></div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="flag">flag</span> Flag for Review
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Typing Indicator (Simulated active state) -->
+<div class="flex justify-start opacity-70">
+<div class="max-w-[85%] flex gap-md items-center">
+<div class="w-8 h-8 rounded bg-surface-container border border-outline-variant flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary fill text-[18px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="bg-surface-container rounded-lg rounded-tl-none p-md border border-outline-variant border-l-2 border-l-secondary flex items-center gap-1 h-[42px]">
+<div class="w-1.5 h-1.5 rounded-full bg-primary dot"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary dot"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary dot"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-lg bg-surface border-t border-outline-variant z-10 transition-colors duration-300">
+<div class="relative flex items-end gap-sm bg-surface-container-low border border-outline-variant rounded focus-within:border-secondary transition-colors p-sm shadow-[2px_2px_0px_0px_var(--color-surface-container-lowest)]">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-colors flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md resize-none max-h-[120px] min-h-[44px] py-sm px-xs" placeholder="Ask a follow-up question or reference another clause..." rows="1"></textarea>
+<button class="p-sm bg-primary text-on-primary rounded hover:bg-inverse-primary transition-colors flex-shrink-0 flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+<div class="mt-sm flex justify-between items-center px-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clause AI can make mistakes. Verify critical citations.</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="lock">lock</span>
+                        End-to-End Encrypted
+                    </span>
+</div>
+</div>
+</main>
+<!-- Right Column: Metadata Panel (Execution Trace) -->
+<aside class="w-[320px] bg-surface-container-lowest flex flex-col h-full border-l border-outline-variant overflow-y-auto transition-colors duration-300">
+<header class="h-[60px] min-h-[60px] border-b border-outline-variant flex items-center px-md sticky top-0 bg-surface-container-lowest/90 backdrop-blur-sm z-10 transition-colors duration-300">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="memory">memory</span>
+                    Execution Trace
+                </h3>
+</header>
+<div class="p-md flex flex-col gap-lg">
+<!-- CRAG Score Instrumentation -->
+<div class="border border-outline-variant bg-surface-container-low rounded p-md">
+<div class="flex justify-between items-end mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">CRAG Confidence</span>
+<span class="font-headline-lg text-headline-lg text-primary leading-none">94<span class="text-body-sm">%</span></span>
+</div>
+<!-- Solid Emerald Bar -->
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden border border-outline-variant">
+<div class="h-full bg-primary w-[94%] relative">
+<!-- Instrumental detail line -->
+<div class="absolute right-0 top-0 bottom-0 w-[1px] bg-on-primary"></div>
+</div>
+</div>
+<div class="mt-xs flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Threshold: 85%</span>
+<span class="text-primary">Validated</span>
+</div>
+</div>
+<!-- Instrumental Metrics Grid -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
+<span class="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="search">search</span> Vector Hits
+                        </span>
+<div class="text-right">
+<span class="font-headline-lg text-headline-lg text-on-surface">1,402</span>
+</div>
+</div>
+<div class="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
+<span class="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="hub">hub</span> Graph Nodes
+                        </span>
+<div class="text-right">
+<span class="font-headline-lg text-headline-lg text-on-surface">87</span>
+</div>
+</div>
+</div>
+<!-- Document Context Analyzed -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-sm border-b border-outline-variant pb-xs">Context Sources</h4>
+<ul class="flex flex-col gap-sm">
+<li class="flex items-start gap-sm p-sm border border-outline-variant rounded bg-surface-container hover:border-secondary transition-colors cursor-default">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-[2px]" data-icon="description">description</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate w-48">Meridian_Merger_vFinal.pdf</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Primary Source • 142 pages</span>
+</div>
+</li>
+<li class="flex items-start gap-sm p-sm border border-outline-variant rounded bg-surface-container hover:border-secondary transition-colors cursor-default">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-[2px]" data-icon="gavel">gavel</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface truncate w-48">Delaware_Precedents_2021.db</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Case Law Graph • Extracted 3 nodes</span>
+</div>
+</li>
+</ul>
+</div>
+<!-- System Logs (Terminal aesthetic) -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-sm border-b border-outline-variant pb-xs">Retrieval Logs</h4>
+<div class="bg-surface border border-outline-variant rounded p-sm font-label-sm text-label-sm text-on-surface-variant font-mono flex flex-col gap-xs overflow-x-hidden">
+<div class="text-secondary opacity-80">&gt; Initiating semantic search...</div>
+<div class="opacity-80">&gt; Embedding query vectors [ms: 42]</div>
+<div class="text-primary opacity-80">&gt; Match found: Sec 4.2 (score: 0.92)</div>
+<div class="opacity-80">&gt; Cross-referencing case law graph...</div>
+<div class="text-primary opacity-80">&gt; Validated against Akorn v. Fresenius</div>
+<div class="opacity-80">&gt; Generating synthesized response...</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

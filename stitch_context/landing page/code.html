@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clause - Legal Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#80bea6",
+                        "surface-tint": "#95d3ba",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#424547",
+                        "on-surface": "#dce1fb",
+                        "on-secondary-container": "#ffe2d5",
+                        "inverse-primary": "#2b6954",
+                        "on-background": "#dce1fb",
+                        "surface-container": "#191f31",
+                        "outline": "#89938d",
+                        "surface": "#0c1324",
+                        "on-secondary": "#532200",
+                        "surface-variant": "#2e3447",
+                        "surface-container-high": "#23293c",
+                        "on-error": "#690005",
+                        "surface-container-low": "#151b2d",
+                        "secondary-fixed-dim": "#ffb68e",
+                        "error-container": "#93000a",
+                        "on-primary": "#003829",
+                        "on-secondary-fixed-variant": "#763300",
+                        "secondary-fixed": "#ffdbca",
+                        "on-tertiary-container": "#afb2b4",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-surface-variant": "#bfc9c3",
+                        "surface-container-lowest": "#070d1f",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary": "#ffb68e",
+                        "surface-container-highest": "#2e3447",
+                        "background": "#0c1324",
+                        "outline-variant": "#404944",
+                        "on-secondary-fixed": "#331200",
+                        "primary-container": "#064e3b",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-tertiary": "#2d3133",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-bright": "#33394c",
+                        "primary": "#95d3ba",
+                        "inverse-surface": "#dce1fb",
+                        "tertiary": "#c4c7c9",
+                        "inverse-on-surface": "#2a3043",
+                        "on-primary-fixed": "#002117",
+                        "surface-dim": "#0c1324",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#ab4c00",
+                        "primary-fixed": "#b0f0d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-sm": ["10px", { "lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+            overflow-x: hidden;
+        }
+        
+        #cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(149, 211, 186, 0.1) 0%, rgba(12, 19, 36, 0) 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enforce modernist flat borders */
+        .modern-border {
+            border: 1px solid theme('colors.surface-variant');
+        }
+        
+        .modern-border:hover {
+            border-color: theme('colors.outline');
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-primary">
+<div id="cursor-glow"></div>
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface w-full top-0 sticky z-50 border-b border-outline-variant transition-colors duration-300">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-md w-full max-w-[1440px] mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-md cursor-pointer">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Clause</span>
+</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Research</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Documents</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 cursor-pointer active:opacity-80" href="#">History</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Cases</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors duration-200 text-[20px] select-none" id="theme-toggle">light_mode</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors duration-200 text-[20px]">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors duration-200 text-[20px]">settings</span>
+</div>
+<button class="bg-primary hover:bg-primary-fixed-dim text-on-primary font-label-md text-label-md px-lg py-sm rounded transition-colors duration-200 cursor-pointer active:opacity-80">
+                    New Inquiry
+                </button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer hidden md:block" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ucnmxQmVHj0s11A5xx5UJ2Z4WLURtfflrdYm1KrW7kG3NZJ7KnLCi4Uqc0u4-4aF4stts6qpYz6bQVDceYi8AxcRNHnZWMmiaV1vlJ47rzOcbxtouxPYnOcK03IU5Eah7AX3l8PagKJqeWObRV7Pyhmfcma9o1zBvbhQymtuTobEsVdqgkn6bWN-UYUuLArold-ZqwggWpf51tsvcEKfHq-lDzrENoiA3pLrhPlIPaZozZ40psV_aZtSAoksuT4ZzAl-HC7bzIM"/>
+</div>
+</div>
+</header>
+<main class="content-layer max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pb-xl">
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col justify-center items-center text-center pt-xl pb-xl gap-xl relative">
+<div class="reveal-text flex flex-col items-center gap-lg z-10 w-full max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-[0.2em] scale-150 transform origin-center my-xl">
+                    Clause
+                </h1>
+<div class="flex flex-col md:flex-row items-center gap-md mt-xl">
+<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold">
+                        Precision legal intelligence.
+                    </span>
+<div class="hidden md:block w-[2px] h-[32px] bg-secondary mx-md"></div>
+<span class="font-body-lg text-body-lg text-on-surface-variant italic font-light">
+                        Zero hallucination.
+                    </span>
+</div>
+<div class="mt-lg">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-xl py-md rounded border border-secondary hover:bg-primary-container hover:text-primary transition-all duration-300 shadow-[0_0_15px_rgba(255,182,142,0.1)]">
+                        Access Assistant
+                    </button>
+</div>
+</div>
+<!-- Geometric Visual Container -->
+<div class="w-full max-w-3xl aspect-[16/9] mt-xl relative modern-border bg-surface-container-lowest overflow-hidden flex items-center justify-center reveal-text" style="transition-delay: 0.2s;">
+<img alt="A highly symbolic and abstract 3D rendering of legal symbols for a hero section." class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="A highly symbolic and abstract 3D rendering of legal symbols for a hero section. A pair of balanced minimalist scales and geometric law volumes constructed from dark glass and emerald green light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ZUFNaAW72BcYZTxpBJVUNOYaVtT_TAQxKLw586TuZgH25ejFayXvcsBpvh3iucgTo-eXkAQfmFlsjPf9bIAVNzcDIljlh0ATfqHqbWi1MlR_YwH819dZdR-hqdPMo5Ri7PI8JoihHRCGaXUUjSs1JHpHAVg1UKmXtI4eAhehjupXzsjC_il1noU0k9_uGct41eMw75W2IUnga23LiXOmrmeSLPs0BLmdfRuamwJgV-w7W40NfmY8sko-U1nikwMmfKpXF6I_dTc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+</section>
+<!-- Stats Bar -->
+<section class="py-xl reveal-text" style="transition-delay: 0.3s;">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-sm">
+<div class="modern-border bg-surface-container-low p-lg flex flex-col items-start gap-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Document Chunks</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">7,367</span>
+</div>
+<div class="modern-border bg-surface-container-low p-lg flex flex-col items-start gap-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Legislative Acts</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">3</span>
+</div>
+<div class="modern-border bg-surface-container-low p-lg flex flex-col items-start gap-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">CRAG Faithfulness</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">0.642</span>
+</div>
+<div class="modern-border bg-surface-container-low p-lg flex flex-col items-start gap-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Avg. Retrieval Time</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">24ms</span>
+</div>
+</div>
+</section>
+<!-- Features Bento -->
+<section class="py-xl flex flex-col gap-xl reveal-text" style="transition-delay: 0.4s;">
+<div class="flex items-center gap-md border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-secondary">memory</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Architecture</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="modern-border bg-surface-container-low hover:bg-surface-bright transition-colors p-xl flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">account_tree</span>
+</div>
+<span class="material-symbols-outlined text-secondary">search</span>
+<h4 class="font-headline-md text-headline-md text-primary">Hybrid Retrieval</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Semantic and keyword matching working in tandem to surface the exact precedent, bypassing generic search limitations.</p>
+</div>
+<div class="modern-border bg-surface-container-low hover:bg-surface-bright transition-colors p-xl flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">verified_user</span>
+</div>
+<span class="material-symbols-outlined text-secondary">fact_check</span>
+<h4 class="font-headline-md text-headline-md text-primary">CRAG Quality</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Corrective Retrieval Augmented Generation ensures outputs are strictly tethered to the ingested legal corpus, eliminating hallucination.</p>
+</div>
+<div class="modern-border bg-surface-container-low hover:bg-surface-bright transition-colors p-xl flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[48px]">library_books</span>
+</div>
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+<h4 class="font-headline-md text-headline-md text-primary">Cited Answers</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every assertion is backed by a direct, verifiable citation to the underlying statutory or case law text.</p>
+</div>
+</div>
+</section>
+<!-- Corpus Section -->
+<section class="py-xl flex flex-col gap-xl reveal-text" style="transition-delay: 0.5s;">
+<div class="flex items-center gap-md border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-secondary">gavel</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Active Corpus</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+<div class="modern-border bg-surface-container-lowest p-md flex items-center justify-between hover:border-primary transition-colors cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">Companies Act, 2013</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">arrow_forward</span>
+</div>
+<div class="modern-border bg-surface-container-lowest p-md flex items-center justify-between hover:border-primary transition-colors cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">SEBI Regulations</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">arrow_forward</span>
+</div>
+<div class="modern-border bg-surface-container-lowest p-md flex items-center justify-between hover:border-primary transition-colors cursor-pointer">
+<span class="font-body-md text-body-md text-on-surface">DPIIT Circulars</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">arrow_forward</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full bottom-0 border-t border-outline-variant z-40 mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-xl w-full max-w-[1440px] mx-auto gap-lg md:gap-0">
+<div class="flex flex-col items-center md:items-start gap-sm">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Clause</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">© 2024 Clause Legal Technologies. All rights reserved. Institutional precision guaranteed.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity duration-200" href="#">Security Architecture</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity duration-200" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+<script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                if (htmlElement.classList.contains('dark')) {
+                    themeToggle.textContent = 'light_mode';
+                } else {
+                    themeToggle.textContent = 'dark_mode';
+                }
+            });
+        }
+
+        // Cursor Glow Effect
+        const cursorGlow = document.getElementById('cursor-glow');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorGlow.style.opacity = '1';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+        });
+
+        // Simple Reveal Animation on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal-text');
+            setTimeout(() => {
+                revealElements.forEach(el => el.classList.add('visible'));
+            }, 100);
+        });
+    </script>
+</body></html>
