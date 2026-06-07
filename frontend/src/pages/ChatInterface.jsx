@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { 
-  Download, Share, Moon, Sun, ArrowUp, Paperclip, Lock, 
+  Moon, Sun, ArrowUp, Paperclip, Lock, 
   Cpu, Search, Network, FileText, Scale, ChevronRight, 
-  AlertTriangle, Copy, Flag, Landmark 
+  AlertTriangle, Copy, Flag, Landmark, BookOpen,
+  RotateCw, Layers, Server
 } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 
@@ -63,6 +66,9 @@ export default function ChatInterface({ toggleTheme, isDark }) {
         content: data.answer,
         citations: data.citations || [],
         crag_score: data.crag_score || 0,
+        iterations: data.iterations || 0,
+        chunks_used: data.chunks_used || 0,
+        provider: data.provider || 'unknown',
         retrieval: data.retrieval || { vector_hits: 0, bm25_hits: 0, graph_hits: 0, candidates: 0 },
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
@@ -112,13 +118,6 @@ export default function ChatInterface({ toggleTheme, isDark }) {
               </h2>
             </div>
             <div className="flex items-center gap-sm">
-              <button className="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors">
-                <Download className="w-[18px] h-[18px]" />
-              </button>
-              <button className="w-8 h-8 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors">
-                <Share className="w-[18px] h-[18px]" />
-              </button>
-              <div className="w-[1px] h-5 bg-outline-variant mx-1"></div>
               <button onClick={toggleTheme} className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
@@ -249,6 +248,36 @@ export default function ChatInterface({ toggleTheme, isDark }) {
                     </span>
                   </div>
                 </div>
+                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
+                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
+                    <RotateCw className="w-[14px] h-[14px]" /> Iterations
+                  </span>
+                  <div className="text-right">
+                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                      {latestAssistantMessage.iterations || 0}
+                    </span>
+                  </div>
+                </div>
+                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
+                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
+                    <Layers className="w-[14px] h-[14px]" /> Chunks Used
+                  </span>
+                  <div className="text-right">
+                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                      {latestAssistantMessage.chunks_used || 0}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Provider Info */}
+              <div className="border border-outline-variant bg-surface-container-low rounded p-md flex items-center justify-between">
+                <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest flex items-center gap-xs">
+                  <Server className="w-[16px] h-[16px] text-secondary" /> Provider
+                </span>
+                <span className="font-headline-sm text-headline-sm text-on-surface capitalize">
+                  {latestAssistantMessage.provider || 'unknown'}
+                </span>
               </div>
               
               {/* Document Context Analyzed */}
@@ -311,27 +340,42 @@ function MessageBubble({ msg }) {
         </div>
         <div className="flex flex-col gap-sm">
           <div className={`bg-surface-container text-on-surface rounded-lg rounded-tl-none p-md border border-outline-variant border-l-2 ${msg.isError ? 'border-l-error' : 'border-l-secondary'}`}>
-            <div className="font-body-md text-body-md mb-md whitespace-pre-wrap prose prose-sm dark:prose-invert">
-              {msg.content}
-            </div>
+            {msg.isError ? (
+              <div className="font-body-md text-body-md mb-md whitespace-pre-wrap text-error">
+                {msg.content}
+              </div>
+            ) : (
+              <div className="font-body-md text-body-md mb-md prose prose-sm dark:prose-invert max-w-none prose-p:leading-relaxed prose-headings:font-headline-sm prose-headings:text-primary prose-a:text-secondary prose-code:text-primary prose-code:bg-surface-variant prose-code:px-1 prose-code:rounded prose-strong:text-on-surface prose-strong:font-bold">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {msg.content}
+                </ReactMarkdown>
+              </div>
+            )}
             
-            {/* Citations Collapsible */}
-            {msg.citations && msg.citations.length > 0 && (
-              <div className="group cursor-pointer mt-sm" onClick={() => setIsCitationOpen(!isCitationOpen)}>
-                <div className="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs select-none hover:text-on-surface transition-colors list-none">
-                  <ChevronRight className={`w-4 h-4 transition-transform ${isCitationOpen ? 'rotate-90' : ''}`} />
-                  View Citations & Precedents ({msg.citations.length})
+            {/* Citations Showcase */}
+            {!msg.isError && msg.citations && msg.citations.length > 0 && (
+              <div className="mt-xl pt-md border-t border-outline-variant">
+                <div className="font-label-sm text-label-sm text-secondary uppercase tracking-widest flex items-center gap-xs mb-md">
+                  <BookOpen className="w-[14px] h-[14px]" /> Cited Legal Authorities
                 </div>
-                {isCitationOpen && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-sm pl-lg border-l border-outline-variant flex flex-col gap-xs overflow-hidden">
-                    {msg.citations.map((cit, idx) => (
-                      <div key={idx} className="flex items-start gap-sm">
-                        <span className="font-label-md text-label-md text-secondary whitespace-nowrap pt-[2px]">[{cit.section_type} {cit.section_number}]</span>
-                        <p className="font-body-sm text-body-sm text-on-surface-variant">{cit.section_title || cit.text_excerpt?.substring(0, 100) + '...'}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
+                  {msg.citations.map((cit, idx) => (
+                    <div key={idx} className="bg-surface border border-outline-variant rounded p-sm flex flex-col gap-xs hover:border-secondary transition-colors group shadow-[2px_2px_0px_0px_var(--color-surface-container-lowest)]">
+                      <div className="flex justify-between items-start gap-sm">
+                        <span className="font-label-md text-label-md text-primary flex items-center gap-xs truncate">
+                          <FileText className="w-3 h-3 flex-shrink-0" />
+                          <span className="truncate" title={cit.act}>{cit.act}</span>
+                        </span>
+                        <span className="bg-primary-container text-on-primary-container font-label-sm text-[10px] px-1.5 py-0.5 rounded whitespace-nowrap">
+                          {cit.section_type} {cit.section_number}
+                        </span>
                       </div>
-                    ))}
-                  </motion.div>
-                )}
+                      <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-xs" title={cit.section_title || cit.text_excerpt}>
+                        {cit.section_title || cit.text_excerpt?.substring(0, 150) + '...'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
