@@ -128,7 +128,10 @@ export default function ChatInterface({ toggleTheme, isDark }) {
             {messages.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center opacity-50">
                 <Scale className="w-16 h-16 text-primary mb-6" />
-                <h3 className="font-headline-lg text-4xl text-on-surface mb-2">Clause Active.</h3>
+                <h3 className="font-headline-lg text-4xl text-on-surface mb-2 flex items-center justify-center gap-2">
+                  Clause Active
+                  <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="inline-block w-4 h-8 bg-primary"></motion.span>
+                </h3>
                 <p className="font-mono text-sm text-on-surface-variant text-center max-w-md uppercase tracking-widest">
                   Awaiting parameters for legal extraction and timeline construction.
                 </p>
@@ -147,10 +150,12 @@ export default function ChatInterface({ toggleTheme, isDark }) {
                     <div className="w-2 h-2 bg-primary"></div>
                     <span className="font-mono text-xs uppercase tracking-widest text-primary">System Processing</span>
                   </div>
-                  <div className="flex items-center gap-2 h-8">
-                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0 }} className="w-2 h-2 bg-on-surface" />
-                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} className="w-2 h-2 bg-on-surface" />
-                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }} className="w-2 h-2 bg-on-surface" />
+                  <div className="flex items-end gap-1 h-6 mt-2">
+                    <motion.div animate={{ height: ["20%", "100%", "20%"] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0 }} className="w-2 bg-on-surface" />
+                    <motion.div animate={{ height: ["40%", "80%", "40%"] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.15 }} className="w-2 bg-on-surface" />
+                    <motion.div animate={{ height: ["100%", "30%", "100%"] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.3 }} className="w-2 bg-on-surface" />
+                    <motion.div animate={{ height: ["60%", "100%", "60%"] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.45 }} className="w-2 bg-on-surface" />
+                    <motion.div animate={{ height: ["30%", "70%", "30%"] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.6 }} className="w-2 bg-on-surface" />
                   </div>
                 </div>
               </div>
@@ -164,7 +169,7 @@ export default function ChatInterface({ toggleTheme, isDark }) {
               <button className="p-2 text-on-surface-variant hover:text-primary transition-colors flex-shrink-0">
                 <Paperclip className="w-5 h-5" />
               </button>
-              <div className="flex-1 border-b-2 border-on-surface focus-within:border-primary transition-colors pb-1">
+              <div className="flex-1 border-l-4 border-l-transparent focus-within:border-l-primary border-b-2 border-b-on-surface focus-within:border-b-primary transition-colors pb-1 pl-3">
                 <textarea 
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}

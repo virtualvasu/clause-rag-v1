@@ -10,6 +10,12 @@ import {
 export default function LandingPage({ toggleTheme, isDark }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  
+  // Simulation State
+  const [mockStep, setMockStep] = useState(0); // 0: Idle, 1: Typing, 2: Processing, 3: Responded
+  const [typedText, setTypedText] = useState("");
+  const fullText = "Extract critical liabilities from the latest SEBI mandate.";
+
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
   const opacityProgress = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -21,6 +27,30 @@ export default function LandingPage({ toggleTheme, isDark }) {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    let timeout;
+    if (mockStep === 0) {
+      setTypedText("");
+      timeout = setTimeout(() => setMockStep(1), 1000);
+    } else if (mockStep === 1) {
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        setTypedText(fullText.substring(0, i + 1));
+        i++;
+        if (i >= fullText.length) {
+          clearInterval(typeInterval);
+          setTimeout(() => setMockStep(2), 600);
+        }
+      }, 40);
+      return () => clearInterval(typeInterval);
+    } else if (mockStep === 2) {
+      timeout = setTimeout(() => setMockStep(3), 2000);
+    } else if (mockStep === 3) {
+      timeout = setTimeout(() => setMockStep(0), 4000);
+    }
+    return () => clearTimeout(timeout);
+  }, [mockStep]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -127,7 +157,8 @@ export default function LandingPage({ toggleTheme, isDark }) {
             </motion.p>
             
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-6 mt-12 w-full justify-center border-t border-outline-variant/30 pt-12">
-              <Link to="/chat" className="group relative w-full sm:w-auto px-12 py-5 bg-transparent text-on-surface font-mono text-label-lg uppercase tracking-[0.2em] transition-all duration-300 border border-on-surface hover:bg-on-surface hover:text-surface overflow-hidden flex items-center justify-center gap-4">
+              <Link to="/chat" className="group relative w-full sm:w-auto px-12 py-5 bg-transparent text-on-surface font-mono text-label-lg uppercase tracking-[0.2em] border border-on-surface hover:text-surface overflow-hidden flex items-center justify-center gap-4 transition-colors">
+                <div className="absolute inset-0 bg-on-surface translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
                 <span className="relative z-10">Access Terminal</span>
                 <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
@@ -155,41 +186,64 @@ export default function LandingPage({ toggleTheme, isDark }) {
 
             <div className="w-full h-full pt-8 flex">
               {/* Sidebar Mock */}
-              <div className="w-[200px] h-full border-r border-on-surface flex flex-col p-4 gap-4 bg-surface-container-low">
+              <div className="w-[200px] h-full border-r border-on-surface flex flex-col p-4 gap-4 bg-surface-container-low hidden md:flex">
                 <div className="w-full h-4 bg-on-surface/20"></div>
                 <div className="w-3/4 h-3 bg-on-surface/10"></div>
                 <div className="w-5/6 h-3 bg-on-surface/10"></div>
                 <div className="w-1/2 h-3 bg-on-surface/10"></div>
               </div>
               
-              {/* Main Area Mock */}
-              <div className="flex-1 h-full flex flex-col p-8 relative">
-                {/* Data lines */}
-                <div className="space-y-6 mt-4 w-full">
-                  <div className="flex gap-4">
-                    <div className="w-8 font-mono text-xs text-secondary">01</div>
-                    <div className="w-[80%] h-4 bg-on-surface/80"></div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-8 font-mono text-xs text-secondary">02</div>
-                    <div className="w-[90%] h-4 border border-on-surface/40 p-2">
-                       <div className="w-full h-full bg-primary/20"></div>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-8 font-mono text-xs text-secondary">03</div>
-                    <div className="w-[60%] h-4 bg-on-surface/40"></div>
-                  </div>
-                </div>
+              {/* Main Area Mock - Animated Sequence */}
+              <div className="flex-1 h-full flex flex-col p-8 relative font-mono overflow-hidden">
                 
-                {/* Accent Block */}
-                <div className="mt-auto self-end w-1/2 h-24 border border-secondary bg-surface p-4 flex flex-col justify-between">
-                  <div className="w-1/3 h-2 bg-secondary"></div>
-                  <div className="w-full h-8 border-t border-secondary/30 pt-2 flex justify-between">
-                     <div className="w-1/4 h-full bg-on-surface/10"></div>
-                     <div className="w-1/4 h-full bg-on-surface/10"></div>
+                {/* Simulated Input */}
+                <div className="border border-on-surface p-4 mb-8 bg-surface-container-low flex items-start gap-3 min-h-[64px]">
+                  <span className="text-secondary mt-0.5">&gt;</span>
+                  <div className="flex-1 text-sm text-on-surface leading-relaxed relative">
+                    {typedText}
+                    {mockStep <= 1 && (
+                      <motion.span 
+                        animate={{ opacity: [1, 0, 1] }} 
+                        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} 
+                        className="inline-block w-2 h-4 bg-primary absolute ml-1 translate-y-0.5"
+                      />
+                    )}
                   </div>
                 </div>
+
+                {/* Processing Indicator */}
+                {mockStep >= 2 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3 mb-8 px-4 border-l-2 border-primary">
+                    <span className="text-primary text-xs uppercase tracking-widest">Processing</span>
+                    {mockStep === 2 ? (
+                      <div className="flex items-end gap-1 h-4">
+                        <motion.div animate={{ height: ["20%", "100%", "20%"] }} transition={{ duration: 0.6, repeat: Infinity }} className="w-1.5 bg-primary" />
+                        <motion.div animate={{ height: ["40%", "80%", "40%"] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.1 }} className="w-1.5 bg-primary" />
+                        <motion.div animate={{ height: ["100%", "30%", "100%"] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }} className="w-1.5 bg-primary" />
+                      </div>
+                    ) : (
+                      <span className="text-primary text-xs uppercase tracking-widest">[Complete]</span>
+                    )}
+                  </motion.div>
+                )}
+
+                {/* Response Area */}
+                {mockStep === 3 && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-6">
+                    <div className="text-on-surface-variant leading-relaxed text-sm max-w-2xl border-l-2 border-primary pl-4">
+                      Based on the latest SEBI (Substantial Acquisition of Shares and Takeovers) Regulations, critical liabilities in <span className="text-on-surface font-semibold bg-surface-variant/50 px-1">Merger Agreement Sec 4.2</span> trigger mandatory open offer obligations under Regulation 3. 
+                      <br /><br />
+                      The acquirer must disclose encumbered shares within 7 working days, failing which penalty provisions under <span className="text-secondary">Section 15A</span> of the SEBI Act apply.
+                    </div>
+                    
+                    {/* Mock Metric Trace */}
+                    <div className="flex flex-wrap gap-3 mt-4 border-t border-outline-variant/30 pt-6">
+                       <div className="px-3 py-1.5 bg-primary/10 border border-primary text-xs text-primary uppercase tracking-widest">CRAG Confidence: 99.4%</div>
+                       <div className="px-3 py-1.5 bg-secondary/10 border border-secondary text-xs text-secondary uppercase tracking-widest">Graph Nodes: 14</div>
+                       <div className="px-3 py-1.5 bg-surface-container-low border border-on-surface/30 text-xs text-on-surface uppercase tracking-widest">Citations: 4</div>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
           </div>
