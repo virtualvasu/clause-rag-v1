@@ -57,10 +57,10 @@ export default {
         "tertiary-container": "var(--color-tertiary-container, #424547)",
       },
       borderRadius: {
-        DEFAULT: "0.25rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        full: "9999px",
+        DEFAULT: "0px",
+        lg: "0px",
+        xl: "0px",
+        full: "0px",
       },
       spacing: {
         xl: "40px",
@@ -74,27 +74,52 @@ export default {
         xs: "4px",
       },
       fontFamily: {
-        "body-lg": ["Geist", "sans-serif"],
-        "headline-lg-mobile": ["Geist", "sans-serif"],
-        "headline-md": ["Geist", "sans-serif"],
-        "body-sm": ["Geist", "sans-serif"],
-        "label-md": ["Geist", "sans-serif"],
-        "label-sm": ["Geist", "sans-serif"],
-        "headline-xl": ["Geist", "sans-serif"],
-        "body-md": ["Geist", "sans-serif"],
-        "headline-lg": ["Geist", "sans-serif"],
+        "body-lg": ["Outfit", "sans-serif"],
+        "headline-lg-mobile": ["Playfair Display", "serif"],
+        "headline-md": ["Playfair Display", "serif"],
+        "body-sm": ["Outfit", "sans-serif"],
+        "label-md": ["Outfit", "sans-serif"],
+        "label-sm": ["Outfit", "sans-serif"],
+        "headline-xl": ["Playfair Display", "serif"],
+        "body-md": ["Outfit", "sans-serif"],
+        "headline-lg": ["Playfair Display", "serif"],
+        "mono": ["Space Mono", "monospace"],
       },
       fontSize: {
         "body-lg": ["18px", { lineHeight: "1.6", letterSpacing: "0em", fontWeight: "400" }],
-        "headline-lg-mobile": ["24px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
-        "headline-md": ["20px", { lineHeight: "1.4", letterSpacing: "0em", fontWeight: "500" }],
+        "headline-lg-mobile": ["28px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "headline-md": ["24px", { lineHeight: "1.4", letterSpacing: "0em", fontWeight: "500" }],
         "body-sm": ["14px", { lineHeight: "1.5", letterSpacing: "0.01em", fontWeight: "400" }],
         "label-md": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }],
         "label-sm": ["10px", { lineHeight: "1", letterSpacing: "0.08em", fontWeight: "700" }],
-        "headline-xl": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "headline-xl": ["56px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "600" }],
         "body-md": ["16px", { lineHeight: "1.5", letterSpacing: "0em", fontWeight: "400" }],
-        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "headline-lg": ["40px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
       },
+      backgroundSize: {
+        '300%': '300%',
+      },
+      animation: {
+        'gradient-x': 'gradient-x 15s ease infinite',
+        'shimmer': 'shimmer 2.5s ease-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          },
+        },
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        }
+      }
     },
   },
   plugins: [

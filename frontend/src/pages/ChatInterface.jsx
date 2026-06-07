@@ -3,10 +3,9 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { 
-  Moon, Sun, ArrowUp, Paperclip, Lock, 
-  Cpu, Search, Network, FileText, Scale, ChevronRight, 
-  AlertTriangle, Copy, Flag, Landmark, BookOpen,
-  RotateCw, Layers, Server
+  Moon, Sun, ArrowRight, Paperclip, Lock, 
+  Cpu, Search, Network, FileText, Scale,
+  Copy, Flag, BookOpen, RotateCw, Layers, Server
 } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 
@@ -107,50 +106,51 @@ export default function ChatInterface({ toggleTheme, isDark }) {
       <div className="flex-1 flex ml-64 h-full bg-surface transition-colors duration-300">
         
         {/* Center Column: Chat Canvas */}
-        <main className="flex-1 flex flex-col h-full border-r border-outline-variant relative">
+        <main className="flex-1 flex flex-col h-full border-r border-on-surface relative">
           
           {/* Context Header */}
-          <header className="h-[60px] min-h-[60px] border-b border-outline-variant flex items-center justify-between px-lg bg-surface/90 backdrop-blur-sm sticky top-0 z-10 transition-colors duration-300">
-            <div className="flex flex-col">
-              <span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Active Inquiry</span>
-              <h2 className="font-headline-md text-headline-md text-on-surface truncate">
-                {messages.length > 0 ? "Legal Analysis Session" : "New Inquiry"}
+          <header className="h-[60px] min-h-[60px] border-b border-on-surface flex items-center justify-between px-lg bg-surface/90 backdrop-blur-sm sticky top-0 z-10 transition-colors duration-300">
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-xs text-on-surface-variant uppercase tracking-widest bg-on-surface/10 px-2 py-1">Clause_OS</span>
+              <h2 className="font-headline-md text-xl text-on-surface truncate">
+                {messages.length > 0 ? "Legal_Analysis_Active" : "Awaiting_Query"}
               </h2>
             </div>
             <div className="flex items-center gap-sm">
-              <button onClick={toggleTheme} className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+              <button onClick={toggleTheme} className="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             </div>
           </header>
           
-          {/* Scrollable Chat History */}
-          <div className="flex-1 overflow-y-auto px-lg py-xl flex flex-col gap-xl">
+          {/* Scrollable Chat History - Editorial Stream */}
+          <div className="flex-1 overflow-y-auto px-12 md:px-24 py-16 flex flex-col gap-16">
             {messages.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center opacity-50">
-                <Scale className="w-16 h-16 text-primary mb-md" />
-                <h3 className="font-headline-lg text-headline-lg text-on-surface mb-sm">What can I help you analyze?</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant text-center max-w-md">
-                  Query the legal corpus, analyze contracts, or search for precedents.
+                <Scale className="w-16 h-16 text-primary mb-6" />
+                <h3 className="font-headline-lg text-4xl text-on-surface mb-2">Clause Active.</h3>
+                <p className="font-mono text-sm text-on-surface-variant text-center max-w-md uppercase tracking-widest">
+                  Awaiting parameters for legal extraction and timeline construction.
                 </p>
               </div>
             ) : (
               messages.map((msg) => (
-                <MessageBubble key={msg.id} msg={msg} />
+                <DocumentBlock key={msg.id} msg={msg} />
               ))
             )}
             
             {/* Typing Indicator */}
             {isLoading && (
               <div className="flex justify-start opacity-70">
-                <div className="max-w-[85%] flex gap-md items-center">
-                  <div className="w-8 h-8 rounded bg-surface-container border border-outline-variant flex-shrink-0 flex items-center justify-center">
-                    <Landmark className="text-primary w-[18px] h-[18px]" />
+                <div className="flex flex-col gap-2 w-full max-w-3xl">
+                  <div className="flex items-center gap-3 border-b border-outline-variant/30 pb-2 mb-4">
+                    <div className="w-2 h-2 bg-primary"></div>
+                    <span className="font-mono text-xs uppercase tracking-widest text-primary">System Processing</span>
                   </div>
-                  <div className="bg-surface-container rounded-lg rounded-tl-none p-md border border-outline-variant border-l-2 border-l-secondary flex items-center gap-1 h-[42px]">
-                    <motion.div animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }} transition={{ duration: 1.4, repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <motion.div animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }} transition={{ duration: 1.4, repeat: Infinity, delay: 0.16 }} className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <motion.div animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }} transition={{ duration: 1.4, repeat: Infinity, delay: 0.32 }} className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="flex items-center gap-2 h-8">
+                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0 }} className="w-2 h-2 bg-on-surface" />
+                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} className="w-2 h-2 bg-on-surface" />
+                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }} className="w-2 h-2 bg-on-surface" />
                   </div>
                 </div>
               </div>
@@ -159,111 +159,117 @@ export default function ChatInterface({ toggleTheme, isDark }) {
           </div>
           
           {/* Input Area */}
-          <div className="p-lg bg-surface border-t border-outline-variant z-10 transition-colors duration-300">
-            <div className="relative flex items-end gap-sm bg-surface-container-low border border-outline-variant rounded focus-within:border-secondary transition-colors p-sm shadow-[2px_2px_0px_0px_var(--color-surface-container-lowest)]">
-              <button className="p-sm text-on-surface-variant hover:text-primary transition-colors flex-shrink-0">
+          <div className="p-8 bg-surface border-t border-on-surface z-10 transition-colors duration-300">
+            <div className="relative flex items-end gap-4 max-w-4xl mx-auto">
+              <button className="p-2 text-on-surface-variant hover:text-primary transition-colors flex-shrink-0">
                 <Paperclip className="w-5 h-5" />
               </button>
-              <textarea 
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md resize-none max-h-[120px] min-h-[44px] py-sm px-xs outline-none" 
-                placeholder="Ask a question about the Companies Act, SEBI, or DPIIT..." 
-                rows={1}
-                disabled={isLoading}
-              />
+              <div className="flex-1 border-b-2 border-on-surface focus-within:border-primary transition-colors pb-1">
+                <textarea 
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="w-full bg-transparent border-none focus:ring-0 text-on-surface font-body-lg text-lg resize-none min-h-[32px] max-h-[200px] outline-none" 
+                  placeholder="Define query parameters..." 
+                  rows={1}
+                  disabled={isLoading}
+                />
+              </div>
               <button 
                 onClick={handleSubmit}
                 disabled={!inputValue.trim() || isLoading}
-                className="p-sm bg-primary text-on-primary rounded hover:bg-inverse-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0 flex items-center justify-center h-10 w-10"
+                className="p-3 bg-on-surface text-surface disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary transition-colors flex-shrink-0 flex items-center justify-center border border-on-surface"
               >
-                <ArrowUp className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-            <div className="mt-sm flex justify-between items-center px-xs">
-              <span className="font-label-sm text-label-sm text-on-surface-variant">Clause AI can make mistakes. Verify critical citations.</span>
-              <span className="font-label-sm text-label-sm text-secondary flex items-center gap-xs">
-                <Lock className="w-[12px] h-[12px]" />
-                End-to-End Encrypted
+            <div className="mt-4 flex justify-between items-center max-w-4xl mx-auto">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">Output requires verification.</span>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-secondary flex items-center gap-2">
+                <Lock className="w-3 h-3" />
+                Encrypted Connection
               </span>
             </div>
           </div>
         </main>
         
         {/* Right Column: Metadata Panel (Execution Trace) */}
-        <aside className="w-[320px] bg-surface-container-lowest flex flex-col h-full border-l border-outline-variant overflow-y-auto transition-colors duration-300">
-          <header className="h-[60px] min-h-[60px] border-b border-outline-variant flex items-center px-md sticky top-0 bg-surface-container-lowest/90 backdrop-blur-sm z-10 transition-colors duration-300">
-            <h3 className="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
-              <Cpu className="text-secondary w-5 h-5" />
-              Execution Trace
+        <aside className="w-[360px] bg-surface-container-low flex flex-col h-full border-l border-on-surface overflow-y-auto transition-colors duration-300">
+          <header className="h-[60px] min-h-[60px] border-b border-on-surface flex items-center justify-between px-6 sticky top-0 bg-surface-container-low/90 backdrop-blur-sm z-10 transition-colors duration-300">
+            <h3 className="font-mono text-sm uppercase tracking-[0.2em] text-on-surface flex items-center gap-3 font-bold">
+              <Cpu className="text-secondary w-4 h-4" />
+              Trace
             </h3>
+            <div className="flex gap-1">
+              <div className="w-1.5 h-1.5 bg-primary"></div>
+              <div className="w-1.5 h-1.5 bg-primary animate-pulse"></div>
+            </div>
           </header>
           
           {latestAssistantMessage ? (
-            <div className="p-md flex flex-col gap-lg">
+            <div className="p-6 flex flex-col gap-8">
               {/* CRAG Score Instrumentation */}
-              <div className="border border-outline-variant bg-surface-container-low rounded p-md">
-                <div className="flex justify-between items-end mb-sm">
-                  <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">CRAG Confidence</span>
-                  <span className="font-headline-lg text-headline-lg text-primary leading-none">
-                    {Math.round(latestAssistantMessage.crag_score * 100)}<span className="text-body-sm">%</span>
+              <div className="border border-on-surface bg-surface p-5">
+                <div className="flex justify-between items-end mb-4">
+                  <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Confidence Index</span>
+                  <span className="font-mono text-3xl text-primary leading-none">
+                    {Math.round(latestAssistantMessage.crag_score * 100)}<span className="text-sm">%</span>
                   </span>
                 </div>
-                <div className="h-2 w-full bg-surface-variant rounded-full overflow-hidden border border-outline-variant">
+                <div className="h-[2px] w-full bg-outline-variant/30 overflow-hidden relative">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.round(latestAssistantMessage.crag_score * 100)}%` }}
                     transition={{ duration: 1 }}
-                    className="h-full bg-primary relative"
+                    className="h-full bg-primary absolute top-0 left-0"
                   />
                 </div>
-                <div className="mt-xs flex justify-between font-label-sm text-label-sm text-on-surface-variant">
-                  <span>Threshold: 85%</span>
+                <div className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">
+                  <span>Thr: 85%</span>
                   <span className={latestAssistantMessage.crag_score >= 0.85 ? "text-primary" : "text-error"}>
-                    {latestAssistantMessage.crag_score >= 0.85 ? "Validated" : "Low Confidence"}
+                    {latestAssistantMessage.crag_score >= 0.85 ? "[VALID]" : "[WARN]"}
                   </span>
                 </div>
               </div>
               
               {/* Instrumental Metrics Grid */}
-              <div className="grid grid-cols-2 gap-sm">
-                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
-                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
-                    <Search className="w-[14px] h-[14px]" /> Vector Hits
+              <div className="grid grid-cols-2 gap-px bg-on-surface border border-on-surface">
+                <div className="bg-surface p-4 flex flex-col justify-between aspect-square">
+                  <span className="font-mono text-[10px] text-secondary uppercase flex items-center gap-2">
+                    <Search className="w-3 h-3" /> Vec. Hits
                   </span>
                   <div className="text-right">
-                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                    <span className="font-mono text-3xl text-on-surface">
                       {latestAssistantMessage.retrieval?.vector_hits || 0}
                     </span>
                   </div>
                 </div>
-                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
-                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
-                    <Network className="w-[14px] h-[14px]" /> Graph Nodes
+                <div className="bg-surface p-4 flex flex-col justify-between aspect-square">
+                  <span className="font-mono text-[10px] text-secondary uppercase flex items-center gap-2">
+                    <Network className="w-3 h-3" /> Graph Nodes
                   </span>
                   <div className="text-right">
-                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                    <span className="font-mono text-3xl text-on-surface">
                       {latestAssistantMessage.retrieval?.graph_hits || 0}
                     </span>
                   </div>
                 </div>
-                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
-                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
-                    <RotateCw className="w-[14px] h-[14px]" /> Iterations
+                <div className="bg-surface p-4 flex flex-col justify-between aspect-square">
+                  <span className="font-mono text-[10px] text-secondary uppercase flex items-center gap-2">
+                    <RotateCw className="w-3 h-3" /> Iters
                   </span>
                   <div className="text-right">
-                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                    <span className="font-mono text-3xl text-on-surface">
                       {latestAssistantMessage.iterations || 0}
                     </span>
                   </div>
                 </div>
-                <div className="border border-outline-variant bg-surface-container-low rounded p-sm flex flex-col justify-between aspect-square">
-                  <span className="font-label-sm text-label-sm text-secondary uppercase flex items-center gap-xs">
-                    <Layers className="w-[14px] h-[14px]" /> Chunks Used
+                <div className="bg-surface p-4 flex flex-col justify-between aspect-square">
+                  <span className="font-mono text-[10px] text-secondary uppercase flex items-center gap-2">
+                    <Layers className="w-3 h-3" /> Chunks
                   </span>
                   <div className="text-right">
-                    <span className="font-headline-lg text-headline-lg text-on-surface">
+                    <span className="font-mono text-3xl text-on-surface">
                       {latestAssistantMessage.chunks_used || 0}
                     </span>
                   </div>
@@ -271,11 +277,11 @@ export default function ChatInterface({ toggleTheme, isDark }) {
               </div>
 
               {/* Provider Info */}
-              <div className="border border-outline-variant bg-surface-container-low rounded p-md flex items-center justify-between">
-                <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest flex items-center gap-xs">
-                  <Server className="w-[16px] h-[16px] text-secondary" /> Provider
+              <div className="border border-on-surface bg-surface p-4 flex items-center justify-between">
+                <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
+                  <Server className="w-3 h-3 text-secondary" /> Model Engine
                 </span>
-                <span className="font-headline-sm text-headline-sm text-on-surface capitalize">
+                <span className="font-mono text-sm text-on-surface uppercase">
                   {latestAssistantMessage.provider || 'unknown'}
                 </span>
               </div>
@@ -283,16 +289,16 @@ export default function ChatInterface({ toggleTheme, isDark }) {
               {/* Document Context Analyzed */}
               {latestAssistantMessage.citations && latestAssistantMessage.citations.length > 0 && (
                 <div>
-                  <h4 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-sm border-b border-outline-variant pb-xs">Context Sources</h4>
-                  <ul className="flex flex-col gap-sm">
+                  <h4 className="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest mb-4 border-b border-on-surface pb-2">Context Mapping</h4>
+                  <ul className="flex flex-col gap-3">
                     {/* Dedup acts for display */}
                     {Array.from(new Set(latestAssistantMessage.citations.map(c => c.act))).map((act, idx) => (
-                      <li key={idx} className="flex items-start gap-sm p-sm border border-outline-variant rounded bg-surface-container hover:border-secondary transition-colors cursor-default">
-                        <FileText className="text-secondary w-[18px] h-[18px] mt-[2px] flex-shrink-0" />
+                      <li key={idx} className="flex items-start gap-3 p-3 border border-outline-variant/50 bg-surface hover:border-primary transition-colors cursor-default">
+                        <FileText className="text-primary w-4 h-4 mt-0.5 flex-shrink-0" />
                         <div className="flex flex-col overflow-hidden">
-                          <span className="font-label-md text-label-md text-on-surface truncate">{act}</span>
-                          <span className="font-label-sm text-label-sm text-on-surface-variant">
-                            {latestAssistantMessage.citations.filter(c => c.act === act).length} citations
+                          <span className="font-mono text-xs text-on-surface truncate">{act}</span>
+                          <span className="font-mono text-[10px] text-on-surface-variant mt-1">
+                            [{latestAssistantMessage.citations.filter(c => c.act === act).length} refs]
                           </span>
                         </div>
                       </li>
@@ -302,9 +308,9 @@ export default function ChatInterface({ toggleTheme, isDark }) {
               )}
             </div>
           ) : (
-             <div className="p-md flex flex-col items-center justify-center h-full opacity-50 text-center">
-               <Cpu className="w-12 h-12 text-on-surface-variant mb-md" />
-               <p className="font-body-md text-body-md text-on-surface-variant">Trace data will appear here once an inquiry is processed.</p>
+             <div className="p-6 flex flex-col items-center justify-center h-full opacity-30 text-center">
+               <Cpu className="w-16 h-16 text-on-surface mb-6" />
+               <p className="font-mono text-xs uppercase tracking-widest text-on-surface">Trace buffer empty.<br/>Awaiting process.</p>
              </div>
           )}
         </aside>
@@ -313,86 +319,89 @@ export default function ChatInterface({ toggleTheme, isDark }) {
   );
 }
 
-function MessageBubble({ msg }) {
-  const [isCitationOpen, setIsCitationOpen] = useState(false);
+function DocumentBlock({ msg }) {
   const isUser = msg.role === 'user';
 
   if (isUser) {
     return (
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-        <div className="max-w-[75%] flex gap-md">
-          <div className="bg-primary-container text-on-primary-container rounded-lg rounded-tr-none p-md border border-outline-variant shadow-[2px_2px_0px_0px_rgba(6,78,59,0.5)]">
-            <p className="font-body-md text-body-md whitespace-pre-wrap">{msg.content}</p>
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start w-full">
+        <div className="w-full max-w-3xl flex flex-col gap-2">
+          <div className="flex items-center gap-3 border-b border-on-surface pb-2">
+            <div className="w-2 h-2 bg-secondary"></div>
+            <span className="font-mono text-xs uppercase tracking-widest text-secondary">Inquiry Parameters</span>
           </div>
-          <div className="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex-shrink-0 flex items-center justify-center overflow-hidden">
-            <span className="font-label-md text-label-md text-on-surface">US</span>
-          </div>
+          <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface mt-2 font-medium">
+            {msg.content}
+          </h2>
         </div>
       </motion.div>
     );
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-      <div className="max-w-[85%] flex gap-md">
-        <div className="w-8 h-8 rounded bg-surface-container border border-outline-variant flex-shrink-0 flex items-center justify-center">
-          <Landmark className={`w-[18px] h-[18px] ${msg.isError ? 'text-error' : 'text-primary'}`} />
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start w-full mt-8">
+      <div className="w-full max-w-3xl flex flex-col gap-6">
+        <div className="flex items-center gap-3 border-b border-on-surface pb-2">
+          <div className="w-2 h-2 bg-primary"></div>
+          <span className="font-mono text-xs uppercase tracking-widest text-primary">Analysis Output</span>
         </div>
-        <div className="flex flex-col gap-sm">
-          <div className={`bg-surface-container text-on-surface rounded-lg rounded-tl-none p-md border border-outline-variant border-l-2 ${msg.isError ? 'border-l-error' : 'border-l-secondary'}`}>
+        
+        <div className="flex flex-col gap-6">
+          <div className={`prose prose-lg dark:prose-invert max-w-none 
+            prose-p:font-body-md prose-p:leading-relaxed prose-p:text-on-surface-variant
+            prose-headings:font-headline-md prose-headings:text-on-surface prose-headings:font-medium prose-headings:mt-8 prose-headings:mb-4
+            prose-a:text-secondary prose-a:underline-offset-4
+            prose-code:font-mono prose-code:text-sm prose-code:text-primary prose-code:bg-surface-variant/50 prose-code:px-1.5 prose-code:py-0.5
+            prose-strong:text-on-surface prose-strong:font-semibold
+            prose-ul:list-square prose-ul:pl-4
+            ${msg.isError ? 'text-error prose-p:text-error' : ''}`}>
             {msg.isError ? (
-              <div className="font-body-md text-body-md mb-md whitespace-pre-wrap text-error">
-                {msg.content}
-              </div>
+              <p>{msg.content}</p>
             ) : (
-              <div className="font-body-md text-body-md mb-md prose prose-sm dark:prose-invert max-w-none prose-p:leading-relaxed prose-headings:font-headline-sm prose-headings:text-primary prose-a:text-secondary prose-code:text-primary prose-code:bg-surface-variant prose-code:px-1 prose-code:rounded prose-strong:text-on-surface prose-strong:font-bold">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {msg.content}
-                </ReactMarkdown>
-              </div>
-            )}
-            
-            {/* Citations Showcase */}
-            {!msg.isError && msg.citations && msg.citations.length > 0 && (
-              <div className="mt-xl pt-md border-t border-outline-variant">
-                <div className="font-label-sm text-label-sm text-secondary uppercase tracking-widest flex items-center gap-xs mb-md">
-                  <BookOpen className="w-[14px] h-[14px]" /> Cited Legal Authorities
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
-                  {msg.citations.map((cit, idx) => (
-                    <div key={idx} className="bg-surface border border-outline-variant rounded p-sm flex flex-col gap-xs hover:border-secondary transition-colors group shadow-[2px_2px_0px_0px_var(--color-surface-container-lowest)]">
-                      <div className="flex justify-between items-start gap-sm">
-                        <span className="font-label-md text-label-md text-primary flex items-center gap-xs truncate">
-                          <FileText className="w-3 h-3 flex-shrink-0" />
-                          <span className="truncate" title={cit.act}>{cit.act}</span>
-                        </span>
-                        <span className="bg-primary-container text-on-primary-container font-label-sm text-[10px] px-1.5 py-0.5 rounded whitespace-nowrap">
-                          {cit.section_type} {cit.section_number}
-                        </span>
-                      </div>
-                      <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-xs" title={cit.section_title || cit.text_excerpt}>
-                        {cit.section_title || cit.text_excerpt?.substring(0, 150) + '...'}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {msg.content}
+              </ReactMarkdown>
             )}
           </div>
           
-          {/* Action Bar below bubble */}
-          {!msg.isError && (
-            <div className="flex items-center gap-sm px-unit">
-              <button className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
-                <Copy className="w-[14px] h-[14px]" /> Copy
-              </button>
-              <div className="w-[1px] h-3 bg-outline-variant"></div>
-              <button className="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-xs">
-                <Flag className="w-[14px] h-[14px]" /> Flag for Review
-              </button>
+          {/* Citations Showcase */}
+          {!msg.isError && msg.citations && msg.citations.length > 0 && (
+            <div className="mt-8 pt-8 border-t border-outline-variant/30">
+              <div className="font-mono text-xs text-on-surface uppercase tracking-[0.2em] flex items-center gap-3 mb-6">
+                <BookOpen className="w-4 h-4" /> Reference Index
+              </div>
+              <div className="grid grid-cols-1 gap-4">
+                {msg.citations.map((cit, idx) => (
+                  <div key={idx} className="bg-surface border-l-2 border-primary pl-4 py-2 flex flex-col gap-2 group">
+                    <div className="flex justify-between items-start gap-4">
+                      <span className="font-mono text-sm text-on-surface font-bold">
+                        {cit.act}
+                      </span>
+                      <span className="bg-on-surface text-surface font-mono text-[10px] uppercase px-2 py-0.5 whitespace-nowrap">
+                        {cit.section_type} {cit.section_number}
+                      </span>
+                    </div>
+                    <p className="font-body-sm text-on-surface-variant line-clamp-2 mt-1 italic" title={cit.section_title || cit.text_excerpt}>
+                      "{cit.section_title || cit.text_excerpt?.substring(0, 200) + '...'}"
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
+        
+        {/* Action Bar below document */}
+        {!msg.isError && (
+          <div className="flex items-center gap-6 mt-4 pt-4 border-t border-outline-variant/20">
+            <button className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+              <Copy className="w-3 h-3" /> Copy Full Text
+            </button>
+            <button className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-2">
+              <Flag className="w-3 h-3" /> Flag Discrepancy
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   );
